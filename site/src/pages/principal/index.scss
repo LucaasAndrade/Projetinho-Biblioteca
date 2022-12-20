@@ -1,0 +1,61 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.principal{
+    display: flex;
+    flex-direction: row;
+    background-color: #F0F0F0;
+
+    .info-principal{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-image: url('../../../public/assets/images/logo-fundo.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100vw;
+    }
+
+    .mensagem{
+        font-family: 'regular';
+        font-size: 20px;
+        padding: 3em;
+    }
+
+    .fundo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .fundo-livros{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .div-livro{
+        background-color: #fff;
+        border: 1px solid #d4d4d4;
+        margin: 2em;
+        width: 20em;
+        max-height: 5em;
+    }
+
+    .div-livro p{
+        font-family: 'regular';
+        text-transform: capitalize;
+        padding: 1.8em;
+    }
+
+    .fundo-livros span{
+        font-family: 'medio';
+        font-size: 18px;
+        margin-left: .5em;
+    }
+
+    .spn-atrasado{
+        color: #ff0000;
+    }
+}
