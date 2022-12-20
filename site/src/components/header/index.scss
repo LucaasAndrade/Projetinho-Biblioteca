@@ -1,0 +1,44 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.componente-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #5A57DF;
+    min-height: 100vh;
+    max-width: 18vw;
+
+    .opcoes{
+        margin-top: 10em;
+    }
+
+    .opcoes img{
+        width: 1.5em;
+    }
+
+    .opcao{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-family: 'medio';
+        color: #fff;
+        padding: 1.2em;
+        width: 18vw;
+    }
+    .opcao:hover{
+        background-color: #4441DB;
+    }
+
+    .opcao p{
+        font-size: 18px;
+        margin-left: 1em;
+    }
+
+    .logo{
+        width: 10em;
+    }
+}
