@@ -54,3 +54,19 @@ CREATE TABLE tb_emprestimo(
     FOREIGN KEY (id_usuario) REFERENCES tb_usuario (id_usuario),
     FOREIGN KEY (id_livro) REFERENCES tb_livro (id_livro)
 );
+
+CREATE TABLE tb_adm(
+	id_adm				INT PRIMARY KEY AUTO_INCREMENT,
+    nm_adm				VARCHAR(100),
+    dt_nascimento		DATE,
+    ds_cpf				VARCHAR(100)
+);
+
+
+CREATE TABLE tb_adm_login(
+	id_adm_login		INT PRIMARY KEY AUTO_INCREMENT,
+    id_adm				INT,
+    ds_chave_login		VARCHAR(100),
+    ds_senha			VARCHAR(100),
+    FOREIGN KEY (id_adm) REFERENCES tb_adm (id_adm)
+);

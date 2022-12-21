@@ -25,3 +25,9 @@ INSERT INTO tb_livro(id_autor, nm_livro, ds_observacoes, ds_codigo)
     
 INSERT INTO tb_emprestimo(id_usuario, id_livro, dt_retirada, dt_entrega)
 	VALUES(1, 1, "2022-12-10 22:30:21", "2022-12-20 22:30:21");
+
+INSERT INTO tb_adm(nm_adm, dt_nascimento, ds_cpf)
+	VALUES('admin', "2022-12-25", "123.456.789-10");
+    
+INSERT INTO tb_adm_login(id_adm, ds_chave_login, ds_senha)
+	VALUES(1, "admin@admin.com", "frei@isnsf");
