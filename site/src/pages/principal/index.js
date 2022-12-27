@@ -1,10 +1,18 @@
 import './index.scss'
 
 import ComponenteHeader from '../../components/header'
-
-
+import { useEffect } from 'react';
+import storage from 'local-storage';
+import { useNavigate } from 'react-router-dom';
 
 export default function Principal() {
+    
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!storage('usuario-logado')) navigate('/');
+      }, []);
+
     return (
         <main className='principal'>
             <ComponenteHeader />
