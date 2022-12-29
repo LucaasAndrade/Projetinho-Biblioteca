@@ -1,17 +1,26 @@
 import './index.scss'
 
 import ComponenteHeader from '../../components/header'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import storage from 'local-storage';
 import { useNavigate } from 'react-router-dom';
+import { EmprestimosAtivos } from '../../api/emprestimos';
 
 export default function Principal() {
+    const [a, setA] = useState();
     
     const navigate = useNavigate();
 
+    async function CarregarEmprestimos() {
+        const a = await EmprestimosAtivos();
+        setA(a.Emprestimos_Ativos);
+    }
+    
     useEffect(() => {
+        CarregarEmprestimos();
         if (!storage('usuario-logado')) navigate('/');
-      }, []);
+    }, []); 
+    
 
     return (
         <main className='principal'>
@@ -24,7 +33,7 @@ export default function Principal() {
                     <div className='fundo-livros'>
                         <div>
                             <div className='div-livro'>
-                                <p>Livros emprestados: <span>6</span></p>
+                                <p>Livros emprestados: <span>{a}</span></p>
                             </div>
                             <div className='div-livro'>
                                 <p>Livros atrasados: <span className='spn-atrasado'>0</span></p>

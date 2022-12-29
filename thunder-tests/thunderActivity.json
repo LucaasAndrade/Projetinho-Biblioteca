@@ -23,11 +23,11 @@
     "colId": "history",
     "containerId": "",
     "name": "localhost:5000/adm/login",
-    "url": "localhost:5000/adm/login",
-    "method": "POST",
+    "url": "localhost:5000/emprestimos/consultar/ativos",
+    "method": "GET",
     "sortNum": 0,
     "created": "2022-12-27T20:41:41.018Z",
-    "modified": "2022-12-27T20:41:41.018Z",
+    "modified": "2022-12-29T00:01:02.493Z",
     "headers": [],
     "params": [],
     "body": {
@@ -35,6 +35,20 @@
       "raw": "{\n  \"email\": \"admin@admin.com\",\n  \"senha\": \"frei@isnsf\"\n}",
       "form": []
     },
+    "tests": []
+  },
+  {
+    "_id": "c3622364-46f0-4695-86db-b46cb3009315",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:5000/emprestimos/consultar/ativos",
+    "url": "localhost:5000/emprestimos/consultar/ativos",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-12-29T00:19:24.649Z",
+    "modified": "2022-12-29T00:19:24.649Z",
+    "headers": [],
+    "params": [],
     "tests": []
   }
 ]
