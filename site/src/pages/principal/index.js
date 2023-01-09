@@ -40,7 +40,7 @@ export default function Principal() {
                             </div>
                         </div>
                         <div className='div-livro'>
-                            <p>Livros para recolher hoje: <span>2</span></p>
+                            <p>Livros para recolher hoje: <span>0</span></p>
                         </div>
                     </div>
                 </div>
