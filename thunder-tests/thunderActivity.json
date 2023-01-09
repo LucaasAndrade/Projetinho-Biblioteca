@@ -98,11 +98,11 @@
     "colId": "history",
     "containerId": "",
     "name": "localhost:5000/adm/consulta/autores/J",
-    "url": "localhost:5000/adm/consulta/autores/j",
+    "url": "localhost:5000/adm/consulta/nascionalidades/",
     "method": "GET",
     "sortNum": 0,
     "created": "2023-01-09T00:56:28.182Z",
-    "modified": "2023-01-09T19:58:47.020Z",
+    "modified": "2023-01-09T22:41:08.102Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -171,6 +171,58 @@
       "raw": "{\n  \"nome\": \"Lucas Andrade\",\n  \"nascionalidade\": 1\n}",
       "form": []
     },
+    "tests": []
+  },
+  {
+    "_id": "521d1549-a0df-438a-89cd-7ce705e5e2da",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:5000/adm/cadastrar/nacionalidades",
+    "url": "localhost:5000/adm/cadastrar/nacionalidades",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-01-09T22:50:54.201Z",
+    "modified": "2023-01-09T22:50:54.201Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"nome\": \"Argentina\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "fcff3711-d7b1-4861-ae45-3b6687125474",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:5000/adm/consultar/nacionalidades",
+    "url": "localhost:5000/adm/cadastrar/nacionalidades",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-01-09T22:51:24.895Z",
+    "modified": "2023-01-09T22:53:53.003Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"nome\": \"Argentina\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "1560a58b-f629-429b-9c12-cf36726e160b",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:5000/adm/consultar/nacionalidades/",
+    "url": "localhost:5000/adm/consulta/nascionalidades/",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-01-09T22:51:33.134Z",
+    "modified": "2023-01-09T22:52:47.037Z",
+    "headers": [],
+    "params": [],
     "tests": []
   }
 ]
