@@ -1,0 +1,68 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.page-cadastro-genero{
+    display: flex;
+    flex-direction: row;
+
+    .info-cadastro{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-image: url('../../../public/assets/images/logo-livro.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100vw;
+    }
+
+    .fundo-cadastrar{
+        display: flex;
+        flex-direction: row;
+        padding-top: 5em;
+    }
+
+    .info-cadastro p{
+        font-family: 'medio';
+    }
+
+    input{
+        height: 2.3em;
+        background-color: #D9D9D9;
+        border: 1px solid #D9D9D9;
+        opacity: 80%;
+        padding: 10px;
+        margin-top: .5em;
+    }
+
+    .inp-nome{
+        width: 38.2em;
+    }
+
+    .div-botoes{
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 2em;
+    }
+
+    button{
+        display: flex;
+        align-items: center;
+        font-family: 'bold';
+        margin-right: 2em;
+        padding: 5px;
+        border-radius: 5px;
+        background-color: #D9D9D9;
+        opacity: 80%;
+    }
+    button:hover{
+        cursor: pointer;
+        opacity: 100%;
+    }
+
+    .div-botoes img{
+        opacity: 60%;
+        padding-right: 10px;
+    }
+}

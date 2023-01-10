@@ -22,7 +22,7 @@ export default function ComponenteHeader() {
                     <img src='/assets/images/perfil.png' />
                     <p>Cadastrar leitor</p>
                 </div>
-                <div className='opcao'>
+                <div className='opcao' onClick={() => navigate('/emprestimo')}>
                     <img src='/assets/images/menu.png' />
                     <p>Empréstimos</p>
                 </div>

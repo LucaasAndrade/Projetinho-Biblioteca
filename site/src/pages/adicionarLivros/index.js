@@ -43,6 +43,8 @@ export default function AdicionarLivros() {
                             </div>
                         </div>
                         <div className='div-botoes'>
+                            <button><img src='/assets/images/mais+.png' />Cadastrar Autores</button>
+                            <button><img src='/assets/images/mais+.png' />Cadastrar Gêneros</button>
                             <button><img src='/assets/images/confere.png' />Salvar Alteração</button>
                         </div>
                     </div>
