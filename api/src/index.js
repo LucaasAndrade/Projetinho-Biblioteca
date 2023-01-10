@@ -1,7 +1,13 @@
 
 import 'dotenv/config';
+
+
 import AdmController from './controller/AdmController.js'
 import EmprestimoConstroller from './controller/EmprestimoController.js'
+import AutorController from './controller/AutorController.js'
+import NascionalidadeController from './controller/NascionalidadeController.js'
+
+
 import express from 'express';
 import cors from 'cors';
 
@@ -10,8 +16,8 @@ server.use(cors());
 server.use(express.json());
 server.use(AdmController);
 server.use(EmprestimoConstroller);
-
-
+server.use(AutorController);
+server.use(NascionalidadeController);
 
 
 
