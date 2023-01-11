@@ -224,5 +224,38 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "dd2e25ce-703e-4618-b517-5017367bcc9d",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:5000/adm/consulta/livros",
+    "url": "localhost:5000/adm/consulta/livros",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-01-11T22:33:57.737Z",
+    "modified": "2023-01-11T22:33:57.737Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "313a3c83-f1a6-4c7c-9331-b71c5eab473e",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:5000/adm/cadastrar/livro",
+    "url": "localhost:5000/adm/cadastrar/livro",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-01-11T23:05:51.638Z",
+    "modified": "2023-01-11T23:41:58.401Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"idAutor\": 1,\n  \"idGenero\": 1,\n  \"nomeLivro\": \"Digo Dus tecnico\",\n  \"observacoes\": \"Nao estudou python\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]
