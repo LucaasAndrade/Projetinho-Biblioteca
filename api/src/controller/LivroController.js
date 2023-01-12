@@ -1,14 +1,15 @@
 
-import { CadastrarLivro, ListarTodosLivros } from "../repository/LivroRepository.js";
 import { Router } from "express";
-import GeradorDeCodigoLivro from "../assets/GeradorCodigoLivro.js";
+
+import { CadastrarLivro, ListarTodosLivros } from "../repository/LivroRepository.js";
+import {GeradorDeCodigo} from "../assets/GeradorCodigo.js";
 
 const server = Router();
 
 server.post('/adm/cadastrar/livro', async (req, resp) => {
     try {
         const { idAutor, idGenero, nomeLivro, observacoes } = req.body;
-        const codigo = GeradorDeCodigoLivro();        
+        const codigo = GeradorDeCodigo(5);        
         const resposta = await CadastrarLivro(idAutor, idGenero, nomeLivro, observacoes, codigo);
         
         resp.send();
