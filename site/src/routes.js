@@ -7,6 +7,8 @@ import AdicionarLivros from './pages/adicionarLivros';
 import CadastrarAutor from './pages/cadastrarAutor';
 import CadastrarGenero from './pages/cadastrarGeneros';
 import Emprestimos from './pages/emprestimos';
+import HistoricoLivros from './pages/historicoLivros';
+import HistoricoLeitores from './pages/historicoLeitores';
 
 export default function Index() {
     return (
@@ -19,6 +21,8 @@ export default function Index() {
                 <Route path='/cadastro/autor' element={<CadastrarAutor />} />
                 <Route path='/cadastro/genero' element={<CadastrarGenero />} />
                 <Route path='/emprestimo' element={<Emprestimos />} />
+                <Route path='/livros' element={<HistoricoLivros />} />
+                <Route path='/leitores' element={<HistoricoLeitores />} />
             </Routes>
         </BrowserRouter>
     )
