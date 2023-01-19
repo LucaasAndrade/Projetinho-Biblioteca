@@ -31,8 +31,9 @@ server.post('/adm/cadastrar/curso', async (req, resp) => {
 
 server.get('/adm/consulta/turmas/:curso?', async (req, resp) => {
     try {
-        const curso = req.params.curso;
+        const { curso } = req.params;
         if (!curso) throw new Error("Por favor, informe um curso!");
+        
         const resposta = await ListarTurmasDeCurso(curso);
 
         resp.send(resposta)

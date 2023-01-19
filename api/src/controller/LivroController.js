@@ -11,9 +11,13 @@ server.post('/adm/cadastrar/livro', async (req, resp) => {
     try {
         const { idAutor, idGenero, nomeLivro, observacoes } = req.body;
         const codigo = GeradorDeCodigo(5);
-        VerificarCampos(idAutor, idGenero, nomeLivro)
-        if(!observacoes)  await CadastrarLivro(idAutor, idGenero, nomeLivro, "Nenhuma Observação!", codigo);
+
+        VerificarCampos(idAutor, idGenero, nomeLivro);
+
+        if (!observacoes) await CadastrarLivro(idAutor, idGenero, nomeLivro, "Nenhuma Observação!", codigo);
+            
         else await CadastrarLivro(idAutor, idGenero, nomeLivro, observacoes, codigo);
+
         resp.send();
     } catch (err) {
         resp.status(401).send({

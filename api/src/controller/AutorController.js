@@ -32,6 +32,7 @@ server.get('/adm/consulta/autores/:nome?', async (req, resp) => {
         const { nome } = req.params
         const resposta = await ConsultarAutores(nome);
         const consultarTodos = await ConsultarAutores("");
+        
         // SE O ARGUMENTO ESTIVER VAZIO, VAI RETORNAR UNDEFINED
         if (!nome) resp.send(consultarTodos);
         else resp.send(resposta);

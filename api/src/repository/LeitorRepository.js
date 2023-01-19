@@ -20,3 +20,12 @@ export async function ListarLeitores() {
     const [linhas] = await con.query(comando);
     return linhas;
 }
+
+export async function CadastrarLeitor(idCurso, idTurmaCurso, nomeUsuario, numeroTelefone, codigo, observacoes) {
+    const comando =
+        `  
+        INSERT INTO tb_usuario(id_curso, id_turma_curso, nm_usuario, nr_telefone, ds_codigo, ds_observacoes)
+            VALUES(?, ?, ?, ?, ?, ?);
+        `
+    const resposta = await con.query(comando, [idCurso, idTurmaCurso, nomeUsuario, numeroTelefone, codigo, observacoes])
+}  

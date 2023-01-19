@@ -18,13 +18,12 @@ server.post('/adm/cadastrar/nacionalidades', async (req, resp) => {
     }
 })
 
-
-
 server.get('/adm/consulta/nascionalidades/:nome?', async (req, resp) => {
     try {
         const {nome} = req.params
         const resposta = await ConsultarNacionalidades(nome);
         const ConsultarTodos = await ConsultarNacionalidades("");
+        
         if (!nome) resp.send(ConsultarTodos);
         else resp.send(resposta);
 
