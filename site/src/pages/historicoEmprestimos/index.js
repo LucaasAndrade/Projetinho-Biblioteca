@@ -3,29 +3,22 @@ import './index.scss';
 import ComponenteHeader from '../../components/header';
 
 
-export default function HistoricoLeitores() {
+export default function HistoricoEmprestimos() {
     return(
-        <main className='page-leitores'>
+        <main className='page-emprestimos'>
             <ComponenteHeader />
-            <section className='info-leitores'>
+            <section className='info-emprestimos'>
                
-
-            <div className='pagina-leitores'>
-            <h1> Lista de Leitores: </h1>
-
             <div className='tabela'>
                 <table>
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Nome do Leitor</th>
+                            <th>Nome</th>
                             <th>Curso</th>
                             <th>Turma</th>
-                            <th>Livros Lidos</th>
-                            <th>Livros Atrasados</th>
-                            <th>Código</th>
-                            <th></th>
-                            <th></th>
+                            <th>Livro Emprestado:</th>
+                            <th>Emprestado em:</th>
+                            <th>Data de Devolução:</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,16 +29,12 @@ export default function HistoricoLeitores() {
                                 <td> quatro </td>
                                 <td> cinco </td>
                                 <td> seis </td>
-                                <td> sete </td>
-                                <td><span><img src='/assets/images/editar.png' /></span></td>
-                                <td><span><img src='/assets/images/lixeira.png' /></span></td>
                             </tr>    
                     </tbody>
                 </table>
                     <div className='div-botoes'>
-                        <button><img src='/assets/images/mais+.png' />Adicionar Leitor</button>
+                        <button><img src='/assets/images/mais+.png' />Novo Empréstimo</button>
                     </div>
-                </div>
             </div>
 
             </section>
