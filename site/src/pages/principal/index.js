@@ -7,13 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import { EmprestimosAtivos } from '../../api/emprestimos';
 
 export default function Principal() {
-    const [a, setA] = useState();
+    const [VetorEmprestimosAtivos, setVetorEmprestimosAtivos] = useState();
     
     const navigate = useNavigate();
 
     async function CarregarEmprestimos() {
-        const a = await EmprestimosAtivos();
-        setA(a.Emprestimos_Ativos);
+        const resp = await EmprestimosAtivos();
+        setVetorEmprestimosAtivos(resp.Emprestimos_Ativos);
     }
     
     useEffect(() => {
@@ -33,7 +33,7 @@ export default function Principal() {
                     <div className='fundo-livros'>
                         <div>
                             <div className='div-livro'>
-                                <p>Livros emprestados: <span>{a}</span></p>
+                                <p>Livros emprestados: <span>{VetorEmprestimosAtivos}</span></p>
                             </div>
                             <div className='div-livro'>
                                 <p>Livros atrasados: <span className='spn-atrasado'>0</span></p>

@@ -15,7 +15,6 @@ server.post('/adm/cadastrar/livro', async (req, resp) => {
         VerificarCampos(idAutor, idGenero, nomeLivro);
 
         if (!observacoes) await CadastrarLivro(idAutor, idGenero, nomeLivro, "Nenhuma Observação!", codigo);
-            
         else await CadastrarLivro(idAutor, idGenero, nomeLivro, observacoes, codigo);
 
         resp.send();
