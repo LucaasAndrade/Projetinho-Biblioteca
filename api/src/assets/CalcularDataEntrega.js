@@ -52,7 +52,6 @@ export function CalcularDataEntrega(data) {
             anoParaEntrega += 1;
         } else {
             diaParaEntrega = cont;
-            return `${mesParaEntrega}/${diaParaEntrega}`
         }
     } else {
         throw new Error('Informe uma data válida')   
