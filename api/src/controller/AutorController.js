@@ -44,4 +44,5 @@ server.get('/adm/consulta/autores/:nome?', async (req, resp) => {
     }
 })
 
+
 export default server;

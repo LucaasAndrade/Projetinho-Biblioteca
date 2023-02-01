@@ -1,51 +1,82 @@
 import './index.scss';
 
 import ComponenteHeader from '../../components/header';
-
+import { useEffect, useState } from 'react';
+import { ConsultarAutoresLivros } from '../../api/autores';
+import { ConsultarTodosGeneros } from '../../api/genero';
+import { CadastrarLivro } from '../../api/livro';
 
 export default function AdicionarLivros() {
+    const [autoresLivros, setAutoresLivros] = useState([]);
+    const [generos, setGeneros] = useState([]);
+    const [nomeLivro, setNomeLivro] = useState("");
+    const [autorId, setAutorId] = useState();
+    const [generoId, setGeneroId] = useState();
+    const [observacoes, setObservacoes] = useState();
+    
+
+    async function ConsultarAutores() {
+        const r = await ConsultarAutoresLivros();
+        setAutoresLivros(r)
+    }
+    
+    async function ConsultarGeneros() {
+        const r = await ConsultarTodosGeneros();
+        setGeneros(r);
+    }
+    
+    async function SalvarClick() {
+        try {
+            const r = await CadastrarLivro(autorId, generoId, nomeLivro, observacoes);
+            alert('Livro Salvo ✔')
+        } catch (err) {
+            alert(err.request.response)   
+        }
+    }
+
+    useEffect(() => {
+        ConsultarGeneros();
+        ConsultarAutores();
+    }, [])
+    
     return(
         <main className='adicionar'>
             <ComponenteHeader />
             <section className='info-adicionar'>
                 <div className='fundo-adicionar'>
-                    <div className='fundo-imagem'>
-                        <img src='/assets/images/add-imagem.png' />
-                    </div>
                     <div className='fundo-info'>
                         <p>Nome:</p>
-                        <input className='inp-nome' type='text' placeholder='EXEMPLO' />
+                        <input className='inp-nome' type='text' placeholder='EXEMPLO' value={nomeLivro} onChange={e => setNomeLivro(e.target.value)} />
                         <div className='col-dois'>
                             <div>
                                 <p>Gênero:</p>
-                                <select>
+                                <select onChange={e => setGeneroId(e.target.value)}>
                                     <option value="" selected disabled hidden>Gênero</option>
-                                    <option value="??"> ?? </option>
-                                    <option value="??"> ?? </option>
-                                    <option value="??"> ?? </option>
-                                    <option value="??"> ?? </option>
-                                    <option value="??"> ?? </option>
+                                    {generos.map(item => 
+                                        <option  value={item.id}> {item.genero} </option>
+                                    )}
                                 </select>
                             </div>
                             <div className='div-col-dois'>
                                 <p>Nome do Autor:</p>
-                                <input className='inp-autor' type='text' placeholder='EXEMPLO'/>
+                                <select onChange={e => setAutorId(e.target.value)}>
+                                    <option value="" selected disabled hidden>Autores</option>
+                                    {autoresLivros.map(item => 
+                                        <option value={item.id}> {item.nome} </option>
+                                    )}
+                                </select>
                             </div>
                         </div>
                         <div className='text-inp'>
                             <div className="textarea">
                                 <p>Observações:</p>
-                                <textarea className="descricao" name="story" rows="7" cols="46" placeholder='EXEMPLO'></textarea>
-                            </div>
-                            <div className='quantidade'>
-                                <p>Qtd. Disp:</p>
-                                <input type='number' placeholder='0'/>
+                                <textarea className="descricao" name="story" rows="7" cols="46" placeholder='EXEMPLO' value={observacoes} onChange={e => setObservacoes(e.target.value)}></textarea>
                             </div>
                         </div>
                         <div className='div-botoes'>
                             <button><img src='/assets/images/mais+.png' />Cadastrar Autores</button>
                             <button><img src='/assets/images/mais+.png' />Cadastrar Gêneros</button>
-                            <button><img src='/assets/images/confere.png' />Salvar Alteração</button>
+                            <button onClick={SalvarClick}><img src='/assets/images/confere.png' />Salvar Alteração</button>
                         </div>
                     </div>
                 </div>

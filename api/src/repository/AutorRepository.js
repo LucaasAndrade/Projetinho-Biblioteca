@@ -1,6 +1,5 @@
 import { con } from './connection.js'
 
-
 export async function CadastrarAutores(nome, nascionalidade) {
     const comando =
         `
