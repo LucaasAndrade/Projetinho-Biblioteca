@@ -1,7 +1,9 @@
 import './index.scss';
 
 import ComponenteHeader from '../../components/header';
-import { useEffect, useState } from 'react';
+import LoadingBar from 'react-top-loading-bar';
+
+import { useEffect, useRef, useState } from 'react';
 import { ConsultarAutoresLivros } from '../../api/autores';
 import { ConsultarTodosGeneros } from '../../api/genero';
 import { CadastrarLivro } from '../../api/livro';
@@ -16,7 +18,7 @@ export default function AdicionarLivros() {
     const [observacoes, setObservacoes] = useState();
     
     const navigate = useNavigate();
-
+    const ref = useRef(null);
     // function navegarCadastroGenero() {
     //     navigate('/cadastro/genero');
     // }
@@ -35,8 +37,11 @@ export default function AdicionarLivros() {
         try {
             const r = await CadastrarLivro(autorId, generoId, nomeLivro, observacoes);
             alert('Livro Salvo ✔')
+            ref.current.continuousStart();
+            setTimeout(() => {
+                navigate('/livros')
+            }, 1000)
         } catch (err) {
-
             alert(err.request.response)   
         }
     }
@@ -48,6 +53,7 @@ export default function AdicionarLivros() {
     
     return(
         <main className='adicionar'>
+            <LoadingBar color='#ff0000' ref={ref} />
             <ComponenteHeader />
             <section className='info-adicionar'>
                 <div className='fundo-adicionar'>

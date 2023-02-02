@@ -48,8 +48,8 @@ export default function CadastrarLeitor() {
                             <textarea className="descricao" name="story" rows="7" cols="46" placeholder='EXEMPLO'></textarea>
                         </div>
                         <div className='div-botoes'>
-                            <button><img src='/assets/images/mais+.png' />Adicionar Turma/Curso</button>
-                            <button><img src='/assets/images/carta.png' />Gerar Carterinha</button>
+                            <button ><img src='/assets/images/mais+.png' />Adicionar Turma/Curso</button>
+                            <button className='gerar-carteirinha'><img src='/assets/images/carta.png' />Gerar Carterinha</button>
                             <button><img src='/assets/images/confere.png' />Salvar Alteração</button>
                         </div>
                     </div>

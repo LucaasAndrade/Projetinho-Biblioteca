@@ -18,7 +18,7 @@ export default function ComponenteHeader() {
                     <img src='/assets/images/mais.png' />
                     <p>Adicionar livros</p>
                 </div>
-                <div className='opcao' onClick={() => navigate('/cadastro/leitor')}>
+                <div className='opcao' onClick={() => navigate('/leitores/')}>
                     <img src='/assets/images/perfil.png' />
                     <p>Cadastrar leitor</p>
                 </div>

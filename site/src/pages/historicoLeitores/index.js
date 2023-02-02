@@ -1,9 +1,26 @@
 import './index.scss';
 
 import ComponenteHeader from '../../components/header';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { ConsultarLeitores } from '../../api/leitor';
 
 
 export default function HistoricoLeitores() {
+    const [leitores, setLeitores] = useState([]);
+
+    async function ConsultarTodosLeitores() {
+        const r = await ConsultarLeitores();
+        console.log(r);
+        setLeitores(r);
+    }
+
+    useEffect(() => {
+        ConsultarTodosLeitores();
+    }, [])
+
+    const navigate = useNavigate();
+
     return(
         <main className='page-leitores'>
             <ComponenteHeader />
@@ -29,21 +46,23 @@ export default function HistoricoLeitores() {
                         </tr>
                     </thead>
                     <tbody>
-                            <tr>
-                                <td> um </td>
-                                <td> dois </td>
-                                <td> tres</td>
-                                <td> quatro </td>
-                                <td> cinco </td>
-                                <td> seis </td>
-                                <td> sete </td>
-                                <td><span><img src='/assets/images/editar.png' /></span></td>
-                                <td><span><img src='/assets/images/lixeira.png' /></span></td>
-                            </tr>    
+                        {leitores.map(item =>
+                        <tr>
+                            <td> {item.id}</td>
+                            <td> {item.leitor }</td>
+                            <td> {item.curso}</td>
+                            <td> {item.turma}</td>
+                            <td> {item.livros_lidos}</td>
+                            <td> {item.livros_atrasados} </td>
+                            <td> {item.codigo} </td>
+                            <td><span><img src='/assets/images/editar.png' /></span></td>
+                            <td><span><img src='/assets/images/lixeira.png' /></span></td>
+                        </tr>    
+                            )}    
                     </tbody>
                 </table>
                     <div className='div-botoes'>
-                        <button><img src='/assets/images/mais+.png' />Adicionar Leitor</button>
+                        <button onClick={() => navigate('/cadastro/leitor')}><img src='/assets/images/mais+.png' />Adicionar Leitor</button>
                     </div>
                 </div>
             </div>
