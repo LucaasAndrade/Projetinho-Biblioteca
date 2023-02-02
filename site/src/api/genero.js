@@ -12,3 +12,9 @@ export async function ConsultarTodosGeneros() {
     return r.data;
 }
 
+export async function CadastrarGeneroNoBancoDeDados(nomeGenero) {
+    const r = await api.post('/adm/cadastrar/genero/', {
+        nomeGenero
+    });
+    return r.data
+}

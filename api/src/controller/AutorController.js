@@ -1,7 +1,7 @@
 
 
 import { CadastrarAutores, ConsultarAutores } from "../repository/AutorRepository.js";
-import {  Router } from "express";
+import {  Router } from "express";  
 
 const server = Router();
 
@@ -11,6 +11,7 @@ const server = Router();
 server.post('/adm/cadastrar/autores', async (req, resp) => {
     try {
         const { nome, nascionalidade } = req.body;
+        if(!nome) throw new Error("Escreva o nome de um autor!")
         const resposta = await CadastrarAutores(nome, nascionalidade)
         
         resp.send();

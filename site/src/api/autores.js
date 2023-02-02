@@ -12,3 +12,12 @@ export async function ConsultarAutoresLivros(autor) {
     else var r = await api.get(`/adm/consulta/autores/${autor}`)
     return r.data
 }
+
+
+export async function CadastrarAutorLivro(nome, nascionalidade) {
+    const r = await api.post('/adm/cadastrar/autores', {
+        nome,
+        nascionalidade
+    });
+    return r.data
+}

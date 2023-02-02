@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { ConsultarAutoresLivros } from '../../api/autores';
 import { ConsultarTodosGeneros } from '../../api/genero';
 import { CadastrarLivro } from '../../api/livro';
+import { useNavigate } from 'react-router-dom';
 
 export default function AdicionarLivros() {
     const [autoresLivros, setAutoresLivros] = useState([]);
@@ -14,6 +15,11 @@ export default function AdicionarLivros() {
     const [generoId, setGeneroId] = useState();
     const [observacoes, setObservacoes] = useState();
     
+    const navigate = useNavigate();
+
+    // function navegarCadastroGenero() {
+    //     navigate('/cadastro/genero');
+    // }
 
     async function ConsultarAutores() {
         const r = await ConsultarAutoresLivros();
@@ -30,6 +36,7 @@ export default function AdicionarLivros() {
             const r = await CadastrarLivro(autorId, generoId, nomeLivro, observacoes);
             alert('Livro Salvo ✔')
         } catch (err) {
+
             alert(err.request.response)   
         }
     }
@@ -70,12 +77,12 @@ export default function AdicionarLivros() {
                         <div className='text-inp'>
                             <div className="textarea">
                                 <p>Observações:</p>
-                                <textarea className="descricao" name="story" rows="7" cols="46" placeholder='EXEMPLO' value={observacoes} onChange={e => setObservacoes(e.target.value)}></textarea>
+                                <textarea className="descricao" name="story" rows="7" cols="46" placeholder='OBSERVAÇÕES DO LIVRO NÃO É OBRIGATÓRIO P/ CADASTRO' value={observacoes} onChange={e => setObservacoes(e.target.value)}></textarea>
                             </div>
                         </div>
                         <div className='div-botoes'>
-                            <button><img src='/assets/images/mais+.png' />Cadastrar Autores</button>
-                            <button><img src='/assets/images/mais+.png' />Cadastrar Gêneros</button>
+                            <button onClick={() => navigate('/cadastro/autor')}><img src='/assets/images/mais+.png' />Cadastrar Autores</button>
+                            <button onClick={() => navigate('/cadastro/genero')}><img src='/assets/images/mais+.png' />Cadastrar Gêneros</button>
                             <button onClick={SalvarClick}><img src='/assets/images/confere.png' />Salvar Alteração</button>
                         </div>
                     </div>

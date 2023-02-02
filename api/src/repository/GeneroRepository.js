@@ -12,3 +12,13 @@ export async function ConsultarTodosGeneros() {
     const [linhas] = await con.query(comando);
     return linhas;
 }
+
+
+export async function CadastrarGeneros(nomeGenero) {
+    const comando = 
+        `
+        INSERT INTO tb_genero(nm_genero)
+            VALUES(?)
+        `
+    const resposta = await con.query(comando, [nomeGenero])
+}

@@ -1,39 +1,70 @@
 import './index.scss';
 
 import ComponenteHeader from '../../components/header';
+import LoadingBar from 'react-top-loading-bar';
+
+import { useNavigate } from 'react-router-dom';
+import { useRef, useState } from 'react';
+import { ConsultarTodosPaisesFds } from '../../api/paises';
+import { CadastrarAutorLivro } from '../../api/autores';
 
 
 export default function CadastrarAutor() {
+    const [paisId, setPaisId] = useState();
+    const [nomeAutor, setNomeAutor] = useState();
+    const [paises, setPaises] = useState([]);
+
+    const ref = useRef();
+    const navigate = useNavigate();
+
+    async function SalvarClick() {
+        try {
+            const r = await CadastrarAutorLivro(nomeAutor, paisId);
+            alert('Autor Cadastrado com sucesso ✔')
+            ref.current.continuousStart();
+            setTimeout(() => {
+                navigate('/adicionar/livro')
+            }, 1000)
+        }
+        catch (err) {
+            alert(err.request.response)
+        }
+    }
+
+    async function BuscarPaises() {
+        const r = await ConsultarTodosPaisesFds();
+        setPaises(r);
+    }
+
+    useState(() => {
+        BuscarPaises();
+    }, [])
+
     return(
         <main className='page-cadastro-autor'>
+            <LoadingBar color='#ff0000' ref={ref} />    
             <ComponenteHeader />
             <section className='info-cadastro'>
                 <div className='fundo-cadastrar'>
                     <div className='fundo-info'>
                         <p>Nome:</p>
-                        <input className='inp-nome' type='text' placeholder='EXEMPLO' />
+                        <input className='inp-nome' type='text' placeholder='EXEMPLO' value={nomeAutor} onChange={e => setNomeAutor(e.target.value)} />
                         
                         <div className='text-inp'>
                             <div className='col-dois'>
                                 <div>
                                     <p>Nacionalidade:</p>
-                                    <select>
+                                    <select onChange={e => setPaisId(e.target.value)}>
                                         <option value="" selected disabled hidden>Selecione</option>
-                                        <option value="??"> ?? </option>
-                                        <option value="??"> ?? </option>
-                                        <option value="??"> ?? </option>
-                                        <option value="??"> ?? </option>
-                                        <option value="??"> ?? </option>
+                                        {paises.map(item =>
+                                            <option value={item.id}> {item.nacionalidade}</option>
+                                        )}
                                     </select>
                                 </div>
                             </div>
-                            <div className="textarea">
-                                <p>Observações:</p>
-                                <textarea className="descricao" name="story" rows="7" cols="46" placeholder='EXEMPLO'></textarea>
-                            </div>
                         </div>
                         <div className='div-botoes'>
-                            <button><img src='/assets/images/confere.png' />Salvar Alteração</button>
+                            <button onClick={SalvarClick}><img src='/assets/images/confere.png' />Salvar Alteração</button>
                         </div>
                     </div>
                 </div>
