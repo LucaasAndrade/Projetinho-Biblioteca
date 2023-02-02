@@ -15,3 +15,9 @@ export async function CadastrarLivro(idAutor, idGenero, nomeLivro, observacoes) 
     });
     return r.data
 }
+
+
+export async function ConsultarTodosLivros() {
+    const r = await api.get('/adm/consulta/livros');
+    return r.data
+}

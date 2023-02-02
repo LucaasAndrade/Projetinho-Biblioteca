@@ -14,7 +14,7 @@ export default function ComponenteHeader() {
                     <img src='/assets/images/inicio.png' />
                     <p>Tela principal</p>
                 </div>
-                <div className='opcao'  onClick={() => navigate('/adicionar/livro')}>
+                <div className='opcao'  onClick={() => navigate('/livros/')}>
                     <img src='/assets/images/mais.png' />
                     <p>Adicionar livros</p>
                 </div>
