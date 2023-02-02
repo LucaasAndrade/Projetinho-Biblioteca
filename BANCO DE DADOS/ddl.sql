@@ -65,8 +65,8 @@ CREATE TABLE tb_emprestimo(
 	id_emprestimo			INT PRIMARY KEY AUTO_INCREMENT,
     id_usuario				INT,
     id_livro				INT,
-    dt_retirada				DATETIME,
-    dt_entrega				DATETIME,
+    dt_retirada				DATE,
+    dt_entrega				DATE,
     bl_ativo				boolean,
     FOREIGN KEY (id_usuario) REFERENCES tb_usuario (id_usuario),
     FOREIGN KEY (id_livro) REFERENCES tb_livro (id_livro)
