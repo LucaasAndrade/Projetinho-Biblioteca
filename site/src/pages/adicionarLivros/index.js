@@ -6,17 +6,38 @@ import LoadingBar from 'react-top-loading-bar';
 import { useEffect, useRef, useState } from 'react';
 import { ConsultarAutoresLivros } from '../../api/autores';
 import { ConsultarTodosGeneros } from '../../api/genero';
-import { CadastrarLivro } from '../../api/livro';
-import { useNavigate } from 'react-router-dom';
+import { CadastrarLivro, BuscarLivroPorId, AlterarInformacoesDoLivro } from '../../api/livro';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function AdicionarLivros() {
     const [autoresLivros, setAutoresLivros] = useState([]);
     const [generos, setGeneros] = useState([]);
+
     const [nomeLivro, setNomeLivro] = useState("");
     const [autorId, setAutorId] = useState();
     const [generoId, setGeneroId] = useState();
     const [observacoes, setObservacoes] = useState();
     
+    const [nomeAutor, setNomeAutor] = useState();
+    const [nomeGenero, setNomeGenero] = useState();
+
+    const { id } = useParams();
+
+    async function BuscarLivroId(idLivro) {
+        if (id === 0) {
+            return;
+        }
+        else {
+            const r = await BuscarLivroPorId(id);
+            setAutorId(r.autor);
+            setGeneroId(r.genero);
+            setNomeLivro(r.livro);
+            setObservacoes(r.observacoes);
+            setNomeAutor(r.nome_autor);
+            setNomeGenero(r.nome_genero);
+        }
+    }
+
     const navigate = useNavigate();
     const ref = useRef(null);
     // function navegarCadastroGenero() {
@@ -35,8 +56,14 @@ export default function AdicionarLivros() {
     
     async function SalvarClick() {
         try {
-            const r = await CadastrarLivro(autorId, generoId, nomeLivro, observacoes);
-            alert('Livro Salvo ✔')
+            if (id === 0) {
+                const r = await CadastrarLivro(autorId, generoId, nomeLivro, observacoes);
+                alert('Livro Salvo ✔')
+            }
+            else {
+                const r = await AlterarInformacoesDoLivro(autorId, generoId, nomeLivro, observacoes, id);
+                alert("Livro Alterado ✔");
+            }
             ref.current.continuousStart();
             setTimeout(() => {
                 navigate('/livros')
@@ -49,6 +76,7 @@ export default function AdicionarLivros() {
     useEffect(() => {
         ConsultarGeneros();
         ConsultarAutores();
+        BuscarLivroId(id);
     }, [])
     
     return(
@@ -64,7 +92,7 @@ export default function AdicionarLivros() {
                             <div>
                                 <p>Gênero:</p>
                                 <select onChange={e => setGeneroId(e.target.value)}>
-                                    <option value="" selected disabled hidden>Gênero</option>
+                                    <option value={nomeGenero} selected disabled hidden>{nomeGenero}</option>
                                     {generos.map(item => 
                                         <option  value={item.id}> {item.genero} </option>
                                     )}
@@ -73,7 +101,7 @@ export default function AdicionarLivros() {
                             <div className='div-col-dois'>
                                 <p>Nome do Autor:</p>
                                 <select onChange={e => setAutorId(e.target.value)}>
-                                    <option value="" selected disabled hidden>Autores</option>
+                                    <option value={nomeAutor} selected disabled hidden> {nomeAutor}</option>
                                     {autoresLivros.map(item => 
                                         <option value={item.id}> {item.nome} </option>
                                     )}

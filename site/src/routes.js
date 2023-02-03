@@ -19,7 +19,7 @@ export default function Index() {
                 <Route path='/' element={<Login />} />
                 <Route path='/home' element={<Principal />} />
                 <Route path='/cadastro/leitor' element={<CadastrarLeitor />} />
-                <Route path='/adicionar/livro' element={<AdicionarLivros />} />
+                <Route path='/adicionar/livro/:id' element={<AdicionarLivros />} />
                 <Route path='/cadastro/autor' element={<CadastrarAutor />} />
                 <Route path='/cadastro/genero' element={<CadastrarGenero />} />
                 <Route path='/emprestimo' element={<Emprestimos />} />

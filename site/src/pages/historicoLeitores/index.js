@@ -11,8 +11,12 @@ export default function HistoricoLeitores() {
 
     async function ConsultarTodosLeitores() {
         const r = await ConsultarLeitores();
-        console.log(r);
         setLeitores(r);
+    }
+
+    function DeletarClick() {
+        // if (window.confirm("Tem certeza que deseja excluir o item selecionado?") == true)
+        window.alert('AA')
     }
 
     useEffect(() => {
@@ -55,8 +59,16 @@ export default function HistoricoLeitores() {
                             <td> {item.livros_lidos}</td>
                             <td> {item.livros_atrasados} </td>
                             <td> {item.codigo} </td>
-                            <td><span><img src='/assets/images/editar.png' /></span></td>
-                            <td><span><img src='/assets/images/lixeira.png' /></span></td>
+                                <td>
+                                    <span>
+                                        <img src='/assets/images/editar.png' onClick={DeletarClick}/>
+                                    </span>
+                                </td>
+                                <td>
+                                    <span>
+                                        <img src='/assets/images/lixeira.png' onClick={DeletarClick}/>
+                                    </span>
+                                </td>
                         </tr>    
                             )}    
                     </tbody>
