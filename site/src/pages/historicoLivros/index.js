@@ -58,8 +58,8 @@ export default function HistoricoLivros(props) {
                                     <tr>
                                     <td> {item.id} </td>
                                     <td> {item.livro}</td>
-                                    <td> {item.autor}</td>
                                     <td> {item.genero}</td>
+                                    <td> {item.autor}</td>
                                     <td> {item.codigo} </td>
                                         <td>
                                             <span>

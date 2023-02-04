@@ -18,7 +18,7 @@ export default function Index() {
             <Routes>
                 <Route path='/' element={<Login />} />
                 <Route path='/home' element={<Principal />} />
-                <Route path='/cadastro/leitor' element={<CadastrarLeitor />} />
+                <Route path='/cadastro/leitor/:id' element={<CadastrarLeitor />} />
                 <Route path='/adicionar/livro/:id' element={<AdicionarLivros />} />
                 <Route path='/cadastro/autor' element={<CadastrarAutor />} />
                 <Route path='/cadastro/genero' element={<CadastrarGenero />} />

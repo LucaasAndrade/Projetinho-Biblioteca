@@ -2,21 +2,36 @@ import './index.scss';
 
 import ComponenteHeader from '../../components/header';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ConsultarLeitores } from '../../api/leitor';
+import { DeletarLeitor } from '../../api/leitor';
 
+import LoadingBar from 'react-top-loading-bar';
 
 export default function HistoricoLeitores() {
     const [leitores, setLeitores] = useState([]);
+
+    const ref = useRef(null)
 
     async function ConsultarTodosLeitores() {
         const r = await ConsultarLeitores();
         setLeitores(r);
     }
 
-    function DeletarClick() {
-        // if (window.confirm("Tem certeza que deseja excluir o item selecionado?") == true)
-        window.alert('AA')
+    async function DeletarClick(itemId, nomeItem) {
+        if (window.confirm(`Deseja mesmo deletar o Usuario ${nomeItem} ?`) == true) {
+            await DeletarLeitor(itemId);
+
+            window.alert(`${nomeItem} deletado ✔`);
+
+            ref.current.continuousStart();
+            
+            setTimeout(() => {
+                window.location.reload();
+            }, 800)
+        } else {
+            window.alert("Ação cancelada ❌")
+        }
     }
 
     useEffect(() => {
@@ -27,6 +42,7 @@ export default function HistoricoLeitores() {
 
     return(
         <main className='page-leitores'>
+            <LoadingBar color='#ff0000' ref={ref} />
             <ComponenteHeader />
             <section className='info-leitores'>
                
@@ -61,12 +77,12 @@ export default function HistoricoLeitores() {
                             <td> {item.codigo} </td>
                                 <td>
                                     <span>
-                                        <img src='/assets/images/editar.png' onClick={DeletarClick}/>
+                                        <img src='/assets/images/editar.png' onClick={() => navigate(`/cadastro/leitor/${item.id}`)}/>
                                     </span>
                                 </td>
                                 <td>
                                     <span>
-                                        <img src='/assets/images/lixeira.png' onClick={DeletarClick}/>
+                                        <img src='/assets/images/lixeira.png' onClick={() => DeletarClick(item.id, item.leitor)}/>
                                     </span>
                                 </td>
                         </tr>    
@@ -74,7 +90,7 @@ export default function HistoricoLeitores() {
                     </tbody>
                 </table>
                     <div className='div-botoes'>
-                        <button onClick={() => navigate('/cadastro/leitor')}><img src='/assets/images/mais+.png' />Adicionar Leitor</button>
+                        <button onClick={() => navigate('/cadastro/leitor/0')}><img src='/assets/images/mais+.png' />Adicionar Leitor</button>
                     </div>
                 </div>
             </div>

@@ -12,3 +12,36 @@ export async function ConsultarLeitores() {
     const r = await api.get('/adm/consulta/leitores');
     return r.data
 }
+
+
+export async function CadastarUsuario(idCurso, idTurmaCurso, nomeUsuario, numeroTelefone, observacoes) {
+    const r = await api.post('/adm/cadastrar/leitor', {
+        idCurso,
+        idTurmaCurso,
+        nomeUsuario,
+        numeroTelefone,
+        observacoes
+    });
+    return r.data
+}
+
+
+export async function DeletarLeitor(idLeitor) {
+    const r = await api.delete(`/adm/deletar/leitor/${idLeitor}`);
+    return r.data
+}
+
+export async function BuscarLeitorPorId(idLeitor) {
+    const r = await api.get(`/adm/consulta/leitor/${idLeitor}`);
+    return r.data
+}
+
+
+export async function AlterarInformacoesUsuario(idUsuario, nome, telefone, observacoes) {
+    const r = await api.put(`/adm/alterar/leitor/${idUsuario}`, {
+        nome,
+        telefone,
+        observacoes
+    });
+    return r.data
+}

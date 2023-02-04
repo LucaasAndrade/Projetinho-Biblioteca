@@ -20,14 +20,17 @@ export default function CadastrarAutor() {
     async function SalvarClick() {
         try {
             const r = await CadastrarAutorLivro(nomeAutor, paisId);
+            
             alert('Autor Cadastrado com sucesso ✔')
+            
             ref.current.continuousStart();
+            
             setTimeout(() => {
-                navigate('/adicionar/livro')
+                navigate('/adicionar/livro/0')
             }, 1000)
         }
         catch (err) {
-            alert(err.request.response)
+            alert(err.request.response.data.error)
         }
     }
 

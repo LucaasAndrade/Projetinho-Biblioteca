@@ -20,7 +20,7 @@ export default function CadastrarGenero() {
             alert('Genero cadastrado com Sucesso ✔')
             ref.current.continuousStart();   
             setTimeout(() => {
-                navigate('/adicionar/livro')
+                navigate('/adicionar/livro/0')
             }, 1000)
         } catch (err) {
             alert(err.request.response)

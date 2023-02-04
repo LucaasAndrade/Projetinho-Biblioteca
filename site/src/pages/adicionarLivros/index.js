@@ -23,7 +23,7 @@ export default function AdicionarLivros() {
 
     const { id } = useParams();
 
-    async function BuscarLivroId(idLivro) {
+    async function BuscarLivroId() {
         if (id === 0) {
             return;
         }
@@ -56,7 +56,7 @@ export default function AdicionarLivros() {
     
     async function SalvarClick() {
         try {
-            if (id === 0) {
+            if (id === '0') {
                 const r = await CadastrarLivro(autorId, generoId, nomeLivro, observacoes);
                 alert('Livro Salvo ✔')
             }
@@ -76,7 +76,7 @@ export default function AdicionarLivros() {
     useEffect(() => {
         ConsultarGeneros();
         ConsultarAutores();
-        BuscarLivroId(id);
+        BuscarLivroId();
     }, [])
     
     return(
@@ -92,7 +92,7 @@ export default function AdicionarLivros() {
                             <div>
                                 <p>Gênero:</p>
                                 <select onChange={e => setGeneroId(e.target.value)}>
-                                    <option value={nomeGenero} selected disabled hidden>{nomeGenero}</option>
+                                    <option value={nomeGenero} selected disabled hidden>{!nomeGenero ? "Genero" : `${nomeGenero}`}</option>
                                     {generos.map(item => 
                                         <option  value={item.id}> {item.genero} </option>
                                     )}
@@ -101,7 +101,7 @@ export default function AdicionarLivros() {
                             <div className='div-col-dois'>
                                 <p>Nome do Autor:</p>
                                 <select onChange={e => setAutorId(e.target.value)}>
-                                    <option value={nomeAutor} selected disabled hidden> {nomeAutor}</option>
+                                    <option value={nomeAutor} selected disabled hidden> {!nomeAutor ? "Autor" : `${nomeAutor}`}</option>
                                     {autoresLivros.map(item => 
                                         <option value={item.id}> {item.nome} </option>
                                     )}
