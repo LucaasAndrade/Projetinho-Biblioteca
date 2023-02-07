@@ -7,6 +7,8 @@ import { ConsultarTodosCursos, ConsultarTurmasCurso } from '../../api/cursoTurma
 import { FormatarTelefone } from '../../assets/FormatarTelefone';
 import { AlterarInformacoesUsuario, BuscarLeitorPorId, CadastarUsuario } from '../../api/leitor';
 import { useNavigate, useParams } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import LoadingBar from 'react-top-loading-bar';
 
@@ -47,7 +49,7 @@ export default function CadastrarLeitor() {
             if (id === '0') {
                 const r = await CadastarUsuario(escolhaCursoId, escolhaTurmaId, nomeLeitor, telefoneParaContato, observacoes);
                 
-                alert('Usuario Cadastrado com sucesso ✔')
+                toast.success('Usuario Cadastrado com sucesso ✔', {autoClose: 1000, delay: 0, pauseOnHover: false});
                 
                 ref.current.continuousStart();
                 
@@ -57,7 +59,7 @@ export default function CadastrarLeitor() {
             } else {
                 const r = await AlterarInformacoesUsuario(id, nomeLeitor, telefoneParaContato, observacoes);
 
-                alert('Alterações realizadas com sucesso ✔');
+                toast.success('Alterações realizadas com sucesso ✔', {autoClose: 1000, delay: 0, pauseOnHover: false});
 
                 ref.current.continuousStart();
 
@@ -100,6 +102,7 @@ export default function CadastrarLeitor() {
     return(
         <main className='cadastrar'>
             <LoadingBar color='#ff0000' ref={ref} />
+            <ToastContainer />
             <ComponenteHeader />
             <section className='info-cadastro'>
                 <div className='fundo-cadastro'>

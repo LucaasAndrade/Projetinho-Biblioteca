@@ -2,6 +2,8 @@ import './index.scss';
 
 import ComponenteHeader from '../../components/header';
 import LoadingBar from 'react-top-loading-bar';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
@@ -21,7 +23,7 @@ export default function CadastrarAutor() {
         try {
             const r = await CadastrarAutorLivro(nomeAutor, paisId);
             
-            alert('Autor Cadastrado com sucesso ✔')
+            toast.success('Autor Cadastrado com sucesso ✔', {autoClose: 1000, delay: 0, pauseOnHover: false})
             
             ref.current.continuousStart();
             
@@ -46,6 +48,7 @@ export default function CadastrarAutor() {
     return(
         <main className='page-cadastro-autor'>
             <LoadingBar color='#ff0000' ref={ref} />    
+            <ToastContainer />
             <ComponenteHeader />
             <section className='info-cadastro'>
                 <div className='fundo-cadastrar'>

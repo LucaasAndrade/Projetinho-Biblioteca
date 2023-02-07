@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { ConsultarLeitores } from '../../api/leitor';
 import { DeletarLeitor } from '../../api/leitor';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import LoadingBar from 'react-top-loading-bar';
 
@@ -43,6 +45,7 @@ export default function HistoricoLeitores() {
     return(
         <main className='page-leitores'>
             <LoadingBar color='#ff0000' ref={ref} />
+            <ToastContainer />
             <ComponenteHeader />
             <section className='info-leitores'>
                

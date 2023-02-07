@@ -8,6 +8,8 @@ import { ConsultarAutoresLivros } from '../../api/autores';
 import { ConsultarTodosGeneros } from '../../api/genero';
 import { CadastrarLivro, BuscarLivroPorId, AlterarInformacoesDoLivro } from '../../api/livro';
 import { useNavigate, useParams } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AdicionarLivros() {
     const [autoresLivros, setAutoresLivros] = useState([]);
@@ -58,11 +60,12 @@ export default function AdicionarLivros() {
         try {
             if (id === '0') {
                 const r = await CadastrarLivro(autorId, generoId, nomeLivro, observacoes);
-                alert('Livro Salvo ✔')
+                toast.success('Livro Salvo ✔', {autoClose: 1000, delay: 0, pauseOnHover: false})
             }
             else {
                 const r = await AlterarInformacoesDoLivro(autorId, generoId, nomeLivro, observacoes, id);
-                alert("Livro Alterado ✔");
+                toast.success('Livro Alterado ✔', {autoClose: 1000, delay: 0, pauseOnHover: false});
+                //alert("Livro Alterado ✔");
             }
             ref.current.continuousStart();
             setTimeout(() => {
@@ -82,6 +85,7 @@ export default function AdicionarLivros() {
     return(
         <main className='adicionar'>
             <LoadingBar color='#ff0000' ref={ref} />
+            <ToastContainer />
             <ComponenteHeader />
             <section className='info-adicionar'>
                 <div className='fundo-adicionar'>

@@ -6,6 +6,8 @@ import LoadingBar from 'react-top-loading-bar';
 import { useRef, useState } from 'react';
 import { CadastrarGeneroNoBancoDeDados } from '../../api/genero';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function CadastrarGenero() {
@@ -17,7 +19,7 @@ export default function CadastrarGenero() {
     async function SalvarClick() {
         try {
             const r = await CadastrarGeneroNoBancoDeDados(nmGenero);
-            alert('Genero cadastrado com Sucesso ✔')
+            toast.success('Genero cadastrado com Sucesso ✔', {autoClose: 1000, delay: 0, pauseOnHover: false});
             ref.current.continuousStart();   
             setTimeout(() => {
                 navigate('/adicionar/livro/0')
@@ -30,6 +32,7 @@ export default function CadastrarGenero() {
     return(
         <main className='page-cadastro-genero'>
             <LoadingBar color='#ff0000' ref={ref} />
+            <ToastContainer />
             <ComponenteHeader />
             <section className='info-cadastro'>
                 <div className='fundo-cadastrar'>
