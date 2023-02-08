@@ -61,8 +61,6 @@ export default function HistoricoLeitores() {
                             <th>Nome do Leitor</th>
                             <th>Curso</th>
                             <th>Turma</th>
-                            <th>Livros Lidos</th>
-                            <th>Livros Atrasados</th>
                             <th>Código</th>
                             <th></th>
                             <th></th>
@@ -75,8 +73,6 @@ export default function HistoricoLeitores() {
                             <td> {item.leitor }</td>
                             <td> {item.curso}</td>
                             <td> {item.turma}</td>
-                            <td> {item.livros_lidos}</td>
-                            <td> {item.livros_atrasados} </td>
                             <td> {item.codigo} </td>
                                 <td>
                                     <span>
