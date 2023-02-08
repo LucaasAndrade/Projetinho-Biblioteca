@@ -7,5 +7,5 @@ export function DataAtual() {
     const mes = String(data.getMonth() + 1).padStart(2, '0');
     const ano = String(data.getFullYear());
     
-    return `${ano}/${mes}/${dia}`;
+    return `${ano}-${mes}-${dia}`;
 }

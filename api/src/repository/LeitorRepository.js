@@ -3,7 +3,7 @@
 import { con } from './connection.js'
 
 export async function ListarLeitores() {
-    const comando = 
+    const comando =
         `
         SELECT 
             id_usuario                  id,
@@ -29,7 +29,7 @@ export async function CadastrarLeitor(idCurso, idTurmaCurso, nomeUsuario, numero
             VALUES(?, ?, ?, ?, ?, ?, 0, 0);
         `
     const resposta = await con.query(comando, [idCurso, idTurmaCurso, nomeUsuario, numeroTelefone, codigo, observacoes])
-}  
+}
 
 
 export async function DeletarLeitor(idLeitor) {
@@ -43,7 +43,7 @@ export async function DeletarLeitor(idLeitor) {
 
 
 export async function BuscarLeitorPorId(idLeitor) {
-    const comando = 
+    const comando =
         `
         SELECT 
            id_usuario                      id,
@@ -77,4 +77,24 @@ export async function AlterarInformacoesUsuario(idUsuario, nomeUsuario, telefone
             WHERE id_usuario = ?;
         `
     const reposta = con.query(comando, [nomeUsuario, telefone, observacoes, idUsuario])
+}
+
+export async function ConsultarLeitorPorCodigo(codigo) {
+    const comando =
+        `
+    SELECT  id_usuario,
+            tb_usuario.id_curso,
+            tb_curso.nm_curso,
+            tb_usuario.id_turma_curso,
+            tb_turma_curso.nm_turma,
+            nm_usuario,
+            nr_telefone,
+            ds_codigo
+        FROM tb_usuario
+            INNER JOIN tb_curso ON tb_usuario.id_curso = tb_curso.id_curso
+            INNER JOIN tb_turma_curso ON tb_usuario.id_turma_curso = tb_turma_curso.id_turma_curso
+        WHERE ds_codigo = ?;
+        `
+    const [resposta] = await con.query(comando, [codigo]);
+    return resposta[0]
 }

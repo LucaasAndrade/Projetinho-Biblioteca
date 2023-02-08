@@ -56,5 +56,5 @@ export function CalcularDataEntrega(data) {
     } else {
         throw new Error('Informe uma data válida')   
     }
-    return `${anoParaEntrega}/${mesParaEntrega}/${diaParaEntrega}`
+    return `${anoParaEntrega}-${String(mesParaEntrega).length == 1 ? `${'0'+ String(mesParaEntrega)}` : `${mesParaEntrega}`}-${String(diaParaEntrega).length == 1 ? `${'0' + String(diaParaEntrega)}` : `${diaParaEntrega}`}`
 }

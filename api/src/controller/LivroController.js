@@ -1,7 +1,7 @@
 
 import { Router } from "express";
 
-import { AlterarInformacoesDoLivro, CadastrarLivro, ConsultarLivroPorId, DeletarLivro, ListarTodosLivros } from "../repository/LivroRepository.js";
+import { AlterarInformacoesDoLivro, CadastrarLivro, ConsultarLivroPorCodigo, ConsultarLivroPorId, DeletarLivro, ListarTodosLivros } from "../repository/LivroRepository.js";
 import {GeradorDeCodigo} from "../assets/GeradorCodigo.js";
 import { VerificarCampos } from '../assets/VerificarCamposLivros.js'
 
@@ -83,6 +83,20 @@ server.put('/adm/alterar/livro/:id', async (req, resp) => {
         else await AlterarInformacoesDoLivro(idAutor, idGenero, nomeLivro, observacoes, id);
 
         resp.send();
+    } catch (err) {
+        resp.status(401).send({
+            error: err.message
+        })
+    }
+})
+
+server.get('/adm/consulta/livro/emprestimo/:codigo', async (req, resp) => {
+    try {
+        const { codigo } = req.params;
+        const resposta = await ConsultarLivroPorCodigo(codigo);
+
+        resp.send(resposta);
+
     } catch (err) {
         resp.status(401).send({
             error: err.message

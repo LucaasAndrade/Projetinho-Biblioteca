@@ -2,6 +2,7 @@
 
 
 export function InverterDatas(data) {
+    if (!data) return;
     data = data.slice(0, 10)
     var novaData = "";
     novaData = data.split('-')

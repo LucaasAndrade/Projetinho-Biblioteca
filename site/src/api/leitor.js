@@ -45,3 +45,9 @@ export async function AlterarInformacoesUsuario(idUsuario, nome, telefone, obser
     });
     return r.data
 }
+
+
+export async function ConsultarLeitorPorCodigo(codigo) {
+    const r = await api.get(`/adm/consulta/leitor/emprestimo/${codigo}`);
+    return r.data
+}

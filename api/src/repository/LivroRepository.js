@@ -81,3 +81,23 @@ export async function AlterarInformacoesDoLivro(idAutor, idGenero, nomeLivro, ds
         `
     const resposta = await con.query(comando, [idAutor, idGenero, nomeLivro, dsObservacoes, idLivro]);
 }
+
+
+export async function ConsultarLivroPorCodigo(codigo) {
+    const comando =
+        `
+        SELECT  id_livro,
+                nm_livro,
+		        tb_livro.id_autor,
+                tb_autor.nm_autor,
+                tb_livro.id_genero,
+                tb_genero.nm_genero,
+                ds_codigo
+	    FROM tb_livro
+		    INNER JOIN tb_autor ON tb_livro.id_autor = tb_autor.id_autor
+		    INNER JOIN tb_genero ON tb_livro.id_genero = tb_genero.id_genero
+	    WHERE ds_codigo = ?;
+        `
+    const [resposta] = await con.query(comando, [codigo]);
+    return resposta[0];
+}

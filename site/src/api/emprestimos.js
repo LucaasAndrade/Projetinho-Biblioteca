@@ -17,3 +17,13 @@ export async function ConsultarTodosEmprestimos() {
     const r = await api.get('/adm/emprestimos/consultar/todos');
     return r.data
 }
+
+export async function CadastrarNovoEmprestimo(idUsuario, idLivro, dataDeRetirada, dataDeEntrega) {
+    const r = await api.post('/adm/emprestimo/cadastrar', {
+        idUsuario,
+        idLivro,
+        dataDeRetirada,
+        dataDeEntrega
+    });
+    return r.data
+}

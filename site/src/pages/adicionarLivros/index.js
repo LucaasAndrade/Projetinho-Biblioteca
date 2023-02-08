@@ -70,7 +70,7 @@ export default function AdicionarLivros() {
             ref.current.continuousStart();
             setTimeout(() => {
                 navigate('/livros')
-            }, 1000)
+            }, 2000)
         } catch (err) {
             alert(err.request.response)   
         }

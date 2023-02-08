@@ -1,7 +1,7 @@
 
 import { Router } from 'express'
 
-import { ListarLeitores, CadastrarLeitor, DeletarLeitor, BuscarLeitorPorId, AlterarInformacoesUsuario } from '../repository/LeitorRepository.js'
+import { ListarLeitores, CadastrarLeitor, DeletarLeitor, BuscarLeitorPorId, AlterarInformacoesUsuario, ConsultarLeitorPorCodigo } from '../repository/LeitorRepository.js'
 import { GeradorDeCodigo } from '../assets/GeradorCodigo.js'
 import { VerificarCamposUsuario } from '../assets/VerificarCamposUsuario.js';
 
@@ -76,6 +76,20 @@ server.put('/adm/alterar/leitor/:id?', async (req, resp) => {
 
         resp.send();
     } catch (err) {
+        resp.status(401).send({
+            error: err.message
+        })
+    }
+})
+
+server.get('/adm/consulta/leitor/emprestimo/:codigo', async (req, resp) => {
+    try {
+        const { codigo } = req.params;
+        
+        const resposta = await ConsultarLeitorPorCodigo(codigo);
+        resp.send(resposta);
+
+    } catch (err) { 
         resp.status(401).send({
             error: err.message
         })

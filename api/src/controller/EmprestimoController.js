@@ -2,6 +2,7 @@ import { ConsultarEmprestimos, EmprestimosAtivos, RealizarEmprestimos } from "..
 import { DataAtual } from "../assets/ManipulacaoData.js";
 import { Router } from "express";
 import { CalcularDataEntrega } from "../assets/CalcularDataEntrega.js";
+import { VerificarCamposEmprestimo } from "../assets/VerificarCamposEmprestimo.js";
 
 const server = Router();
 
@@ -29,12 +30,11 @@ server.get('/adm/emprestimos/consultar/todos', async (req, resp) => {
     }
 })
 
-server.post('/adm/emprestimos/cadastrar', async (req, resp) => {
+server.post('/adm/emprestimo/cadastrar', async (req, resp) => {
     try {
-        const { idUsuario, idLivro} = req.body;
+        const { idUsuario, idLivro, dataDeRetirada, dataDeEntrega} = req.body;
         
-        const dataDeRetirada = DataAtual();
-        const dataDeEntrega = CalcularDataEntrega(dataDeRetirada);
+        VerificarCamposEmprestimo(idUsuario, idLivro, dataDeRetirada, dataDeEntrega);
         
         const resposta = await RealizarEmprestimos(idUsuario, idLivro, dataDeRetirada, dataDeEntrega, true);
 
