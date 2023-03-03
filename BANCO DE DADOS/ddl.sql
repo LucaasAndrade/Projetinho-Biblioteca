@@ -1,6 +1,7 @@
 CREATE DATABASE projetinho_biblioteca_INSF2022;
 USE projetinho_biblioteca_INSF2022;
 
+-- DROP DATABASE projetinho_biblioteca_INSF2022;
 
 CREATE TABLE tb_curso(
 	id_curso				INT PRIMARY KEY AUTO_INCREMENT,
@@ -20,7 +21,7 @@ CREATE TABLE tb_usuario(
     id_turma_curso			INT,
     nm_usuario				VARCHAR(100),
     nr_telefone				VARCHAR(100),
-    ds_codigo				VARCHAR(10),
+    ds_cpf                  VARCHAR(15),
     ds_observacoes			VARCHAR(1000),
     ds_foto_perfil			VARCHAR(100),
     nr_livros_lidos			INT,
@@ -47,16 +48,36 @@ CREATE TABLE tb_genero(
     nm_genero					VARCHAR(100)
 );
 
+CREATE TABLE tb_cor(
+	id_cor						INT PRIMARY KEY AUTO_INCREMENT,
+    nm_cor						VARCHAR(100)
+);
+
+CREATE TABLE tb_situacao(
+	id_situacao					INT PRIMARY KEY AUTO_INCREMENT,
+    nm_situacao					VARCHAR(100)
+);
+
+CREATE TABLE tb_prateleira(
+	id_prateleira				INT PRIMARY KEY AUTO_INCREMENT,
+    nr_prateleira				INT
+);
+
 CREATE TABLE tb_livro(
 	id_livro				INT PRIMARY KEY AUTO_INCREMENT,
     id_autor				INT,
     id_genero               INT,
+    id_cor                  INT,
+    id_situacao             INT,
+    id_prateleira			INT,
     nm_livro				VARCHAR(100),
     ds_observacoes			VARCHAR(1000),
     ds_imagem				VARCHAR(100),
     ds_codigo				VARCHAR(10),
     FOREIGN KEY (id_autor) REFERENCES tb_autor (id_autor),
-    FOREIGN KEY (id_genero) REFERENCES tb_genero (id_genero)
+    FOREIGN KEY (id_genero) REFERENCES tb_genero (id_genero),
+    FOREIGN KEY (id_cor) REFERENCES tb_cor (id_cor),
+    FOREIGN KEY (id_situacao) REFERENCES tb_situacao (id_situacao)
 );
 
 

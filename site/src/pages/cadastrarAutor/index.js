@@ -23,16 +23,16 @@ export default function CadastrarAutor() {
         try {
             const r = await CadastrarAutorLivro(nomeAutor, paisId);
             
-            toast.success('Autor Cadastrado com sucesso ✔', {autoClose: 1000, delay: 0, pauseOnHover: false})
+            toast.success('Autor Cadastrado com sucesso ✔', {autoClose: 2000, delay: 0, pauseOnHover: false})
             
             ref.current.continuousStart();
             
             setTimeout(() => {
                 navigate('/adicionar/livro/0')
-            }, 1000)
+            }, 3000)
         }
         catch (err) {
-            alert(err.request.response.data.error)
+            window.alert(err.request.response.data.error)
         }
     }
 

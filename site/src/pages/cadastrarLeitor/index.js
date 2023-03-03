@@ -49,23 +49,23 @@ export default function CadastrarLeitor() {
             if (id === '0') {
                 const r = await CadastarUsuario(escolhaCursoId, escolhaTurmaId, nomeLeitor, telefoneParaContato, observacoes);
                 
-                toast.success('Usuario Cadastrado com sucesso ✔', {autoClose: 1000, delay: 0, pauseOnHover: false});
+                toast.success('Usuario Cadastrado com sucesso ✔', {autoClose: 2000, delay: 0, pauseOnHover: false});
                 
                 ref.current.continuousStart();
                 
                 setTimeout(() => {
                     navigate('/leitores')
-                }, 1000)
+                }, 3000)
             } else {
                 const r = await AlterarInformacoesUsuario(id, nomeLeitor, telefoneParaContato, observacoes);
 
-                toast.success('Alterações realizadas com sucesso ✔', {autoClose: 1000, delay: 0, pauseOnHover: false});
+                toast.success('Alterações realizadas com sucesso ✔', {autoClose: 2000, delay: 0, pauseOnHover: false});
 
                 ref.current.continuousStart();
 
                 setTimeout(() => {
                     navigate('/leitores')
-                }, 1000)
+                }, 3000)
             }
         } catch (err) {
             window.alert("Error")

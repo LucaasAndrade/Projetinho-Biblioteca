@@ -124,11 +124,11 @@ export default function NovoEmprestimo() {
                         <div className='div-data'>
                             <div>
                                 <p>Data da Retirada:</p>
-                                <input type='date' value={dataRetirada} />
+                                <input type='date' value={dataRetirada}/>
                             </div>
                             <div className='data'>
                                 <p>Data da Entrega:</p>
-                                <input type='date' value={dataDeEntrega}/>
+                                <input type='date' value={dataDeEntrega} onChange={e => setDataDeEntrega(e.target.value)} />
                             </div>
                         </div>
                     </div>

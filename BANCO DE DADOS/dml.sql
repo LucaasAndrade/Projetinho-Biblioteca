@@ -13,9 +13,18 @@ INSERT INTO tb_turma_curso (id_curso, nm_turma)
 INSERT INTO tb_turma_curso (id_curso, nm_turma)
 	VALUES (1, 'D');
     
-INSERT INTO tb_usuario(id_curso, id_turma_curso, nm_usuario, nr_telefone, ds_codigo, ds_observacoes, nr_livros_lidos, nr_livros_atrasados)
-	VALUES(1, 4, 'Lucas Andrade', '(11) 95348-9023', 'ADR12', 'Sem observação', 3, 0);
+INSERT INTO tb_usuario(id_curso, id_turma_curso, nm_usuario, nr_telefone, ds_cpf, ds_observacoes, nr_livros_atrasados)
+	VALUES(1, 4, 'Lucas Andrade', '(11) 95348-9023', '506.000.230-86', 'Sem observação', 0);
     
+select *
+	from tb_usuario;
+    
+            UPDATE tb_usuario
+            SET
+                nm_usuario      =   'asdas',
+                nr_telefone     =   '123123312',
+                ds_observacoes  =   'asdads'
+            WHERE id_usuario = 8;
 INSERT INTO tb_nascionalidade(nm_nascionalidade)
 	VALUES('Brasil');
 
@@ -279,9 +288,33 @@ INSERT INTO tb_autor(nm_autor, id_nascionalidade)
     
 INSERT INTO tb_genero(nm_genero)
 	VALUES('Ficção');
+
+INSERT INTO tb_cor(nm_cor)
+	VALUES('Vermelho');
+
+INSERT INTO tb_cor(nm_cor)
+	VALUES('Laranja');
     
-INSERT INTO tb_livro(id_autor, id_genero,nm_livro, ds_observacoes, ds_codigo)
-	VALUES(1, 1,'Harry Potter e a Pedra Filosofal', 'Parcialmente danificado', '1d-2c-9a');
+INSERT INTO tb_cor(nm_cor)
+	VALUES('Verde');
+
+INSERT INTO tb_situacao(nm_situacao)
+	VALUES('Emprestado');
+
+INSERT INTO tb_situacao(nm_situacao)
+	VALUES('Livre');
+
+INSERT INTO tb_prateleira(nr_prateleira)
+	VALUES(1);
+    
+INSERT INTO tb_prateleira(nr_prateleira)
+	VALUES(2);
+    
+INSERT INTO tb_prateleira(nr_prateleira)
+	VALUES(3);
+
+INSERT INTO tb_livro(id_autor, id_genero, id_cor, id_situacao, id_prateleira, nm_livro, ds_observacoes, ds_codigo)
+	VALUES(1, 1,1,1,1,'Harry Potter e a Pedra Filosofal', 'Parcialmente danificado', '1d-2c-9a');
     
 INSERT INTO tb_emprestimo(id_usuario, id_livro, dt_retirada, dt_entrega, bl_ativo)
 	VALUES(1, 1, "2022-12-28 22:30:21", "2023-1-10 10:10:10", true);
@@ -293,114 +326,3 @@ INSERT INTO tb_adm_login(id_adm, ds_chave_login, ds_senha)
 	VALUES(1, "admin@admin.com", "frei@isnsf");
     
     
--- SELECT'S
-
-SELECT 	*
-		FROM tb_adm_login
-    WHERE ds_chave_login = 'admin@admin.com'
-		AND ds_senha = 'frei@isnsf';
-        
-SELECT count(id_emprestimo) as Emprestimos_Ativos
-	FROM tb_emprestimo
-    where bl_ativo = 1;
-    
-DELETE FROM tb_emprestimo 
-	WHERE id_emprestimo = 3;
-
-SELECT  id_autor			id,
-		nm_autor			nome,
-        nm_nascionalidade   nascionalidade
-	FROM tb_autor
-    INNER JOIN tb_nascionalidade ON tb_autor.id_nascionalidade = tb_nascionalidade.id_nascionalidade
-		WHERE nm_autor like '%j%';
-        
-SELECT *
-	FROM tb_autor
-    where id_autor = 1;
-
-INSERT INTO tb_autor(nm_autor, id_nascionalidade)
-	VALUES ('C. S. Lewis', 2); 
-    
-    
-SELECT id_nascionalidade      id,
-		nm_nascionalidade     nacionalidade
-	FROM tb_nascionalidade
-		WHERE nm_nascionalidade LIKE '%B%';
-        
-INSERT INTO tb_nascionalidade(nm_nascionalidade)
-	VALUES('Alemanha');
-    
-SELECT tb_livro.id_livro            id,
-	   nm_autor            autor,
-	   nm_genero           genero,
-       nm_livro            livro,
-       tb_livro.ds_observacoes      observacoes,
-       ds_codigo            codigo
-	FROM tb_livro
-		INNER JOIN tb_autor ON tb_livro.id_autor = tb_autor.id_autor
-        INNER JOIN tb_genero ON tb_livro.id_genero = tb_genero.id_genero
-        order by id_livro;
-    
-INSERT INTO tb_livro(id_autor, id_genero, nm_livro, ds_observacoes, ds_codigo)
-	VALUES (2, 1, "As Crônicas de Nárnia", "Nenhuma Observação", "2k-3p-1a");
-    
-SHOW TABLES;
-    
-SELECT 
-		id_usuario                 id,
-        nm_usuario                 leitor,
-		nm_curso                   curso,
-        nm_turma                   turma,
-        nr_livros_lidos            livros_lidos,
-        nr_livros_atrasados        livros_atrasados,
-        ds_codigo                  codigo
-	FROM tb_usuario
-		INNER JOIN tb_curso ON tb_usuario.id_curso = tb_curso.id_curso
-        INNER JOIN tb_turma_curso ON tb_usuario.id_turma_curso = tb_turma_curso.id_turma_curso;
-    
-    
-INSERT INTO tb_curso(nm_curso)
-	VALUES('Administração');
-    
-SELECT id_turma_curso                  id,
-	   nm_curso                        curso,
-       nm_turma                        turma
-	FROM tb_turma_curso
-		INNER JOIN tb_curso ON tb_turma_curso.id_curso = tb_curso.id_curso
-	WHERE tb_curso.id_curso = 1;
-    
-INSERT INTO tb_turma_curso(id_curso, nm_turma)
-	VALUES(2, 'A');
-    
-SELECT *
-	FROM tb_curso;
-    
-SELECT 	id_emprestimo             				id,
-		tb_usuario.nm_usuario                	usuario,
-        tb_livro.nm_livro                  		livro,
-        tb_curso.nm_curso                       curso,
-        tb_turma_curso.nm_turma           turma,
-        dt_retirada               				data_de_retirada,
-        dt_entrega                				data_para_entregar,
-        bl_ativo                                ativo
-	FROM tb_emprestimo
-		INNER JOIN tb_usuario ON tb_usuario.id_usuario = tb_emprestimo.id_usuario
-		INNER JOIN tb_livro   ON tb_livro.id_livro = tb_emprestimo.id_livro
-        INNER JOIN tb_curso   ON tb_curso.id_curso = tb_usuario.id_curso
-        INNER JOIN tb_turma_curso ON tb_turma_curso.id_turma_curso = tb_curso.id_curso;
-        
-SELECT *
-	FROM tb_turma_curso;
-    
-    
-SELECT 	*
-	FROM tb_autor;
-    
-    
-INSERT INTO tb_genero(nm_genero)
-	VALUES('Romance');
-    
-SELECT *	
-	FROM tb_nascionalidade
-		order by nm_nascionalidade;
-

@@ -19,11 +19,11 @@ export default function CadastrarGenero() {
     async function SalvarClick() {
         try {
             const r = await CadastrarGeneroNoBancoDeDados(nmGenero);
-            toast.success('Genero cadastrado com Sucesso ✔', {autoClose: 1000, delay: 0, pauseOnHover: false});
+            toast.success('Genero cadastrado com Sucesso ✔', {autoClose: 2000, delay: 0, pauseOnHover: false});
             ref.current.continuousStart();   
             setTimeout(() => {
                 navigate('/adicionar/livro/0')
-            }, 1000)
+            }, 3000)
         } catch (err) {
             alert(err.request.response)
         }
