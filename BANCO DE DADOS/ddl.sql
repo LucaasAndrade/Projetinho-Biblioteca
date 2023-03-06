@@ -24,7 +24,7 @@ CREATE TABLE tb_usuario(
     nr_telefone				VARCHAR(100),
     ds_cpf                  VARCHAR(15),
     ds_observacoes			VARCHAR(1000),
-    ds_foto_perfil			VARCHAR(100),
+    ds_foto_perfil			VARCHAR(100),   
     nr_livros_atrasados		INT,
     FOREIGN KEY (id_curso) REFERENCES tb_curso (id_curso),
     FOREIGN KEY (id_turma_curso) REFERENCES tb_turma_curso (id_turma_curso)

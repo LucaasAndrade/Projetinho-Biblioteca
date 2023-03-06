@@ -16,6 +16,15 @@ INSERT INTO tb_turma_curso (id_curso, nm_turma)
 INSERT INTO tb_usuario(id_curso, id_turma_curso, nm_usuario, nr_telefone, ds_cpf, ds_observacoes, nr_livros_atrasados)
 	VALUES(1, 4, 'Lucas Andrade', '(11) 95348-9023', '506.000.230-86', 'Sem observação', 0);
     
+select *
+	from tb_usuario;
+    
+            UPDATE tb_usuario
+            SET
+                nm_usuario      =   'asdas',
+                nr_telefone     =   '123123312',
+                ds_observacoes  =   'asdads'
+            WHERE id_usuario = 8;
 INSERT INTO tb_nascionalidade(nm_nascionalidade)
 	VALUES('Brasil');
 
@@ -304,25 +313,21 @@ INSERT INTO tb_prateleira(nr_prateleira)
 INSERT INTO tb_prateleira(nr_prateleira)
 	VALUES(3);
 
-INSERT INTO tb_livro(id_autor, id_genero, id_cor, id_situacao, id_prateleira, nm_livro, nm_publicadora, ds_observacoes, ds_codigo_isbn)
-	VALUES(1, 1,1,1,1,'Harry Potter e a Pedra Filosofal', 'Parcialmente danificado', '1d1-2c-9a');
-
+INSERT INTO tb_livro(id_autor, id_genero, id_cor, id_situacao, id_prateleira, nm_livro, nm_publicadora,ds_observacoes, ds_codigo_isbn)
+	VALUES(1, 1,1,1,1,'Harry Potter e a Pedra Filosofal', 'Livraria Saraiva','Parcialmente danificado', '1d-2c-9a');
+    
 INSERT INTO tb_situacao_emprestimo(nm_situacao_emprestimo)
 	VALUES('Ativo');
     
 INSERT INTO tb_situacao_emprestimo(nm_situacao_emprestimo)
 	VALUES('Atrasado');
-
-INSERT INTO tb_situacao_emprestimo(nm_situacao_emprestimo)
-	VALUES('Entregue');
     
-INSERT INTO tb_emprestimo(id_usuario, id_livro, id_situacao_emprestimo, dt_retirada, dt_entrega, bl_ativo)
-	VALUES(1, 1, 1, "2022-12-28 22:30:21", "2023-1-10 10:10:10", true);
-
+INSERT INTO tb_emprestimo(id_usuario, id_livro, id_situacao_emprestimo, dt_retirada, dt_entrega)
+	VALUES(1, 1, 1, "2022-12-28 22:30:21", "2023-1-10 10:10:10");
+    
 INSERT INTO tb_adm(nm_adm, dt_nascimento, ds_cpf)
 	VALUES('admin', "2022-12-25", "123.456.789-10");
     
 INSERT INTO tb_adm_login(id_adm, ds_chave_login, ds_senha)
 	VALUES(1, "admin@admin.com", "frei@isnsf");
-    
     
