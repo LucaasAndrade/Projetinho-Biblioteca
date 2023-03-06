@@ -315,10 +315,19 @@ INSERT INTO tb_prateleira(nr_prateleira)
 
 INSERT INTO tb_livro(id_autor, id_genero, id_cor, id_situacao, id_prateleira, nm_livro, ds_observacoes, ds_codigo)
 	VALUES(1, 1,1,1,1,'Harry Potter e a Pedra Filosofal', 'Parcialmente danificado', '1d-2c-9a');
+
+INSERT INTO tb_situacao_emprestimo(nm_situacao_emprestimo)
+	VALUES('Ativo');
     
-INSERT INTO tb_emprestimo(id_usuario, id_livro, dt_retirada, dt_entrega, bl_ativo)
-	VALUES(1, 1, "2022-12-28 22:30:21", "2023-1-10 10:10:10", true);
+INSERT INTO tb_situacao_emprestimo(nm_situacao_emprestimo)
+	VALUES('Atrasado');
+
+INSERT INTO tb_situacao_emprestimo(nm_situacao_emprestimo)
+	VALUES('Entregue');
     
+INSERT INTO tb_emprestimo(id_usuario, id_livro, id_situacao_emprestimo, dt_retirada, dt_entrega, bl_ativo)
+	VALUES(1, 1, 1, "2022-12-28 22:30:21", "2023-1-10 10:10:10", true);
+
 INSERT INTO tb_adm(nm_adm, dt_nascimento, ds_cpf)
 	VALUES('admin', "2022-12-25", "123.456.789-10");
     

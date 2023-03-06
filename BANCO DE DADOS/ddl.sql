@@ -12,6 +12,7 @@ CREATE TABLE tb_turma_curso(
 	id_turma_curso			INT PRIMARY KEY AUTO_INCREMENT,
     id_curso				INT,
     nm_turma				VARCHAR(10),
+    nr_ano                  VARCHAR(5),
     FOREIGN KEY (id_curso) REFERENCES tb_curso ( id_curso )
 );
 
@@ -24,7 +25,6 @@ CREATE TABLE tb_usuario(
     ds_cpf                  VARCHAR(15),
     ds_observacoes			VARCHAR(1000),
     ds_foto_perfil			VARCHAR(100),
-    nr_livros_lidos			INT,
     nr_livros_atrasados		INT,
     FOREIGN KEY (id_curso) REFERENCES tb_curso (id_curso),
     FOREIGN KEY (id_turma_curso) REFERENCES tb_turma_curso (id_turma_curso)
@@ -81,17 +81,23 @@ CREATE TABLE tb_livro(
 );
 
 
+CREATE TABLE tb_situacao_emprestimo(
+	id_situacao_emprestimo	INT PRIMARY KEY AUTO_INCREMENT,
+    nm_situacao_emprestimo	varchar(100)
+);
 
 CREATE TABLE tb_emprestimo(
 	id_emprestimo			INT PRIMARY KEY AUTO_INCREMENT,
     id_usuario				INT,
     id_livro				INT,
+    id_situacao_emprestimo	INT,
     dt_retirada				DATE,
     dt_entrega				DATE,
-    bl_ativo				boolean,
     FOREIGN KEY (id_usuario) REFERENCES tb_usuario (id_usuario),
-    FOREIGN KEY (id_livro) REFERENCES tb_livro (id_livro)
+    FOREIGN KEY (id_livro) REFERENCES tb_livro (id_livro),
+    FOREIGN KEY (id_situacao_emprestimo) REFERENCES tb_situacao_emprestimo (id_situacao_emprestimo)
 );
+
 
 CREATE TABLE tb_adm(
 	id_adm				INT PRIMARY KEY AUTO_INCREMENT,
