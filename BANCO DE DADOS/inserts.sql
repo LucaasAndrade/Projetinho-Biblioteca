@@ -16,15 +16,6 @@ INSERT INTO tb_turma_curso (id_curso, nm_turma)
 INSERT INTO tb_usuario(id_curso, id_turma_curso, nm_usuario, nr_telefone, ds_cpf, ds_observacoes, nr_livros_atrasados)
 	VALUES(1, 4, 'Lucas Andrade', '(11) 95348-9023', '506.000.230-86', 'Sem observação', 0);
     
-select *
-	from tb_usuario;
-    
-            UPDATE tb_usuario
-            SET
-                nm_usuario      =   'asdas',
-                nr_telefone     =   '123123312',
-                ds_observacoes  =   'asdads'
-            WHERE id_usuario = 8;
 INSERT INTO tb_nascionalidade(nm_nascionalidade)
 	VALUES('Brasil');
 
