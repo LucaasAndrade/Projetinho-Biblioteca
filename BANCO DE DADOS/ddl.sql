@@ -30,18 +30,6 @@ CREATE TABLE tb_usuario(
     FOREIGN KEY (id_turma_curso) REFERENCES tb_turma_curso (id_turma_curso)
 );
 
-CREATE TABLE tb_nascionalidade(
-	id_nascionalidade			INT PRIMARY KEY AUTO_INCREMENT,
-    nm_nascionalidade			VARCHAR(100)
-);
-
-CREATE TABLE tb_autor(
-	id_autor					INT PRIMARY KEY AUTO_INCREMENT,
-	id_nascionalidade           INT,
-    nm_autor    				VARCHAR(100),
-    ds_observacoes				VARCHAR(1000),
-    FOREIGN KEY (id_nascionalidade) REFERENCES tb_nascionalidade (id_nascionalidade)
-);
 
 CREATE TABLE tb_genero(
 	id_genero					INT PRIMARY KEY AUTO_INCREMENT,
@@ -65,16 +53,15 @@ CREATE TABLE tb_prateleira(
 
 CREATE TABLE tb_livro(
 	id_livro				INT PRIMARY KEY AUTO_INCREMENT,
-    id_autor				INT,
     id_genero               INT,
     id_cor                  INT,
     id_situacao             INT,
     id_prateleira			INT,
     nm_livro				VARCHAR(100),
+    nm_autor                VARCHAR(100),
+    nm_publicadora          VARCHAR(100),
     ds_observacoes			VARCHAR(1000),
-    ds_imagem				VARCHAR(100),
-    ds_codigo				VARCHAR(10),
-    FOREIGN KEY (id_autor) REFERENCES tb_autor (id_autor),
+    ds_codigo_isbn			VARCHAR(10),
     FOREIGN KEY (id_genero) REFERENCES tb_genero (id_genero),
     FOREIGN KEY (id_cor) REFERENCES tb_cor (id_cor),
     FOREIGN KEY (id_situacao) REFERENCES tb_situacao (id_situacao)
