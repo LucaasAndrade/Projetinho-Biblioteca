@@ -33,3 +33,4 @@ server.post('/adm/cadastrar/genero', async (req, resp) => {
 })
 
 export default server;
+

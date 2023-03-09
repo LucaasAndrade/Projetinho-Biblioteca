@@ -5,7 +5,7 @@ import { ListarCursos, CadastrarCurso, ListarTurmasDeCurso, CadastrarTurmaDeCurs
 
 const server = Router();
 
-server.get('/adm/consulta/cursos', async (req, resp) => {
+server.get('/cursos', async (req, resp) => {
     try {
         const resposta = await ListarCursos();
         resp.send(resposta)
@@ -16,7 +16,7 @@ server.get('/adm/consulta/cursos', async (req, resp) => {
     }
 })
 
-server.post('/adm/cadastrar/curso', async (req, resp) => {
+server.post('/cursos/cadastrar', async (req, resp) => {
     try {
         const { nomeCurso } = req.body;
         if(!nomeCurso) throw new Error("Não tem como cadastrar um curso sem nome!")
@@ -29,7 +29,7 @@ server.post('/adm/cadastrar/curso', async (req, resp) => {
     }
 })
 
-server.get('/adm/consulta/turmas/:curso?', async (req, resp) => {
+server.get('/turmas/:curso', async (req, resp) => {
     try {
         const { curso } = req.params;
         if (!curso) throw new Error("Por favor, informe um curso!");
@@ -44,7 +44,7 @@ server.get('/adm/consulta/turmas/:curso?', async (req, resp) => {
     }
 })
 
-server.post('/adm/cadastrar/turmas', async (req, resp) => {
+server.post('/turmas/cadastrar/:curso', async (req, resp) => {
     try {
         const { idCurso, nmTurma } = req.body;
         if (!nmTurma) throw new Error("Nome da Turma é obrigatório!");

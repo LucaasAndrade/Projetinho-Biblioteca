@@ -30,7 +30,7 @@ server.get('/adm/emprestimos/consultar/todos', async (req, resp) => {
     }
 })
 
-server.post('/adm/emprestimo/cadastrar', async (req, resp) => {
+server.post('/emprestimo/cadastrar', async (req, resp) => {
     try {
         const { idUsuario, idLivro, dataDeRetirada, dataDeEntrega} = req.body;
         

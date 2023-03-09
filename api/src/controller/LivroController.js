@@ -1,7 +1,7 @@
 
 import { Router } from "express";
 
-import { AlterarInformacoesDoLivro, CadastrarLivro, ConsultarLivroPorCodigo, ConsultarLivroPorId, DeletarLivro, ListarTodosLivros } from "../repository/LivroRepository.js";
+import { AlterarInformacoesDoLivro, CadastrarLivro, DeletarLivro, ConsultarLivros, ConsultarTodosLivros } from "../repository/LivroRepository.js";
 import {GeradorDeCodigo} from "../assets/GeradorCodigo.js";
 import { VerificarCampos } from '../assets/VerificarCamposLivros.js'
 
@@ -26,9 +26,13 @@ server.post('/adm/cadastrar/livro', async (req, resp) => {
 })
 
 
-server.get('/adm/consulta/livros', async (req, resp) => {
+server.get('/livros/:pesquisa?/:codigo?/:id_livro?', async (req, resp) => {
     try {
-        const resposta = await ListarTodosLivros();
+        const {pesquisa, codigo, id_livro} = req.query
+
+        if (!pesquisa && !codigo && !id_livro) var resposta = await ConsultarTodosLivros();
+
+        else var resposta = await ConsultarLivros(pesquisa, codigo, id_livro);
 
         resp.send(resposta);
     } catch (err) {
@@ -53,24 +57,6 @@ server.delete('/adm/deletar/livro:id?', async (req, resp) => {
         })     
     }
 })
-
-
-server.get('/adm/consulta/livro/:id?', async (req, resp) => {
-    try {
-        const id = req.params.id
-        console.log(id);
-        if (!id) throw new Error('Por Favor, informe um id!')
-        
-        const resposta = await ConsultarLivroPorId(id);
-
-        resp.send(resposta);
-    } catch (err) {
-        resp.status(401).send({
-            error: err.message
-        })
-    }
-})
-
 
 server.put('/adm/alterar/livro/:id', async (req, resp) => {
     try {

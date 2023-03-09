@@ -7,7 +7,7 @@ const server = Router();
 
 
 
-server.get('/adm/consulta/data/atual&entrega', (req, resp) => {
+server.get('/datas', (req, resp) => {
     try {
         const data = DataAtual();
         const dataEntrega = CalcularDataEntrega(data)

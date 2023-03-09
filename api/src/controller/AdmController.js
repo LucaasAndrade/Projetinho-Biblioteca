@@ -22,4 +22,9 @@ server.post('/adm/login', async (req, resp) => {
     }
 })
 
+
+server.get('/ping', (req, resp) => {
+    resp.send("Pong!")
+})
+
 export default server;  

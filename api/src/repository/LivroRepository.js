@@ -2,6 +2,50 @@
 
 import { con } from "./connection.js";
 
+export async function ConsultarLivros(pesquisa, codigo, id_livro) {
+    const comando =   
+    `
+    SELECT 	nm_genero			genero,
+            nm_cor				cor,
+            nm_situacao			situacao,
+            nr_prateleira	    numeroPrateleira,
+            nm_livro			livro,
+            nm_autor			autor,
+            nm_publicadora		publicadora,
+            ds_observacoes		observacoes,
+            ds_codigo_isbn		isbn
+    FROM tb_livro
+        INNER JOIN tb_genero ON tb_livro.id_genero = tb_genero.id_genero
+        INNER JOIN tb_cor ON tb_livro.id_cor = tb_cor.id_cor
+        INNER JOIN tb_situacao ON tb_livro.id_situacao = tb_situacao.id_situacao
+        INNER JOIN tb_prateleira ON tb_livro.id_prateleira = tb_prateleira.id_prateleira
+    WHERE ds_codigo_isbn = ? OR nm_livro like ? OR nm_autor like ? OR id_livro = ?;    
+    `
+    const [linhas] = await con.query(comando, [codigo, `%${pesquisa}%`, `%${pesquisa}%`, id_livro]);
+    return linhas
+}
+
+export async function ConsultarTodosLivros() {
+    const comando =
+        `
+        SELECT 	nm_genero			genero,
+                nm_cor				cor,
+                nm_situacao			situacao,
+                nr_prateleira	    numeroPrateleira,
+                nm_livro			livro,
+                nm_autor			autor,
+                nm_publicadora		publicadora,
+                ds_observacoes		observacoes,
+                ds_codigo_isbn		isbn
+            FROM tb_livro
+        INNER JOIN tb_genero ON tb_livro.id_genero = tb_genero.id_genero
+        INNER JOIN tb_cor ON tb_livro.id_cor = tb_cor.id_cor
+        INNER JOIN tb_situacao ON tb_livro.id_situacao = tb_situacao.id_situacao
+        INNER JOIN tb_prateleira ON tb_livro.id_prateleira = tb_prateleira.id_prateleira
+            `
+    const [linhas] = await con.query(comando);
+    return linhas;
+}
 
 export async function CadastrarLivro(idGenero, idAutor, nomeLivro, observacoes, codigo) {
     const comando =
@@ -13,28 +57,6 @@ export async function CadastrarLivro(idGenero, idAutor, nomeLivro, observacoes, 
 }
 
 
-
-
-export async function ListarTodosLivros() {
-    const comando = 
-        `
-        SELECT      
-                tb_livro.id_livro            id,
-                nm_autor                     autor,
-                nm_genero                    genero,
-                nm_livro                     livro,
-                tb_livro.ds_observacoes      observacoes,
-                ds_codigo                    codigo
-            FROM tb_livro
-        INNER JOIN tb_autor ON tb_livro.id_autor = tb_autor.id_autor
-        INNER JOIN tb_genero ON tb_livro.id_genero = tb_genero.id_genero
-            ORDER BY id_livro;
-        `
-    const [linhas] = await con.query(comando);
-    return linhas
-}
-
-
 export async function DeletarLivro(livroId) {
     const comando =
         `
@@ -43,29 +65,6 @@ export async function DeletarLivro(livroId) {
         `
     const resposta = await con.query(comando, [livroId])
 }
-
-
-export async function ConsultarLivroPorId(idLivro){
-    const comando =
-        `
-        SELECT      
-            tb_livro.id_livro            id,
-            tb_autor.id_autor           autor,
-            nm_autor                    nome_autor,
-            tb_genero.id_genero         genero,
-            nm_genero                   nome_genero,
-            nm_livro                     livro,
-            tb_livro.ds_observacoes      observacoes,
-            ds_codigo                    codigo
-        FROM tb_livro
-            INNER JOIN tb_autor ON tb_livro.id_autor = tb_autor.id_autor
-            INNER JOIN tb_genero ON tb_livro.id_genero = tb_genero.id_genero
-        WHERE id_livro = ?;
-        `
-    const [linhas] = await con.query(comando, [idLivro]);
-    return linhas[0];
-}
-
 
 
 export async function AlterarInformacoesDoLivro(idAutor, idGenero, nomeLivro, dsObservacoes, idLivro) {
@@ -82,22 +81,3 @@ export async function AlterarInformacoesDoLivro(idAutor, idGenero, nomeLivro, ds
     const resposta = await con.query(comando, [idAutor, idGenero, nomeLivro, dsObservacoes, idLivro]);
 }
 
-
-export async function ConsultarLivroPorCodigo(codigo) {
-    const comando =
-        `
-        SELECT  id_livro,
-                nm_livro,
-		        tb_livro.id_autor,
-                tb_autor.nm_autor,
-                tb_livro.id_genero,
-                tb_genero.nm_genero,
-                ds_codigo
-	    FROM tb_livro
-		    INNER JOIN tb_autor ON tb_livro.id_autor = tb_autor.id_autor
-		    INNER JOIN tb_genero ON tb_livro.id_genero = tb_genero.id_genero
-	    WHERE ds_codigo = ?;
-        `
-    const [resposta] = await con.query(comando, [codigo]);
-    return resposta[0];
-}
