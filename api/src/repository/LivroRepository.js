@@ -2,7 +2,7 @@
 
 import { con } from "./connection.js";
 
-export async function ConsultarLivros(pesquisa, codigo, id_livro) {
+export async function ConsultarLivros(pesquisa, codigo, idLivro) {
     const comando =   
     `
     SELECT 	nm_genero			genero,
@@ -21,7 +21,7 @@ export async function ConsultarLivros(pesquisa, codigo, id_livro) {
         INNER JOIN tb_prateleira ON tb_livro.id_prateleira = tb_prateleira.id_prateleira
     WHERE ds_codigo_isbn = ? OR nm_livro like ? OR nm_autor like ? OR id_livro = ?;    
     `
-    const [linhas] = await con.query(comando, [codigo, `%${pesquisa}%`, `%${pesquisa}%`, id_livro]);
+    const [linhas] = await con.query(comando, [codigo, `%${pesquisa}%`, `%${pesquisa}%`, idLivro]);
     return linhas
 }
 
@@ -47,13 +47,13 @@ export async function ConsultarTodosLivros() {
     return linhas;
 }
 
-export async function CadastrarLivro(idGenero, idAutor, nomeLivro, observacoes, codigo) {
+export async function CadastrarLivro(idGenero, idCor, idSituacao, idPrateleira, nomeLivro, nomeAutor, nomePublicadora, observacoes, isbn) {
     const comando =
         `
-        INSERT INTO tb_livro(id_autor, id_genero, nm_livro, ds_observacoes, ds_codigo)
-            VALUES (?, ?, ?, ?,?);
+        INSERT INTO tb_livro(id_genero, id_cor, id_situacao, id_prateleira, nm_livro, nm_autor, nm_publicadora, ds_observacoes, ds_codigo_isbn)
+            VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?);
         `
-    const resposta = await con.query(comando, [idGenero, idAutor, nomeLivro, observacoes, codigo]);
+    const resposta = await con.query(comando, [idGenero, idCor, idSituacao, idPrateleira, nomeLivro, nomeAutor, nomePublicadora, observacoes, isbn]);
 }
 
 
@@ -61,23 +61,28 @@ export async function DeletarLivro(livroId) {
     const comando =
         `
         DELETE FROM tb_livro
-            WHERE id_livro = ?
+            WHERE id_livro = ?;
         `
     const resposta = await con.query(comando, [livroId])
 }
 
 
-export async function AlterarInformacoesDoLivro(idAutor, idGenero, nomeLivro, dsObservacoes, idLivro) {
+export async function AlterarInformacoesDoLivro(idLivro, idGenero, idCor, idSituacao, idPrateleira, nomeLivro, nomeAutor, nomePublicadora, observacoes, isbn) {
     const comando = 
         `
         UPDATE tb_livro
-            SET 
-                id_autor = ?,
+            SET
                 id_genero = ?,
+                id_cor = ?,
+                id_situacao = ?,
+                id_prateleira = ?,
                 nm_livro = ?,
-                ds_observacoes = ?
+                nm_autor = ?,
+                nm_publicadora = ?,
+                ds_observacoes = ?,
+                ds_codigo_isbn = ?
         WHERE id_livro = ?;
         `
-    const resposta = await con.query(comando, [idAutor, idGenero, nomeLivro, dsObservacoes, idLivro]);
+    const resposta = await con.query(comando, [idGenero, idCor, idSituacao, idPrateleira, nomeLivro, nomeAutor, nomePublicadora, observacoes,isbn, idLivro]);
 }
 

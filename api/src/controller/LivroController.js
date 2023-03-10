@@ -2,22 +2,21 @@
 import { Router } from "express";
 
 import { AlterarInformacoesDoLivro, CadastrarLivro, DeletarLivro, ConsultarLivros, ConsultarTodosLivros } from "../repository/LivroRepository.js";
-import {GeradorDeCodigo} from "../assets/GeradorCodigo.js";
 import { VerificarCampos } from '../assets/VerificarCamposLivros.js'
 
 const server = Router();
 
-server.post('/adm/cadastrar/livro', async (req, resp) => {
+server.post('/livros/cadastrar', async (req, resp) => {
     try {
-        const { idAutor, idGenero, nomeLivro, observacoes } = req.body;
-        const codigo = GeradorDeCodigo(5);
+        const { idGenero, idCor, idSituacao, idPrateleira, nomeLivro, nomeAutor, nomePublicadora, observacoes, isbn } = req.body;
 
-        VerificarCampos(idAutor, idGenero, nomeLivro);
+        VerificarCampos(idGenero, idCor, idSituacao, idPrateleira, nomeLivro, nomeAutor, nomePublicadora, isbn);
 
-        if (!observacoes) await CadastrarLivro(idAutor, idGenero, nomeLivro, "Nenhuma Observação!", codigo);
-        else await CadastrarLivro(idAutor, idGenero, nomeLivro, observacoes, codigo);
+        if (!observacoes) await CadastrarLivro(idGenero, idCor, idSituacao, idPrateleira, nomeLivro, nomeAutor, nomePublicadora, "Nenhuma Observação!", isbn);
+        else await CadastrarLivro(idGenero, idCor, idSituacao, idPrateleira, nomeLivro, nomeAutor, nomePublicadora, observacoes, isbn);
 
-        resp.send();
+        resp.send("Livro Cadastrado com sucesso ✔");
+
     } catch (err) {
         resp.status(401).send({
             error: err.message
@@ -42,15 +41,15 @@ server.get('/livros/:pesquisa?/:codigo?/:id_livro?', async (req, resp) => {
     }
 })
 
-server.delete('/adm/deletar/livro:id?', async (req, resp) => {
+server.delete('/livros/apagar/:id', async (req, resp) => {
     try {
-        const id = req.query.id
+        const id = req.params.id
 
-        if (!id) throw new Error('Por Favor, informe um id!')
+        if (!id) throw new Error('Por Favor, informe um livro para ser apagado!')
         
         const resposta = await DeletarLivro(id);
 
-        resp.send();
+        resp.send("Livro apagado com sucesso!");
     } catch(err) {
         resp.status(401).send({
             error: err.message
@@ -58,15 +57,13 @@ server.delete('/adm/deletar/livro:id?', async (req, resp) => {
     }
 })
 
-server.put('/adm/alterar/livro/:id', async (req, resp) => {
+server.put('/livros/alterar/:id', async (req, resp) => {
     try {
-        const { idAutor, idGenero, nomeLivro, observacoes } = req.body;
+        const { idGenero, idCor, idSituacao, idPrateleira, nomeLivro, nomeAutor, nomePublicadora, observacoes, isbn } = req.body;
         const { id } = req.params
         
-        VerificarCampos(idAutor, idGenero, nomeLivro);
 
-        if (!observacoes) await AlterarInformacoesDoLivro(idAutor, idGenero, nomeLivro, "Nenhuma Observação!", id);
-        else await AlterarInformacoesDoLivro(idAutor, idGenero, nomeLivro, observacoes, id);
+        const resposta = await AlterarInformacoesDoLivro(id, idGenero, idCor, idSituacao, idPrateleira, nomeLivro, nomeAutor, nomePublicadora, observacoes, isbn);
 
         resp.send();
     } catch (err) {
