@@ -5,7 +5,8 @@ import { con } from "./connection.js";
 export async function ConsultarLivros(pesquisa, codigo, idLivro) {
     const comando =   
     `
-    SELECT 	nm_genero			genero,
+    SELECT 	id_livro            id,
+            nm_genero			genero,
             nm_cor				cor,
             nm_situacao			situacao,
             nr_prateleira	    numeroPrateleira,
@@ -28,7 +29,8 @@ export async function ConsultarLivros(pesquisa, codigo, idLivro) {
 export async function ConsultarTodosLivros() {
     const comando =
         `
-        SELECT 	nm_genero			genero,
+        SELECT  id_livro            id,
+                nm_genero			genero,
                 nm_cor				cor,
                 nm_situacao			situacao,
                 nr_prateleira	    numeroPrateleira,

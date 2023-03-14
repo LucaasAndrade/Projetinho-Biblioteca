@@ -73,19 +73,4 @@ server.put('/livros/alterar/:id', async (req, resp) => {
     }
 })
 
-server.get('/adm/consulta/livro/emprestimo/:codigo', async (req, resp) => {
-    try {
-        const { codigo } = req.params;
-        const resposta = await ConsultarLivroPorCodigo(codigo);
-
-        resp.send(resposta);
-
-    } catch (err) {
-        resp.status(401).send({
-            error: err.message
-        })
-    }
-})
-
-
 export default server;

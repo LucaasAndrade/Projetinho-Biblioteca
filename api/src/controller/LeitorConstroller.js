@@ -1,15 +1,19 @@
 
 import { Router } from 'express'
 
-import { ListarLeitores, CadastrarLeitor, DeletarLeitor, BuscarLeitorPorId, AlterarInformacoesUsuario, ConsultarLeitorPorCodigo } from '../repository/LeitorRepository.js'
-import { GeradorDeCodigo } from '../assets/GeradorCodigo.js'
+import { ConsultarLeitores, CadastrarLeitor, DeletarLeitor, AlterarInformacoesUsuario, ConsultarTodosLeitores } from '../repository/LeitorRepository.js'
 import { VerificarCamposUsuario } from '../assets/VerificarCamposUsuario.js';
 
 const server = Router();
 
-server.get('/adm/consulta/leitores', async (req, resp) => {
+server.get('/leitor/:pesquisa?', async (req, resp) => {
     try {
-        const resposta = await ListarLeitores();
+        
+        const { pesquisa } = req.query
+        
+        if (!pesquisa) var resposta = await ConsultarTodosLeitores();
+        else var resposta = await ConsultarLeitores(pesquisa); 
+
         resp.send(resposta)
     } catch (err) {
         resp.status(401).send({
@@ -18,25 +22,24 @@ server.get('/adm/consulta/leitores', async (req, resp) => {
     }
 })
 
-server.post('/adm/cadastrar/leitor', async (req, resp) => {
+server.post('/leitor/cadastrar', async (req, resp) => {
     try {
-        const { idCurso, idTurmaCurso, nomeUsuario, numeroTelefone, observacoes } = req.body;
-        const codigo = GeradorDeCodigo(7);
+        const { idCurso, idTurmaCurso, nomeUsuario, numeroTelefone, cpf, observacoes } = req.body;
         
-        VerificarCamposUsuario(idCurso, idTurmaCurso, nomeUsuario, numeroTelefone);
+        VerificarCamposUsuario(idCurso, idTurmaCurso, nomeUsuario, numeroTelefone, cpf);
          
-        if (!observacoes) await CadastrarLeitor(idCurso, idTurmaCurso, nomeUsuario, numeroTelefone, codigo, "Nenhuma Observação");
-        else await CadastrarLeitor(idCurso, idTurmaCurso, nomeUsuario, numeroTelefone, codigo, observacoes);
+        if (!observacoes) await CadastrarLeitor(idCurso, idTurmaCurso, nomeUsuario, numeroTelefone, cpf, "Nenhuma Observação");
+        else await CadastrarLeitor(idCurso, idTurmaCurso, nomeUsuario, numeroTelefone, cpf, observacoes);
 
         resp.send()
-    } catch (err) {
+    } catch (err) {  
         resp.status(401).send({
             error: err.message
         })
     }
 })
 
-server.delete('/adm/deletar/leitor/:id?', async (req, resp) => {
+server.delete('/leitor/apagar/:id?', async (req, resp) => {
     try {
         const {id} = req.params
 
@@ -53,43 +56,16 @@ server.delete('/adm/deletar/leitor/:id?', async (req, resp) => {
 })
 
 
-server.get('/adm/consulta/leitor/:id?', async (req, resp) => {
+
+server.put('/leitor/alterar/:id?', async (req, resp) => {
     try {
         const { id } = req.params;
+        const { idCurso, idTurma, nome, telefone, cpf,observacoes } = req.body;
         
-        const resposta = await BuscarLeitorPorId(id);
-
-        resp.send(resposta);
-    } catch (err) {
-        resp.status(401).send({
-            error: err.message
-        })
-    }
-})
-
-server.put('/adm/alterar/leitor/:id?', async (req, resp) => {
-    try {
-        const { id } = req.params;
-        const { nome, telefone, observacoes } = req.body;
-        
-        const resposta = await AlterarInformacoesUsuario(Number(id), nome, telefone, observacoes);
+        const resposta = await AlterarInformacoesUsuario(Number(id), idCurso, idTurma, nome, telefone, cpf, observacoes);
 
         resp.send();
     } catch (err) {
-        resp.status(401).send({
-            error: err.message
-        })
-    }
-})
-
-server.get('/adm/consulta/leitor/emprestimo/:codigo', async (req, resp) => {
-    try {
-        const { codigo } = req.params;
-        
-        const resposta = await ConsultarLeitorPorCodigo(codigo);
-        resp.send(resposta);
-
-    } catch (err) { 
         resp.status(401).send({
             error: err.message
         })
