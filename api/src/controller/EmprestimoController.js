@@ -1,14 +1,19 @@
-import { ConsultarEmprestimos, EmprestimosAtivos, RealizarEmprestimos } from "../repository/EmprestimosRepository.js";
-import { DataAtual } from "../assets/ManipulacaoData.js";
 import { Router } from "express";
-import { CalcularDataEntrega } from "../assets/CalcularDataEntrega.js";
+
+import { AlterarEmprestimo, ConsultarEmprestimos, ConsultarPorData, ConsultarTodosEmprestimos, DeletarEmprestimo, RealizarEmprestimos } from "../repository/EmprestimosRepository.js";
 import { VerificarCamposEmprestimo } from "../assets/VerificarCamposEmprestimo.js";
 
 const server = Router();
 
-server.get('/adm/emprestimos/consultar/ativos', async (req, resp) => {
+server.get('/emprestimos/:pesquisa?/:data?/:id?', async (req, resp) => {
     try {
-        const resposta = await EmprestimosAtivos();
+        const { pesquisa, data, id} = req.query;
+        
+        if (!pesquisa && !data) var resposta = await ConsultarTodosEmprestimos();
+        else if (!pesquisa) var resposta = await ConsultarPorData(data);
+        else if (!data) var resposta = await ConsultarEmprestimos(pesquisa);
+        // else var resposta = await ConsultarTodosEmprestimos();
+        
         resp.send(resposta);
     } catch (err) {
         resp.status(401).send({
@@ -18,11 +23,15 @@ server.get('/adm/emprestimos/consultar/ativos', async (req, resp) => {
 });
 
 
-server.get('/adm/emprestimos/consultar/todos', async (req, resp) => {
+server.post('/emprestimo/cadastrar', async (req, resp) => {
     try {
-        const resposta = await ConsultarEmprestimos();
+        const { idUsuario, idLivro, dataRetirada, dataEntrega} = req.body;
+        
+        VerificarCamposEmprestimo(idUsuario, idLivro, dataRetirada, dataEntrega);
+        
+        const resposta = await RealizarEmprestimos(idUsuario, idLivro, dataRetirada, dataEntrega);
 
-        resp.send(resposta);
+        resp.send();
     } catch (err) {
         resp.status(401).send({
             error: err.message
@@ -30,15 +39,33 @@ server.get('/adm/emprestimos/consultar/todos', async (req, resp) => {
     }
 })
 
-server.post('/emprestimo/cadastrar', async (req, resp) => {
+server.delete('/emprestimo/deletar/:id', async (req, resp) => {
     try {
-        const { idUsuario, idLivro, dataDeRetirada, dataDeEntrega} = req.body;
-        
-        VerificarCamposEmprestimo(idUsuario, idLivro, dataDeRetirada, dataDeEntrega);
-        
-        const resposta = await RealizarEmprestimos(idUsuario, idLivro, dataDeRetirada, dataDeEntrega, true);
+        const { id } = req.params;
+
+        if (!id) throw new Error('Informe o ID do livro que deseja deletar!');
+
+        const resposta = await DeletarEmprestimo(id);
 
         resp.send();
+
+    } catch (err) {
+        resp.status(401).send({
+            error: err.message
+        })
+    }
+})
+
+server.put('/emprestimo/alterar/:id', async (req, resp) => {
+    try {
+        const { id } = req.params
+
+        if (!id) throw new Error("ID Obrigatório para alterar as informações de um livro!")
+        
+        const resposta = await AlterarEmprestimo(id);
+
+        resp.send();
+        
     } catch (err) {
         resp.status(401).send({
             error: err.message

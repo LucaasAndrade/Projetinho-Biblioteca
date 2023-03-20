@@ -1,43 +1,94 @@
 import { con } from "./connection.js";
 
-export async function EmprestimosAtivos() {
-    const comando = 
-        `    
-    SELECT count(id_emprestimo) as Emprestimos_Ativos
-        FROM tb_emprestimo
-    WHERE bl_ativo = 1;
-        `
-    const [linhas] = await con.query(comando);
-    return linhas[0];
-}
 
-export async function RealizarEmprestimos(idUsuario, idLivro, dataRetirada, dataEntrega, ativo) {
-    const comando = 
-        `    
-    INSERT INTO tb_emprestimo(id_usuario, id_livro, dt_retirada, dt_entrega, bl_ativo)
-        VALUES(?, ?, ?, ?, ?);
-        `
-    const resposta = await con.query(comando, [idUsuario, idLivro, dataRetirada, dataEntrega, ativo]);
-}
-
-export async function ConsultarEmprestimos() {
+export async function ConsultarEmprestimos(pesquisa) {
     const comando =
+        `   
+        SELECT 	id_emprestimo			id,
+		        nm_usuario				usuario,
+		        nm_livro				livro,
+                nm_situacao_emprestimo	situacao,
+                dt_retirada				data_retirada,
+                dt_entrega				data_entrega
+	    FROM tb_emprestimo
+		        INNER JOIN tb_usuario ON tb_emprestimo.id_usuario = tb_usuario.id_usuario
+                INNER JOIN tb_livro	ON tb_emprestimo.id_livro = tb_livro.id_livro
+		        INNER JOIN tb_situacao_emprestimo ON tb_emprestimo.id_situacao_emprestimo = tb_situacao_emprestimo.id_situacao_emprestimo
+	    WHERE id_emprestimo = ? OR nm_usuario LIKE ? OR tb_situacao_emprestimo.nm_situacao_emprestimo LIKE ?;
         `
-           
-SELECT 	id_emprestimo             				id,
-    tb_usuario.nm_usuario                	usuario,
-    tb_livro.nm_livro                  		livro,
-    tb_curso.nm_curso                       curso,
-    tb_turma_curso.nm_turma           turma,
-    dt_retirada               				data_de_retirada,
-    dt_entrega                				data_para_entregar,
-    bl_ativo                                ativo
-        FROM tb_emprestimo
-            INNER JOIN tb_usuario ON tb_usuario.id_usuario = tb_emprestimo.id_usuario
-            INNER JOIN tb_livro   ON tb_livro.id_livro = tb_emprestimo.id_livro
-            INNER JOIN tb_curso   ON tb_curso.id_curso = tb_usuario.id_curso
-            INNER JOIN tb_turma_curso ON tb_turma_curso.id_turma_curso = tb_curso.id_curso;
-        `
-    const [linhas] = await con.query(comando)
+    const [linhas] = await con.query(comando, [pesquisa, `%${pesquisa}%`, `%${pesquisa}%`])
     return linhas
 } 
+
+
+export async function ConsultarPorData(data) {
+    const comando =
+        `
+        SELECT 	id_emprestimo			id,
+                nm_usuario				usuario,
+                nm_livro				livro,
+                nm_situacao_emprestimo	situacao,
+                dt_retirada				data_retirada,
+                dt_entrega				data_entrega
+        FROM tb_emprestimo
+            INNER JOIN tb_usuario ON tb_emprestimo.id_usuario = tb_usuario.id_usuario
+            INNER JOIN tb_livro	ON tb_emprestimo.id_livro = tb_livro.id_livro
+            INNER JOIN tb_situacao_emprestimo ON tb_emprestimo.id_situacao_emprestimo = tb_situacao_emprestimo.id_situacao_emprestimo
+        WHERE dt_retirada = ? OR dt_entrega = ?;
+        `
+    const [linhas] = await con.query(comando, [data, data]);
+    return linhas
+}
+
+export async function ConsultarTodosEmprestimos() {
+    const comando =
+        `
+        SELECT 	id_emprestimo			id,
+                nm_usuario				usuario,
+                nm_livro				livro,
+                nm_situacao_emprestimo	situacao,
+                dt_retirada				data_retirada,
+                dt_entrega				data_entrega
+        FROM tb_emprestimo
+            INNER JOIN tb_usuario ON tb_emprestimo.id_usuario = tb_usuario.id_usuario
+            INNER JOIN tb_livro	ON tb_emprestimo.id_livro = tb_livro.id_livro
+            INNER JOIN tb_situacao_emprestimo ON tb_emprestimo.id_situacao_emprestimo = tb_situacao_emprestimo.id_situacao_emprestimo;
+        `
+    const [linhas] = await con.query(comando);
+    return linhas
+}
+
+
+export async function RealizarEmprestimos(idUsuario, idLivro, id_situacao_emprestimo, dataRetirada, dataEntrega) {
+    const comando = 
+        `    
+    INSERT INTO tb_emprestimo(id_usuario, id_livro, id_situacao_emprestimo, dt_retirada, dt_entrega)
+        VALUES(?, ?, 1, ?, ?);
+        `
+    const resposta = await con.query(comando, [idUsuario, idLivro, id_situacao_emprestimo, dataRetirada, dataEntrega]);
+}
+
+
+export async function AlterarEmprestimo(idEmprestimo, idLivro, id_situacao_emprestimo, dataRetirada, dataEntrega) {
+    const comando =
+        `
+    UPDATE tb_emprestimo
+        SET id_livro                =   ?,
+            id_situacao_emprestimo  =   ?,
+            dt_retirada             =   ?,
+            dt_entrega              =   ?
+        WHERE id_emprestimo = ?;
+        `
+    const resposta = await con.query(comando, [idLivro, id_situacao_emprestimo, dataRetirada, dataEntrega, idEmprestimo]);
+}
+
+
+export async function DeletarEmprestimo(idEmprestimo) {
+    const comando =
+        `
+    DELETE FROM 
+        tb_emprestimo
+            WHERE id_emprestimo = ?;
+        `
+    const resposta = await con.query(comando, idEmprestimo);
+}
