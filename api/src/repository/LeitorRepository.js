@@ -18,7 +18,7 @@ export async function ConsultarLeitores(pesquisa) {
 	FROM tb_usuario
 		INNER JOIN tb_curso ON tb_usuario.id_curso = tb_curso.id_curso
         INNER JOIN tb_turma_curso ON tb_usuario.id_turma_curso = tb_turma_curso.id_turma_curso
-	WHERE nm_curso LIKE ? OR ds_cpf = ? OR nm_aluno LIKE ? OR id_usuario = ?;
+	WHERE nm_curso LIKE ? OR ds_cpf = ? OR nm_usuario LIKE ? OR id_usuario = ?;
         `
     const [linhas] = await con.query(comando, [`%${pesquisa}%`, pesquisa, `%${pesquisa}%`, pesquisa]);
     return linhas;

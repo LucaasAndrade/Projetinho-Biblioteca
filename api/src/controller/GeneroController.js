@@ -1,14 +1,18 @@
 
 import { Router } from "express";
-import { CadastrarGeneros, ConsultarTodosGeneros } from "../repository/GeneroRepository.js";
+import { AlterarGenero, ApagarGenero, CadastrarGeneros, ConsultarGeneros, ConsultarTodosGeneros } from "../repository/GeneroRepository.js";
 
 
 const server = Router();
 
 
-server.get('/adm/consulta/genero/todos', async (req, resp) => {
+server.get('/genero/:pesquisa?', async (req, resp) => {
     try {
-        const resposta = await ConsultarTodosGeneros();
+        const { pesquisa } = req.params;
+
+        if (!pesquisa) var resposta = await ConsultarTodosGeneros();
+        else var resposta = await ConsultarGeneros(pesquisa);
+
         resp.send(resposta);
     } catch(err) {
         resp.status(401).send({
@@ -17,7 +21,7 @@ server.get('/adm/consulta/genero/todos', async (req, resp) => {
     }
 })
 
-server.post('/adm/cadastrar/genero', async (req, resp) => {
+server.post('/genero/cadastrar', async (req, resp) => {
     try {
         const { nomeGenero } = req.body;
         
@@ -25,6 +29,38 @@ server.post('/adm/cadastrar/genero', async (req, resp) => {
         const resposta = await CadastrarGeneros(nomeGenero);
 
         resp.send();
+    } catch (err) {
+        resp.status(401).send({
+            error: err.message
+        })
+    }
+})
+
+server.put('/genero/alterar/:id', async (req, resp) => {
+    try {
+        const { id } = req.params;
+        const { nomeGenero } = req.body;
+
+        const reposta = await AlterarGenero(id, nomeGenero);
+
+        resp.send();
+
+    } catch (err) {
+        resp.status(401).send({
+            error: err.message
+        })
+    }
+})
+
+
+server.delete('/genero/deletar/:id', async (req, resp) => {
+    try {
+        const { id } = req.params;
+
+        const resposta = await ApagarGenero(id);
+
+        resp.send();    
+
     } catch (err) {
         resp.status(401).send({
             error: err.message
