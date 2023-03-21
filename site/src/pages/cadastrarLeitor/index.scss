@@ -11,9 +11,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-image: url('../../../public/assets/images/logo-livro.png');
-        background-repeat: no-repeat;
-        background-position: center;
         width: 100vw;
     }
 
@@ -123,10 +120,6 @@
     .div-botoes img{
         opacity: 60%;
         padding-right: 10px;
-    }
-
-    .fundo-imagem:hover{
-        cursor: no-drop;
     }
 
     .gerar-carteirinha:hover{
