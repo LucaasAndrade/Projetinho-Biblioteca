@@ -5,9 +5,9 @@ import { VerificarCamposEmprestimo } from "../assets/VerificarCamposEmprestimo.j
 
 const server = Router();
 
-server.get('/emprestimos/:pesquisa?/:data?/:id?', async (req, resp) => {
+server.get('/emprestimos/:pesquisa?/:data?', async (req, resp) => {
     try {
-        const { pesquisa, data, id} = req.query;
+        const { pesquisa, data} = req.query;
         
         if (!pesquisa && !data) var resposta = await ConsultarTodosEmprestimos();
         else if (!pesquisa) var resposta = await ConsultarPorData(data);

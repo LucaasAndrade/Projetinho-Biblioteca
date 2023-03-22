@@ -4,9 +4,11 @@ import AutorController from '../controller/AutorController.js'
 import NascionalidadeController from '../controller/NascionalidadeController.js'
 import LivroController from '../controller/LivroController.js'
 import LeitorController from '../controller/LeitorConstroller.js'
-import CursoTurmaController from '../controller/CursoTurmaController.js'
+import CursoController from '../controller/CursoController.js'
 import GeneroController from '../controller/GeneroController.js'
 import DataController from '../controller/DataController.js'
+import TurmaController from '../controller/TurmaController.js'
+
 
 import express from 'express';
 import cors from 'cors';
@@ -21,9 +23,9 @@ api.use(AutorController);
 api.use(NascionalidadeController);
 api.use(LivroController);
 api.use(LeitorController);
-api.use(CursoTurmaController);
+api.use(CursoController);
 api.use(GeneroController);
 api.use(DataController);
-
+api.use(TurmaController);
 
 export default api
