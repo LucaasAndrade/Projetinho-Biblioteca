@@ -11,24 +11,41 @@ export default function ComponenteHeader() {
         <header className='componente-header'>
             <div className='opcoes'>
                 <div className='opcao' onClick={() => navigate('/home')}>
-                    <img src='/assets/images/inicio.png' />
-                    <p>Tela principal</p>
+                    <img src='/assets/images/mum.png' />
+                    <p>Tela Principal</p>
                 </div>
                 <div className='opcao'  onClick={() => navigate('/livros/')}>
-                    <img src='/assets/images/mais.png' />
-                    <p>Adicionar livros</p>
+                    <img src='/assets/images/mdois.png' />
+                    <p>Adicionar Livros</p>
                 </div>
                 <div className='opcao' onClick={() => navigate('/leitores/')}>
-                    <img src='/assets/images/perfil.png' />
-                    <p>Cadastrar leitor</p>
+                    <img src='/assets/images/mtres.png' />
+                    <p>Cadastrar Leitor</p>
                 </div>
                 <div className='opcao' onClick={() => navigate('/emprestimo')}>
-                    <img src='/assets/images/menu.png' />
-                    <p>Empréstimos</p>
+                    <img src='/assets/images/mquatro.png' />
+                    <p>Realizar Empréstimos</p>
+                </div>
+                <div className='opcao-dois' onClick={() => navigate('/emprestimo')}>
+                    <img src='/assets/images/mcinco.png' />
+                    <p>Consultar Empréstimos</p>
+                </div>
+                <div className='opcao-dois' onClick={() => navigate('/emprestimo')}>
+                    <img src='/assets/images/mseis.png' />
+                    <p>Consultar Leitores</p>
+                </div>
+                <div className='opcao-dois' onClick={() => navigate('/emprestimo')}>
+                    <img src='/assets/images/msete.png' />
+                    <p>Consultar Cursos/Turmas</p>
+                </div>
+                <div className='opcao-dois' onClick={() => navigate('/emprestimo')}>
+                    <img src='/assets/images/moito.png' />
+                    <p>Consultar Livros</p>
                 </div>
             </div>
-            <div>
-                <img className='logo' src='/assets/images/logo.png' />
+                <div className='opcao-dois' onClick={() => navigate('/emprestimo')}>
+                <img src='/assets/images/sair.png' />
+                <p>Sair</p>
             </div>
         </header>
     )

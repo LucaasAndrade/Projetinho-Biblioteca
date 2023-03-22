@@ -112,6 +112,9 @@ export default function CadastrarLeitor() {
                     <div className='fundo-info'>
                         <p>Nome:</p>
                         <input className='inp-nome' type='text' placeholder='EXEMPLO' value={nomeLeitor} onChange={e => setNomeLeitor(e.target.value)} />
+                        <p>E-mail:</p>
+                        <input className='inp-nome' type='text' placeholder='EXEMPLO@EXEMPLO' />
+
                         <div className='col-dois'>
                             <div>
                                 <p>Curso:</p>
@@ -132,17 +135,23 @@ export default function CadastrarLeitor() {
                                 </select>
                             </div>
                             <div className='div-col-dois'>
+                                <p>Turma p/ ano:</p>
+                                <select placeholder='Ano'>
+                                </select>
+                            </div>
+
+                            
+                            <div className='div-col-dois'>
                                 <p>Telefone p/ contato:</p>
                                 <input type='tell' placeholder='(xx) xxxxx-xxxx' value={telefoneParaContato} onChange={e => setTelefoneParaConontato(e.target.value) } />
                             </div>
                         </div>
                         <div className="textarea">
-                            <p>Observações:</p>
+                            <p>Endereço:</p>
                             <textarea className="descricao" name="story" rows="7" cols="46" placeholder='EXEMPLO' value={observacoes} onChange={e => setObservacoes(e.target.value)}></textarea>
                         </div>
                         <div className='div-botoes'>
-                            <button ><img src='/assets/images/mais+.png' />Adicionar Turma/Curso</button>
-                            <button className='gerar-carteirinha'><img src='/assets/images/carta.png' /> Gerar Carterinha </button>
+                            <button ><img src='/assets/images/mais+.png' />Gerenciar cursos e turmas</button>
                             <button onClick={SalvarClick}><img src='/assets/images/confere.png' />Salvar Alteração</button>
                         </div>
                     </div>

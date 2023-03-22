@@ -8,19 +8,23 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: #5A57DF;
+    background-color: #2C248A;
     min-height: 100vh;
     max-width: 18vw;
 
     .opcoes{
-        margin-top: 10em;
+        margin-top: 3em;
     }
 
-    .opcoes img{
+    .opcao img{
         width: 1.5em;
     }
 
-    .opcao{
+    .opcao-dois img{
+        width: 2em;
+    }
+
+    .opcao, .opcao-dois{
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -29,17 +33,15 @@
         padding: 1.2em;
         width: 18vw;
     }
-    .opcao:hover{
-        background-color: #4441DB;
+    .opcao:hover, .opcao-dois:hover{
+        background-color: #20187a;
         cursor: pointer;
     }
 
-    .opcao p{
+    .opcao p, .opcao-dois p{
         font-size: 18px;
         margin-left: 1em;
+        width: 10vw;
     }
 
-    .logo{
-        width: 10em;
-    }
 }
