@@ -10,6 +10,8 @@ const server = Router();
 server.get('/datas', (req, resp) => {
     try {
         const data = DataAtual();
+        console.log(data);
+
         const dataEntrega = CalcularDataEntrega(data)
         resp.send([data, dataEntrega]);
     } catch (err) {
