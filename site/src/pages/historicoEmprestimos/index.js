@@ -28,25 +28,47 @@ export default function HistoricoEmprestimos() {
             <ComponenteHeader />
             <section className='info-emprestimos'>
                
+            <div>
+                <p>Empréstimos</p>
+            </div>
+            <div>
+                <div>
+                    <p>De:</p>
+                    <input type='date'/>
+                </div>
+                <div>
+                    <input type='radio' />
+                    <label for='rd'>Pendentes</label>
+                    <input type='radio' />
+                    <label for='rd'>Entregues</label>
+                    <input type='radio' />
+                    <label for='rd'>Atrasados</label>
+                </div>
+                <div className='divBusca'>
+                    <input type='text' className='txtBusca' placeholder='Pesquisar'/>
+                    <img src='/assets/images/lupa.png' className='btnBusca' alt='Buscar' />
+                </div>
+            </div>
+
             <div className='tabela'>
                 <table>
                     <thead>
                         <tr>
-                            <th>Nome</th>
-                            <th>Curso</th>
-                            <th>Turma</th>
-                            <th>Livro Emprestado:</th>
-                            <th>Emprestado em:</th>
-                            <th>Data de Devolução:</th>
+                            <th>nome</th>
+                            <th>livro</th>
+                            <th>curso</th>
+                            <th>turma</th>
+                            <th>retirado</th>
+                            <th>devolução</th>
                         </tr>
                     </thead>
                         <tbody>
                             {emprestimos.map(item =>
                                 <tr>
                                 <td> {item.usuario} </td>
+                                <td> {item.livro} </td>
                                 <td> {item.curso} </td>
                                 <td> {item.turma}</td>
-                                <td> {item.livro} </td>
                                 <td> {InverterDatas(item.data_de_retirada)} </td>
                                 <td> {InverterDatas(item.data_para_entregar)} </td>
                             </tr>

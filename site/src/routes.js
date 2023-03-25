@@ -11,15 +11,18 @@ import HistoricoLivros from './pages/historicoLivros';
 import HistoricoLeitores from './pages/historicoLeitores';
 import HistoricoEmprestimos from './pages/historicoEmprestimos';
 import LivrosEmprestados from './pages/livrosEmprestados';
+import CadastroLivros from './pages/cadastroLivros'
 
 export default function Index() {
     return (
         <BrowserRouter>
             <Routes>
+
                 <Route path='/' element={<Login />} />
                 <Route path='/home' element={<Principal />} />
                 <Route path='/cadastro/leitor/:id' element={<CadastrarLeitor />} />
                 <Route path='/adicionar/livro/:id' element={<AdicionarLivros />} />
+                <Route path='/c' element={<CadastroLivros />} />
                 <Route path='/cadastro/autor' element={<CadastrarAutor />} />
                 <Route path='/cadastro/genero' element={<CadastrarGenero />} />
                 <Route path='/emprestimo' element={<Emprestimos />} />

@@ -98,11 +98,20 @@ export default function NovoEmprestimo() {
             <section className='info-novo-emprestimo'>
                 <div className='fundo-novo-emprestimo'>
                     <div>
-                        <p>Código de Identificação:</p>
-                        <input type='text' placeholder='(codigo de 7 digitos)' value={codigoLeitor} onChange={e => setCodigoLeitor(e.target.value)} />
-                        <button onClick={ConsultarUsuario}> Pesquisar</button>
                         <p className='col-dois'>Nome:</p>
                         <input className='inp-nome' type='text' placeholder='EXEMPLO' value={nomeUsuario} disabled={true} />
+                        <div className='col-dois'>
+                            <div>
+                                <p>CPF:</p>
+                                <input type='text' placeholder='Exemplo' value={codigoLeitor} onChange={e => setCodigoLeitor(e.target.value)} />
+                                <button onClick={ConsultarUsuario}> Pesquisar</button>
+                            </div>
+                            <div className='div-col-dois'>
+                                <p>Telefone p/ contato:</p>
+                                <input type='tell' placeholder='(xx) xxxxx-xxxx' value={telefone} disabled={true}/>
+                            </div>
+                        </div>
+                        
                         <div className='col-dois'>
                             <div>
                                 <p>Curso:</p>
@@ -116,18 +125,14 @@ export default function NovoEmprestimo() {
                                     <option value={nomeTurma}> {!nomeTurma ? "Turma" : `${nomeTurma}`} </option>
                                 </select>
                             </div>
-                            <div className='div-col-dois'>
-                                <p>Telefone p/ contato:</p>
-                                <input type='tell' placeholder='(xx) xxxxx-xxxx' value={telefone} disabled={true}/>
-                            </div>
                         </div>
                         <div className='div-data'>
                             <div>
-                                <p>Data da Retirada:</p>
+                                <p>Retirada:</p>
                                 <input type='date' value={dataRetirada}/>
                             </div>
                             <div className='data'>
-                                <p>Data da Entrega:</p>
+                                <p>Devolução:</p>
                                 <input type='date' value={dataDeEntrega} onChange={e => setDataDeEntrega(e.target.value)} />
                             </div>
                         </div>
@@ -136,26 +141,27 @@ export default function NovoEmprestimo() {
                     <hr className='linha' />
 
                     <div>
-                        <p>Código do Livro:</p>
-                        <input type='text' placeholder='A1BC5' value={codigoLivro} onChange={e => setCodigoLivro(e.target.value)} />
-                        <button onClick={ConsultarLivro}> Pesquisar</button>
-                        <p className='col-dois'>Nome do Livro:</p>
-                        <input className='inp-nome' type='text' placeholder='EXEMPLO' value={nomeLivro} disabled={true} />
                         <div className='col-dois'>
                             <div>
+                                <p>Código ISBN:</p>
+                                <input type='text' placeholder='A1BC5' value={codigoLivro} onChange={e => setCodigoLivro(e.target.value)} />
+                            <button onClick={ConsultarLivro}> Pesquisar</button>
+                            </div>
+                            <div className='div-col-dois'>
                                 <p>Gênero:</p>
                                 <select disabled={true}>
                                     <option value={nomeGenero}> {!nomeGenero ? "Genero" : `${nomeGenero}`}</option>
                                 </select>
                             </div>
-                            <div className='div-col-dois'>
-                                <p>Nome do Autor:</p>
-                                <input className='inp-autor' type='text' placeholder='EXEMPLO' value={nomeAutor} disabled={true} />
-                            </div>
                         </div>
-                        <div className='div-botoes'>
-                            <button onClick={SalvarClick}><img src='/assets/images/confere.png' />Salvar</button>
-                        </div>
+
+                        <p className='col-dois'>Nome do Livro:</p>
+                        <input className='inp-nome' type='text' placeholder='EXEMPLO' value={nomeLivro} disabled={true} />
+                        <p className='col-dois'>Nome do Autor:</p>
+                        <input className='inp-nome' type='text' placeholder='EXEMPLO' />
+
+                        <button><img src='/assets/images/confere.png' />salvar</button>
+
                     </div>
 
                 </div>

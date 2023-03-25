@@ -53,15 +53,21 @@ export default function HistoricoLeitores() {
             <div className='pagina-leitores'>
             <h1> Lista de Leitores: </h1>
 
+            <div className='divBusca'>
+                <input type='text' className='txtBusca' placeholder='Buscar Leitor'/>
+                <img src='/assets/images/lupa.png' className='btnBusca' alt='Buscar' />
+            </div>
+
             <div className='tabela'>
                 <table>
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Nome do Leitor</th>
-                            <th>Curso</th>
-                            <th>Turma</th>
-                            <th>Código</th>
+                            <th>nome</th>
+                            <th>curso</th>
+                            <th>turma</th>
+                            <th>livros atrasados</th>
+                            <th>cpf</th>
+                            <th></th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -74,6 +80,11 @@ export default function HistoricoLeitores() {
                             <td> {item.curso}</td>
                             <td> {item.turma}</td>
                             <td> {item.codigo} </td>
+                                <td>
+                                    <span>
+                                        <img src='/assets/images/lista.png' />
+                                    </span>
+                                </td>
                                 <td>
                                     <span>
                                         <img src='/assets/images/editar.png' onClick={() => navigate(`/cadastro/leitor/${item.id}`)}/>
