@@ -1,4 +1,4 @@
-.cadastrar{
+.cadastrar-livros{
     display: flex;
     flex-direction: row;
     
@@ -15,15 +15,71 @@
         display: flex;
         flex-direction: row;
         background-color: #ffffff;
-        padding-top: 5em;
+        background-color: #ffffff;
+        -webkit-box-shadow: 0px 2px 15px -8px rgb(120, 120, 120);
+        -moz-box-shadow: 0px 2px 15px -8px rgb(120, 120, 120);
+        box-shadow: 0px 2px 15px -8px rgb(120, 120, 120);
     }
 
     .info-cadastro p{
         font-family: 'medio';
     }
 
+    .titulo{
+        display: flex;
+        flex-direction: row;
+
+        h2{
+            font-family: 'regular';
+            color: #6d6d6d;
+        }
+    }
+
+    .linha{
+        border: 3px solid #4441DB;
+        border-radius: 10px;
+        margin-right: .5em;
+    }
+
+    .info-inputs{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 4em;
+    }
+
+    input{
+        height: 2.3em;
+        border: 1px solid #D9D9D9;
+        opacity: 80%;
+        padding: 10px;
+        margin-top: .5em;
+        width: 16.9em;
+    }
+
     .inp-nome{
         width: 36.2em;
+    }
+
+    .col-um{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .col-um div{
+        margin-top: 1em;
+    }
+
+    .inp-um{
+        margin-left: 2em;
+    }
+
+    select{
+        width: 16.9em;
+        height: 2.3em;
+        border: 1px solid #D9D9D9;
+        opacity: 70%;
+        margin-top: .5em;
     }
 
     .textarea{
@@ -34,7 +90,6 @@
         padding: 10px;
         max-width: 100%;
         line-height: 1.5;
-        background-color: #D9D9D9;
         border: 1px solid #D9D9D9;
         opacity: 80%;
     }
@@ -56,12 +111,14 @@
     button{
         display: flex;
         align-items: center;
-        font-family: 'bold';
+        font-family: 'medio';
+        color: #ffffff;
         margin-left: 2em;
         padding: 5px;
         border-radius: 5px;
-        background-color: #D9D9D9;
-        opacity: 80%;
+        border: none;
+        background-color: #2C248A;
+        opacity: 90%;
     }
     button:hover{
         cursor: pointer;
@@ -69,7 +126,6 @@
     }
 
     .div-botoes img{
-        opacity: 60%;
         padding-right: 10px;
     }
 }

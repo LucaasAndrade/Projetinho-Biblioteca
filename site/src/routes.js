@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/login';
 import Principal from './pages/principal';
 import CadastrarLeitor from './pages/cadastrarLeitor';
-import AdicionarLivros from './pages/adicionarLivros';
+import AdicionarLivros from './pages/cadastroLivros';
 import CadastrarAutor from './pages/cadastrarAutor';
 import CadastrarGenero from './pages/cadastrarGeneros';
 import Emprestimos from './pages/emprestimos';
@@ -11,7 +11,6 @@ import HistoricoLivros from './pages/historicoLivros';
 import HistoricoLeitores from './pages/historicoLeitores';
 import HistoricoEmprestimos from './pages/historicoEmprestimos';
 import LivrosEmprestados from './pages/livrosEmprestados';
-import CadastroLivros from './pages/cadastroLivros'
 
 export default function Index() {
     return (
@@ -21,8 +20,7 @@ export default function Index() {
                 <Route path='/' element={<Login />} />
                 <Route path='/home' element={<Principal />} />
                 <Route path='/cadastro/leitor/:id' element={<CadastrarLeitor />} />
-                <Route path='/adicionar/livro/:id' element={<AdicionarLivros />} />
-                <Route path='/c' element={<CadastroLivros />} />
+                <Route path='/cadastro/livro/:id' element={<AdicionarLivros />} />
                 <Route path='/cadastro/autor' element={<CadastrarAutor />} />
                 <Route path='/cadastro/genero' element={<CadastrarGenero />} />
                 <Route path='/emprestimo' element={<Emprestimos />} />
