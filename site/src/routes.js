@@ -21,12 +21,14 @@ export default function Index() {
                 <Route path='/home' element={<Principal />} />
                 <Route path='/cadastro/leitor/:id' element={<CadastrarLeitor />} />
                 <Route path='/cadastro/livro/:id' element={<AdicionarLivros />} />
+                <Route path='/historico/emprestimos' element={<HistoricoEmprestimos />} />
+                <Route path='/leitores' element={<HistoricoLeitores />} />
+
+
                 <Route path='/cadastro/autor' element={<CadastrarAutor />} />
                 <Route path='/cadastro/genero' element={<CadastrarGenero />} />
                 <Route path='/emprestimo' element={<Emprestimos />} />
                 <Route path='/livros' element={<HistoricoLivros />} />
-                <Route path='/leitores' element={<HistoricoLeitores />} />
-                <Route path='/historico/emprestimos' element={<HistoricoEmprestimos />} />
                 <Route path='/livros/emprestados' element={<LivrosEmprestados />} />
             </Routes>
         </BrowserRouter>

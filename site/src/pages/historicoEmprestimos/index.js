@@ -27,13 +27,15 @@ export default function HistoricoEmprestimos() {
         <main className='page-emprestimos'>
             <ComponenteHeader />
             <section className='info-emprestimos'>
-               
-            <div>
-                <p>Empréstimos</p>
+
+            <div className='titulo'>
+                <hr className='linha' />
+                <h2>Empréstimos</h2>
             </div>
-            <div>
+            
+            <div className='div-pesquisa'>
                 <div>
-                    <p>De:</p>
+                    <label>De:</label>
                     <input type='date'/>
                 </div>
                 <div>
@@ -61,7 +63,9 @@ export default function HistoricoEmprestimos() {
                             <th>retirado</th>
                             <th>devolução</th>
                         </tr>
+
                     </thead>
+
                         <tbody>
                             {emprestimos.map(item =>
                                 <tr>
@@ -76,7 +80,7 @@ export default function HistoricoEmprestimos() {
                     </tbody>
                 </table>
                     <div className='div-botoes'>
-                        <button onClick={() => navigate('/emprestimo')}><img src='/assets/images/mais+.png' />Novo Empréstimo</button>
+                        <button onClick={() => navigate('/emprestimo')}><img src='/assets/images/maisbr.png' />Novo Empréstimo</button>
                     </div>
             </div>
 

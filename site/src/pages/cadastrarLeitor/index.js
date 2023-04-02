@@ -110,11 +110,24 @@ export default function CadastrarLeitor() {
                         <img src='/assets/images/add-imagem.png' />
                     </div>
                     <div className='fundo-info'>
-                        <p>Nome:</p>
-                        <input className='inp-nome' type='text' placeholder='EXEMPLO' value={nomeLeitor} onChange={e => setNomeLeitor(e.target.value)} />
-                        <p>E-mail:</p>
-                        <input className='inp-nome' type='text' placeholder='EXEMPLO@EXEMPLO' />
-
+                        <div className='p-input'>
+                            <p>Nome:</p>
+                            <input className='inp-nome' type='text' placeholder='EXEMPLO' value={nomeLeitor} onChange={e => setNomeLeitor(e.target.value)} />
+                        </div>
+                        <div className='p-input'>
+                            <p>E-mail:</p>
+                            <input className='inp-nome' type='text' placeholder='EXEMPLO@EXEMPLO' />
+                        </div>
+                        <div className='col-dois'>
+                            <div>
+                                <p>CPF:</p>
+                                <input type='text' placeholder='000.000.000-0' />
+                            </div>
+                            <div className='div-col-dois'>
+                                <p>Telefone p/ contato:</p>
+                                <input type='tell' placeholder='(xx) xxxxx-xxxx' value={telefoneParaContato} onChange={e => setTelefoneParaConontato(e.target.value) } />
+                            </div>
+                        </div>
                         <div className='col-dois'>
                             <div>
                                 <p>Curso:</p>
@@ -140,19 +153,14 @@ export default function CadastrarLeitor() {
                                 </select>
                             </div>
 
-                            
-                            <div className='div-col-dois'>
-                                <p>Telefone p/ contato:</p>
-                                <input type='tell' placeholder='(xx) xxxxx-xxxx' value={telefoneParaContato} onChange={e => setTelefoneParaConontato(e.target.value) } />
-                            </div>
                         </div>
                         <div className="textarea">
                             <p>Endereço:</p>
                             <textarea className="descricao" name="story" rows="7" cols="46" placeholder='EXEMPLO' value={observacoes} onChange={e => setObservacoes(e.target.value)}></textarea>
                         </div>
                         <div className='div-botoes'>
-                            <button ><img src='/assets/images/mais+.png' />Gerenciar cursos e turmas</button>
-                            <button onClick={SalvarClick}><img src='/assets/images/confere.png' />Salvar Alteração</button>
+                            <button className='botao'><img src='/assets/images/mais+.png' />Gerenciar cursos e turmas</button>
+                            <button onClick={SalvarClick}><img src='/assets/images/conferebr.png' />Salvar Alteração</button>
                         </div>
                     </div>
                 </div>
