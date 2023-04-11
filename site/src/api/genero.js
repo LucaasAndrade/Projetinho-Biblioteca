@@ -8,7 +8,7 @@ const api = axios.create({
 
 
 export async function ConsultarTodosGeneros() {
-    const r = await api.get('/adm/consulta/genero/todos');
+    const r = await api.get('/genero');
     return r.data;
 }
 

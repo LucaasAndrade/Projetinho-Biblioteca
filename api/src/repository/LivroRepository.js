@@ -13,7 +13,7 @@ export async function ConsultarLivros(pesquisa, codigo, idLivro) {
             nm_livro			livro,
             nm_autor			autor,
             nm_publicadora		publicadora,
-            ds_observacoes		observacoes,
+            tb_livro.ds_observacoes		observacoes,
             ds_codigo_isbn		isbn
     FROM tb_livro
         INNER JOIN tb_genero ON tb_livro.id_genero = tb_genero.id_genero
@@ -37,7 +37,7 @@ export async function ConsultarTodosLivros() {
                 nm_livro			livro,
                 nm_autor			autor,
                 nm_publicadora		publicadora,
-                ds_observacoes		observacoes,
+                tb_livro.ds_observacoes		observacoes,
                 ds_codigo_isbn		isbn
             FROM tb_livro
         INNER JOIN tb_genero ON tb_livro.id_genero = tb_genero.id_genero

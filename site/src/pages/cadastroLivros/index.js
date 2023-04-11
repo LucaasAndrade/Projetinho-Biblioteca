@@ -1,37 +1,44 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import './index.scss';
 
 import ComponenteHeader from '../../components/header';
 import LoadingBar from 'react-top-loading-bar';
 
 import { useEffect, useRef, useState } from 'react';
-import { ConsultarAutoresLivros } from '../../api/autores';
 import { ConsultarTodosGeneros } from '../../api/genero';
 import { CadastrarLivro, BuscarLivroPorId, AlterarInformacoesDoLivro } from '../../api/livro';
+import { ConsultarCores } from '../../api/cores';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function AdicionarLivros() {
-    const [autoresLivros, setAutoresLivros] = useState([]);
     const [generos, setGeneros] = useState([]);
+    const [cores, setCores] = useState([]);
 
     const [nomeLivro, setNomeLivro] = useState("");
-    const [autorId, setAutorId] = useState();
     const [generoId, setGeneroId] = useState();
     const [observacoes, setObservacoes] = useState();
-    
     const [nomeAutor, setNomeAutor] = useState();
     const [nomeGenero, setNomeGenero] = useState();
+    const [codigoISBN, setCodigoISBN] = useState();
+    const [editora, setEditora] = useState();
+    const [prateleira, setNumeroPrateleira] = useState();
+    const [nomeCor, setNomeCor] = useState();
+    const [idCor, setIdCor] = useState();
+
+    const [idSituacao, setIdSituacao] = useState();
+
+    console.log(cores);
 
     const { id } = useParams();
 
     async function BuscarLivroId() {
-        if (id === 0) {
+        if (Number(id) === 0) {
             return;
         }
         else {
             const r = await BuscarLivroPorId(id);
-            setAutorId(r.autor);
             setGeneroId(r.genero);
             setNomeLivro(r.livro);
             setObservacoes(r.observacoes);
@@ -46,24 +53,25 @@ export default function AdicionarLivros() {
     //     navigate('/cadastro/genero');
     // }
 
-    async function ConsultarAutores() {
-        const r = await ConsultarAutoresLivros();
-        setAutoresLivros(r)
-    }
-    
+
     async function ConsultarGeneros() {
         const r = await ConsultarTodosGeneros();
         setGeneros(r);
     }
     
+    async function ConsultarTodasCores() {
+        const r = await ConsultarCores();
+        setCores(r);
+    }
+
     async function SalvarClick() {
         try {
             if (id === '0') {
-                const r = await CadastrarLivro(autorId, generoId, nomeLivro, observacoes);
+                const r = await CadastrarLivro( generoId, nomeLivro, observacoes);
                 toast.success('Livro Salvo ✔', {autoClose: 1000, delay: 0, pauseOnHover: false})
             }
             else {
-                const r = await AlterarInformacoesDoLivro(autorId, generoId, nomeLivro, observacoes, id);
+                const r = await AlterarInformacoesDoLivro( generoId, nomeLivro, observacoes, id);
                 toast.success('Livro Alterado ✔', {autoClose: 1000, delay: 0, pauseOnHover: false});
                 //alert("Livro Alterado ✔");
             }
@@ -78,7 +86,7 @@ export default function AdicionarLivros() {
 
     useEffect(() => {
         ConsultarGeneros();
-        ConsultarAutores();
+        ConsultarTodasCores();
         BuscarLivroId();
     }, [])
     
@@ -103,7 +111,7 @@ export default function AdicionarLivros() {
                         <div className='col-um'>
                             <div>
                                 <p>Nome do Autor:</p>
-                                <input type='text' />
+                                <input type='text' value={nomeAutor} onChange={e => setNomeAutor(e.target.value)} />
                             </div>
 
                             <div className='inp-um'>
@@ -119,11 +127,38 @@ export default function AdicionarLivros() {
                         <div className='col-um'>
                             <div>
                                 <p>Código ISBN:</p>
-                                <input type='text' />
+                                <input type='text' value={codigoISBN} onChange={e => setCodigoISBN(e.target.value)} />
                             </div>
                             <div className='inp-um'>
                                 <p>Editora:</p>
-                                <input type='text' />
+                                <input type='text' value={editora} onChange={e => setEditora(e.target.value)} />
+                            </div>
+                        </div>
+                        <div className='col-um'>
+                            <div>
+                                <p>Número da Prateleira: </p>
+                                <input type='text' value={prateleira} onChange={e => setNumeroPrateleira(e.target.value)} ></input>
+                            </div>
+                            <div className='input-check'>
+                                <div>
+                                    <input type='radio' value='2' name='Situacao' onChange={e => setIdSituacao(e.target.value)} />
+                                    <p> Disponível </p>
+                                </div>
+                                <div>
+                                    <input type='radio' value='1' name='Situacao' onChange={e => setIdSituacao(e.target.value)} />
+                                    <p> Emprestado </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='col-um'>
+                            <div>
+                                <p> Sistema de Cores</p>
+                                <select onChange={e => setIdCor(e.target.value)}>
+                                    <option value={nomeCor} selected disabled hidden> {!nomeCor ? "Cor" : `${nomeCor}`} </option>
+                                    {cores.map(item => 
+                                        <option value={item.id}> {item.cor} </option>
+                                        )}
+                                </select>
                             </div>
                         </div>
                         <div className='text-inp'>
@@ -135,7 +170,7 @@ export default function AdicionarLivros() {
 
                         <div className='div-botoes'>
                             <button><img src='/assets/images/conferebr.png' />Finalizar Cadastro</button>
-                            <button onClick={() => navigate('/cadastro/genero')}><img src='/assets/images/maisbr.png' />Adicionar Gênero</button>
+                            <button onClick={() => navigate('/cadastro/genero')}><img src='/assets/images/maisbr.png' /> Gerenciar Gêneros</button>
                         </div>
                         
                     </div>

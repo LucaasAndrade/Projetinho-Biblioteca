@@ -9,6 +9,8 @@ import GeneroController from '../controller/GeneroController.js'
 import DataController from '../controller/DataController.js'
 import TurmaController from '../controller/TurmaController.js'
 import PrateleiraController from '../controller/TurmaController.js'
+import SituacaoController from '../controller/SituacaoController.js'
+import CorController from '../controller/CorController.js'
 
 import express from 'express';
 import cors from 'cors';
@@ -28,5 +30,7 @@ api.use(GeneroController);
 api.use(DataController);
 api.use(TurmaController);
 api.use(PrateleiraController);
+api.use(SituacaoController);
+api.use(CorController);
 
 export default api
