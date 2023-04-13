@@ -67,8 +67,8 @@ export default function AdicionarLivros() {
     async function SalvarClick() {
         try {
             if (id === '0') {
-                const r = await CadastrarLivro( generoId, nomeLivro, observacoes);
-                toast.success('Livro Salvo ✔', {autoClose: 1000, delay: 0, pauseOnHover: false})
+                const r = await CadastrarLivro(generoId, idCor, idSituacao, prateleira, nomeLivro, nomeAutor, editora, observacoes, codigoISBN);
+                toast.success('Livro Salvo ✔', {autoClose: 2000, delay: 0, pauseOnHover: false})
             }
             else {
                 const r = await AlterarInformacoesDoLivro( generoId, nomeLivro, observacoes, id);
@@ -169,8 +169,8 @@ export default function AdicionarLivros() {
                         </div>
 
                         <div className='div-botoes'>
-                            <button><img src='/assets/images/conferebr.png' />Finalizar Cadastro</button>
-                            <button onClick={() => navigate('/cadastro/genero')}><img src='/assets/images/maisbr.png' /> Gerenciar Gêneros</button>
+                            <button onClick={SalvarClick}><img src='/assets/images/conferebr.png' />Finalizar Cadastro</button>
+                            <button onClick={() => navigate('/cadastro/genero/0')}><img src='/assets/images/maisbr.png' /> Gerenciar Gêneros</button>
                         </div>
                         
                     </div>

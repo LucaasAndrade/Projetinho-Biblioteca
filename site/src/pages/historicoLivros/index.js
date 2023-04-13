@@ -11,6 +11,8 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function HistoricoLivros(props) {
     const [livros, setLivros] = useState([]);
 
+
+    
     const navigate = useNavigate();
 
     async function DeletarClick(itemId, nomeItem){

@@ -6,12 +6,17 @@ const api = axios.create({
     baseURL: API_URL
 })
 
-export async function CadastrarLivro(idAutor, idGenero, nomeLivro, observacoes) {
-    const r = await api.post('/adm/cadastrar/livro', {
-        idAutor,
+export async function CadastrarLivro(idGenero, idCor, idSituacao, idPrateleira, nomeLivro, nomeAutor, nomePublicadora, observacoes, isbn) {
+    const r = await api.post('/livros/cadastrar', {
         idGenero,
+        idCor,
+        idSituacao,
+        idPrateleira,
         nomeLivro,
-        observacoes
+        nomeAutor,
+        nomePublicadora,
+        observacoes,
+        isbn
     });
     return r.data
 }
