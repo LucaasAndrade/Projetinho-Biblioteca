@@ -1,6 +1,7 @@
 *{
     box-sizing: border-box;
     margin: 0;
+    // border: solid 1px black;
 }
 
 .page-cadastro-genero{
@@ -17,7 +18,7 @@
     .fundo-cadastrar{
         display: flex;
         flex-direction: row;
-        padding-top: 5em;
+        padding-top: 2.5em;
     }
 
     .info-cadastro p{
@@ -61,5 +62,77 @@
     .div-botoes img{
         opacity: 60%;
         padding-right: 10px;
+    } 
+    .linha{
+        border: 3px solid #4441DB;
+        border-radius: 10px;
+        margin-right: .5em;
     }
+    .pagina-genero-titulo{
+        display: flex;
+        text-align: start;
+        
+        margin: 20px;
+        padding-left: 20px;
+
+        width: 100%;
+    }
+    .pagina-genero-titulo h1{
+        font-family: 'bold';
+        color: #303030;
+    }
+    .tabela {
+        display: flex;
+        flex-direction: column;
+        width: 60%;
+        max-width: 1024px;
+        overflow-x: auto;
+        padding-top: 3em;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    th {
+        font-family: 'bold';
+        background-color: #4441DB;
+        color: #fff;
+        padding: 10px 15px;
+        text-align: left;
+    }
+    td {
+        font-family: 'regular';
+        padding: 10px 15px;
+    }
+
+    tr:nth-child(odd) td {
+        background-color: #fff;
+    }
+    tr:nth-child(even) td {
+        background-color: #f1f1f1;
+    }
+
+    tr td:nth-last-child(1), tr td:nth-last-child(2) {
+        padding: 0px;
+        text-align: center;
+    }
+
+    td img{
+        opacity: 20%;
+    }
+
+    td img:hover{
+        opacity: 60%;
+    }
+
+    tr td:nth-last-child(1) span, tr td:nth-last-child(2) span{
+        font-weight: 700;
+        font-size: 3px;
+        cursor: pointer;
+        transition: .6s;
+        padding: 5px 3px;
+        border-radius: 3px;
+    }
+
 }

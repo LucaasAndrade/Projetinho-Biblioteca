@@ -27,7 +27,7 @@ export default function Index() {
 
 
                 <Route path='/cadastro/autor' element={<CadastrarAutor />} />
-                <Route path='/cadastro/genero' element={<CadastrarGenero />} />
+                <Route path='/cadastro/genero/:id' element={<CadastrarGenero />} />
                 <Route path='/livros' element={<HistoricoLivros />} />
                 <Route path='/livros/emprestados' element={<LivrosEmprestados />} />
             </Routes>

@@ -11,10 +11,12 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function HistoricoLivros(props) {
     const [livros, setLivros] = useState([]);
 
+
+    
     const navigate = useNavigate();
 
     async function DeletarClick(itemId, nomeItem){
-        if (window.confirm(`Deseja deletar o livro ${nomeItem} ?`) == true) {
+        if (window.confirm(`Deseja deletar o livro ${nomeItem} ?`) === true) {
             await DeletarLivro(itemId);
             window.alert(`${nomeItem} deletado ✔`)
             setTimeout(() => {
@@ -41,8 +43,12 @@ export default function HistoricoLivros(props) {
                
 
             <div className='pagina-livros'>
-            <h1> Lista de Livros: </h1>
-
+                
+                <div className='pagina-livros-titulo'>
+                    <hr className='linha' />
+                    <h1> Lista de Livros: </h1>
+                </div>
+                    
             <div className='tabela'>
                 <table>
                     <thead>
@@ -66,7 +72,7 @@ export default function HistoricoLivros(props) {
                                     <td> {item.codigo} </td>
                                         <td>
                                             <span>
-                                                <img src='/assets/images/editar.png' onClick={() => navigate(`/adicionar/livro/${item.id}`)}/>
+                                                <img src='/assets/images/editar.png' onClick={() => navigate(`/cadastro/livro/${item.id}`)}/>
                                             </span>
                                         </td>
                                         <td>
@@ -79,8 +85,7 @@ export default function HistoricoLivros(props) {
                     </tbody>
                 </table>
                     <div className='div-botoes'>
-                        <button onClick={() => navigate('/cadastro/autor')}><img src='/assets/images/mais+.png' />Cadastrar Autores</button>
-                        <button onClick={() => navigate('/adicionar/livro/0')}><img src='/assets/images/mais+.png' />Adicionar Livros</button>
+                        <button onClick={() => navigate('/cadastro/livro/0')}><img src='/assets/images/mais+.png' />Adicionar Livro</button>
                     </div>
             </div>
         </div>
