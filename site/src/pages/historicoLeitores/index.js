@@ -49,7 +49,7 @@ export default function HistoricoLeitores() {
             <ComponenteHeader />
             <section className='info-leitores'>
             
-            <div className='pagina-leitores'>
+            <div>
                 <div className='titulo'>
                     <hr className='linha' />
                     <h2>Lista de Leitores</h2>
@@ -76,9 +76,6 @@ export default function HistoricoLeitores() {
                                 <th></th>
                             </tr>
                         </thead>
-
-
-
 
 
                         {/*  TESTE DO CSS

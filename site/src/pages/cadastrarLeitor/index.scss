@@ -16,11 +16,30 @@
         width: 100vw;
     }
 
+     .titulo{
+        display: flex;
+        flex-direction: row;
+
+        h2{
+            font-family: 'bold';
+            color: #6d6d6d;
+        }
+    }
+
+    .linha{
+        border: 3px solid #4441DB;
+        border-radius: 10px;
+        margin-right: .5em;
+    }
+
     .fundo-cadastro{
         display: flex;
         flex-direction: row;
+        padding: 3em 4em;
+        margin-top: 1em;
         background-color: #ffffff;
         background-color: #ffffff;
+        border-radius: 3px;
         -webkit-box-shadow: 0px 2px 15px -8px rgb(120, 120, 120);
         -moz-box-shadow: 0px 2px 15px -8px rgb(120, 120, 120);
         box-shadow: 0px 2px 15px -8px rgb(120, 120, 120);
@@ -59,6 +78,7 @@
         opacity: 80%;
         height: 15em;
         margin-top: 2em;
+        cursor: pointer;
     }
 
     .fundo-imagem img{
@@ -98,9 +118,9 @@
 
     .descricao{
         max-width: 36.2em;
-        max-height: 11em;
+        max-height: 6em;
         min-width: 36.2em;
-        min-height: 11em;
+        min-height: 6em;
         margin-top: .5em;
     }
 
@@ -116,7 +136,7 @@
         font-family: 'bold';
         color: #ffffff;
         margin-right: 2em;
-        padding: 5px;
+        padding: 5px 8px;
         border-radius: 5px;
         border: none;
         background-color: #2C248A;
@@ -131,7 +151,7 @@
         padding-right: 10px;
     }
 
-    .botao{
+    .open-modal-button{
         background-color: #ffffff;
         border: 1px solid #000000;
         color: #000000;

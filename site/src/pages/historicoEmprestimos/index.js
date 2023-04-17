@@ -28,6 +28,7 @@ export default function HistoricoEmprestimos() {
             <ComponenteHeader />
             <section className='info-emprestimos'>
 
+            <div>
             <div className='titulo'>
                 <hr className='linha' />
                 <h2>Empréstimos</h2>
@@ -36,9 +37,9 @@ export default function HistoricoEmprestimos() {
             <div className='div-pesquisa'>
                 <div>
                     <label>De:</label>
-                    <input type='date'/>
+                    <input className='inp' type='date'/>
                 </div>
-                <div>
+                <div className='rd'>
                     <input type='radio' />
                     <label for='rd'>Pendentes</label>
                     <input type='radio' />
@@ -82,6 +83,7 @@ export default function HistoricoEmprestimos() {
                     <div className='div-botoes'>
                         <button onClick={() => navigate('/emprestimo')}><img src='/assets/images/maisbr.png' />Novo Empréstimo</button>
                     </div>
+            </div>
             </div>
 
             </section>

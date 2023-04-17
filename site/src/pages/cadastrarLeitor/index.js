@@ -1,6 +1,7 @@
 import './index.scss';
 
 import ComponenteHeader from '../../components/header';
+import ModalPerfil from '../../components/modal';
 
 import { useEffect, useRef, useState } from 'react';
 import { ConsultarTodosCursos, ConsultarTurmasCurso } from '../../api/cursoTurma';
@@ -18,10 +19,10 @@ export default function CadastrarLeitor() {
     
     const [escolhaCursoId, setEscolhaCursoId] = useState();
     const [escolhaTurmaId, setEscolhaTurmaId] = useState();
-
+    
     const [nomeCurso, setNomeCurso] = useState();
     const [nomeTurma, setNomeTurma] = useState();
-
+    
     const [nomeLeitor, setNomeLeitor] = useState('');
     const [telefoneParaContato, setTelefoneParaConontato] = useState('')
     const [observacoes, setObservacoes] = useState('');
@@ -32,6 +33,16 @@ export default function CadastrarLeitor() {
     const navigate = useNavigate();
 
     const { id } = useParams();
+
+    const [ exibir, setExibir ] = useState(false)
+
+    function Modal(){
+        setExibir(true)
+    }
+
+    function fechar(){
+        setExibir(false)
+    }
 
     async function ConsultarCurso() {
         const resposta = await ConsultarTodosCursos();
@@ -104,63 +115,73 @@ export default function CadastrarLeitor() {
             <LoadingBar color='#ff0000' ref={ref} />
             <ToastContainer />
             <ComponenteHeader />
-            <section className='info-cadastro'>
-                <div className='fundo-cadastro'>
-                    <div className='fundo-imagem'>
-                        <img src='/assets/images/add-imagem.png' />
-                    </div>
-                    <div className='fundo-info'>
-                        <div className='p-input'>
-                            <p>Nome:</p>
-                            <input className='inp-nome' type='text' placeholder='EXEMPLO' value={nomeLeitor} onChange={e => setNomeLeitor(e.target.value)} />
-                        </div>
-                        <div className='p-input'>
-                            <p>E-mail:</p>
-                            <input className='inp-nome' type='text' placeholder='EXEMPLO@EXEMPLO' />
-                        </div>
-                        <div className='col-dois'>
-                            <div>
-                                <p>CPF:</p>
-                                <input type='text' placeholder='000.000.000-0' />
-                            </div>
-                            <div className='div-col-dois'>
-                                <p>Telefone p/ contato:</p>
-                                <input type='tell' placeholder='(xx) xxxxx-xxxx' value={telefoneParaContato} onChange={e => setTelefoneParaConontato(e.target.value) } />
-                            </div>
-                        </div>
-                        <div className='col-dois'>
-                            <div>
-                                <p>Curso:</p>
-                                <select onChange={e => setEscolhaCursoId(e.target.value)} disabled={desativado}>
-                                    <option value={escolhaCursoId} selected disabled hidden>{!nomeCurso ? 'Curso' : `${nomeCurso}`}</option>
-                                    {cursos.map(item => 
-                                    <option value={item.id_curso}> {item.nm_curso} </option>    
-                                    )}
-                                </select>
-                            </div>
-                            <div className='div-col-dois'>
-                                <p>Turma:</p>
-                                <select onChange={e => setEscolhaTurmaId(e.target.value)}>
-                                    <option value={escolhaTurmaId} selected disabled hidden> {!nomeTurma ? 'Turma' : `${nomeTurma}`} </option>
-                                    {turmas.map(item =>
-                                        <option value={item.id}> {item.turma}</option>
-                                    )}
-                                </select>
-                            </div>
-                            <div className='div-col-dois'>
-                                <p>Turma p/ ano:</p>
-                                <select placeholder='Ano'>
-                                </select>
-                            </div>
 
+            <ModalPerfil  exibir={exibir} fechar={fechar} /> 
+            
+            <section className='info-cadastro'>
+                <div>
+                    <div className='titulo'>
+                        <hr className='linha' />
+                        <h2>Cadastrar Leitor</h2>
+                    </div>
+                    <div className='fundo-cadastro'>
+                        <div className='fundo-imagem'>
+                            <img src='/assets/images/add-imagem.png' />
                         </div>
-                        <div className="textarea">
-                            <p>Endereço:</p>
-                            <textarea className="descricao" name="story" rows="7" cols="46" placeholder='EXEMPLO' value={observacoes} onChange={e => setObservacoes(e.target.value)}></textarea>
-                        </div>
-                        <div className='div-botoes'>
-                            <button className='botao'><img src='/assets/images/mais+.png' />Gerenciar cursos e turmas</button>
-                            <button onClick={SalvarClick}><img src='/assets/images/conferebr.png' />Salvar Alteração</button>
+                        <div className='fundo-info'>
+                            <div>
+                                <p>Nome:</p>
+                                <input className='inp-nome' type='text' placeholder='EXEMPLO' value={nomeLeitor} onChange={e => setNomeLeitor(e.target.value)} />
+                            </div>
+                            <div className='p-input'>
+                                <p>E-mail:</p>
+                                <input className='inp-nome' type='text' placeholder='EXEMPLO@EXEMPLO' />
+                            </div>
+                            <div className='col-dois'>
+                                <div>
+                                    <p>CPF:</p>
+                                    <input type='text' placeholder='000.000.000-0' />
+                                </div>
+                                <div className='div-col-dois'>
+                                    <p>Telefone p/ contato:</p>
+                                    <input type='tell' placeholder='(xx) xxxxx-xxxx' value={telefoneParaContato} onChange={e => setTelefoneParaConontato(e.target.value) } />
+                                </div>
+                            </div>
+                            <div className='col-dois'>
+                                <div>
+                                    <p>Curso:</p>
+                                    <select onChange={e => setEscolhaCursoId(e.target.value)} disabled={desativado}>
+                                        <option value={escolhaCursoId} selected disabled hidden>{!nomeCurso ? 'Curso' : `${nomeCurso}`}</option>
+                                        {cursos.map(item => 
+                                        <option value={item.id_curso}> {item.nm_curso} </option>    
+                                        )}
+                                    </select>
+                                </div>
+                                <div className='div-col-dois'>
+                                    <p>Turma:</p>
+                                    <select onChange={e => setEscolhaTurmaId(e.target.value)}>
+                                        <option value={escolhaTurmaId} selected disabled hidden> {!nomeTurma ? 'Turma' : `${nomeTurma}`} </option>
+                                        {turmas.map(item =>
+                                            <option value={item.id}> {item.turma}</option>
+                                        )}
+                                    </select>
+                                </div>
+                                <div className='div-col-dois'>
+                                    <p>Turma p/ ano:</p>
+                                    <select placeholder='Ano'>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div className="textarea">
+                                <p>Endereço:</p>
+                                <textarea className="descricao" name="story" rows="7" cols="46" placeholder='EXEMPLO' value={observacoes} onChange={e => setObservacoes(e.target.value)}></textarea>
+                            </div>
+                            <div className='div-botoes'>
+                                <button className='open-modal-button'><img src='/assets/images/mais+.png' />Gerenciar cursos e turmas</button>
+                                <button onClick={SalvarClick} ><img src='/assets/images/conferebr.png' />Salvar Alteração</button>
+                                
+                            </div>
                         </div>
                     </div>
                 </div>

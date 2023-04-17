@@ -31,17 +31,17 @@ export default function Principal() {
                         <p>Olá <span>@Admin</span>, atualmente temos:</p>
                     </div>
                     <div className='fundo-livros'>
-                        <div>
+                        <div className='fila-um'>
                             <div className='div-livro'>
                                 <p>Livros emprestados: <span>{VetorEmprestimosAtivos}</span></p>
                             </div>
                             <div className='div-livro'>
-                                <p>Livros atrasados: <span className='spn-atrasado'>0</span></p>
+                                <p>Livros para recolher hoje: <span>0</span></p>
                             </div>
                         </div>
-                        <div className='div-livro'>
-                            <p>Livros para recolher hoje: <span>0</span></p>
-                        </div>
+                            <div className='div-livro-dois'>
+                                <p>Livros atrasados: <span className='spn-atrasado'>0</span></p>
+                            </div>
                     </div>
                 </div>
             </section>

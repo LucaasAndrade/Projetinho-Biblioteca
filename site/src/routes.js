@@ -23,11 +23,11 @@ export default function Index() {
                 <Route path='/cadastro/livro/:id' element={<AdicionarLivros />} />
                 <Route path='/historico/emprestimos' element={<HistoricoEmprestimos />} />
                 <Route path='/leitores' element={<HistoricoLeitores />} />
+                <Route path='/emprestimo' element={<Emprestimos />} />
 
 
                 <Route path='/cadastro/autor' element={<CadastrarAutor />} />
                 <Route path='/cadastro/genero' element={<CadastrarGenero />} />
-                <Route path='/emprestimo' element={<Emprestimos />} />
                 <Route path='/livros' element={<HistoricoLivros />} />
                 <Route path='/livros/emprestados' element={<LivrosEmprestados />} />
             </Routes>

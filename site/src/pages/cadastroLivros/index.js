@@ -88,12 +88,13 @@ export default function AdicionarLivros() {
             <ToastContainer />
             <ComponenteHeader />
             <section className='info-cadastro'>
+                <div>
                 <div className='titulo'>
                     <hr className='linha' />
                     <h2>Cadastro de Livros</h2>
                 </div>
+                
                 <div className='fundo-cadastro'>
-
 
                 <div className='info-inputs'>
                         <div>
@@ -139,7 +140,7 @@ export default function AdicionarLivros() {
                         </div>
                         
                     </div>
-
+                </div>
                 </div>
             </section>
         </main>

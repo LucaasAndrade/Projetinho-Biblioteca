@@ -96,6 +96,11 @@ export default function NovoEmprestimo() {
             <LoadingBar color='#ff0000' ref={ref} />
             <ComponenteHeader />
             <section className='info-novo-emprestimo'>
+                <div>
+                    <div className='titulo'>
+                        <hr className='linha' />
+                        <h2>Novo Emprestimo</h2>
+                    </div>
                 <div className='fundo-novo-emprestimo'>
                     <div>
                         <p className='col-dois'>Nome:</p>
@@ -138,7 +143,7 @@ export default function NovoEmprestimo() {
                         </div>
                     </div>
 
-                    <hr className='linha' />
+                    <hr className='linha-dois' />
 
                     <div>
                         <div className='col-dois'>
@@ -160,10 +165,11 @@ export default function NovoEmprestimo() {
                         <p className='col-dois'>Nome do Autor:</p>
                         <input className='inp-nome' type='text' placeholder='EXEMPLO' />
 
-                        <button><img src='/assets/images/confere.png' />salvar</button>
+                        <button className='botao-salvar'><img src='/assets/images/conferebr.png' />salvar</button>
 
                     </div>
 
+                </div>
                 </div>
             </section>
         </main>
