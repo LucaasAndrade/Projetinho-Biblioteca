@@ -118,7 +118,7 @@
         font-family: 'medio';
         color: #ffffff;
         margin-left: 2em;
-        padding: 5px 8px;
+        padding: 8px 10px;
         border-radius: 5px;
         border: none;
         background-color: #2C248A;
@@ -131,6 +131,7 @@
 
     .div-botoes img{
         padding-right: 10px;
+        opacity: 60%;
     }
 
     .input-check{
@@ -165,4 +166,9 @@
 
 *{
     // border: solid 1px black;
+}
+
+textarea:focus, input:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
 }

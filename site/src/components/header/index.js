@@ -38,12 +38,12 @@ export default function ComponenteHeader() {
                     <img src='/assets/images/moito.png' />
                     <p>Consultar Livros</p>
                 </div>
-                <div className='opcao-dois' onClick={() => navigate('/emprestimo')}>
+                <div className='opcao-dois' onClick={() => navigate('/consulta/curso/turma')}>
                     <img src='/assets/images/msete.png' />
                     <p>Consultar Cursos/Turmas</p>
                 </div>
             </div>
-                <div className='opcao-dois' onClick={() => navigate('/emprestimo')}>
+                <div className='opcao-dois' onClick={() => navigate('/')}>
                 <img src='/assets/images/sair.png' />
                 <p>Sair</p>
             </div>

@@ -1,13 +1,8 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
-}
-
-.page-cadastro-genero {
+.page-consulta {
     display: flex;
     flex-direction: row;
 
-    .info-cadastro{
+    .info-consulta{
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -15,16 +10,19 @@
         width: 100vw;
         padding: 2em
     }
-    .pagina-genero{
+
+    .pagina-consulta{
         display: flex;
         flex-direction: column;
         align-items: center;
     }
+
     .linha{
         border: 3px solid #4441DB;
         border-radius: 10px;
         margin-right: .5em;
     }
+
     .titulo{
         display: flex;
         flex-direction: row;
@@ -38,49 +36,7 @@
             color: #6d6d6d;
         }
     }
-    .div-pesquisa{
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        background-color: #ebebeb;
-        padding: .5em;
-        margin-top: 3em;
-        border-radius: 5px;
-        width: 60em;
 
-        p{
-            font-family: 'medio';
-            margin-left: 1em;
-        }
-    }
-    .divBusca{
-        border: solid 1px white;
-        border-radius: 5px;
-        width: 25em;
-        margin-left: .5em;
-        background-color: #ffffff;
-        border: none;
-
-        input{
-            padding: .5em;
-            width: 22em;
-            height: 2.3em;
-        }
-    }
-    textarea:focus, input:focus {
-        box-shadow: 0 0 0 0;
-        outline: 0;
-    }
-    .txtBusca{
-        float: left;
-        background-color: transparent;
-        padding-left: 5px;
-        font-style: italic;
-        font-size: 16px;
-        border: none;
-        height: 32px;
-        width: 210px;
-    }
     .tabela {
         display: flex;
         flex-direction: column;
@@ -89,21 +45,24 @@
         overflow-x: auto;
         padding-top: 1.5em;
     }
+
     table {
         border-collapse: collapse;
     }
+
     th {
         font-family: 'bold';
         background-color: #4441DB;
         color: #fff;
-        padding: 10px 15px;
+        padding: 10px 35px;
         text-align: left;
         text-transform: uppercase;
     }
     td {
         font-family: 'regular';
-        padding: 10px 15px;
+        padding: 10px 35px;
     }
+
     tr:nth-child(odd) td {
         background-color: #fff;
     }
@@ -115,12 +74,15 @@
         padding: 0px;
         text-align: center;
     }
+
     td img{
         opacity: 20%;
     }
+
     td img:hover{
         opacity: 60%;
     }
+
     tr td:nth-last-child(1) span, tr td:nth-last-child(2) span{
         font-weight: 700;
         font-size: 3px;
@@ -129,26 +91,5 @@
         padding: 5px 3px;
         border-radius: 3px;
     }
-    .botao-consulta{
-        display: flex;
-        align-items: center;
-        font-family: 'bold';
-        margin-left: 1em;
-        color: #ffffff;
-        padding: 8px 10px;
-        border-radius: 5px;
-        border: none;
-        background-color: #2C248A;
-        opacity: 90%;
-
-        img{
-            padding-right: 8px;
-            width: 2em;
-            opacity: 60%;
-        }
-    }
-    button:hover{
-        cursor: pointer;
-        opacity: 100%;
-    }
+    
 }

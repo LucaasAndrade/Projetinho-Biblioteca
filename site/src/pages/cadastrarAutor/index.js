@@ -70,7 +70,7 @@ export default function CadastrarAutor() {
                             </div>
                         </div>
                         <div className='div-botoes'>
-                            <button onClick={SalvarClick}><img src='/assets/images/confere.png' />Salvar Alteração</button>
+                            <button onClick={SalvarClick}><img src='/assets/images/conferebr.png' />Salvar Alteração</button>
                         </div>
                     </div>
                 </div>

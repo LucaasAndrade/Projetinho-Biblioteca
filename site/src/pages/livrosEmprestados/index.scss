@@ -11,19 +11,35 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        background-color: #F5F6FA;
         width: 100vw;
+        padding: 2em
     }
 
     .pagina-livros-emprestados{
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 5em;
     }
 
-    .pagina-livros-emprestados h1{
-        font-family: 'bold';
-        color: #303030;
+    .linha{
+        border: 3px solid #4441DB;
+        border-radius: 10px;
+        margin-right: .5em;
+    }
+
+    .titulo{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        
+        margin-top: 4em;
+        width: 100%;
+
+        h2{
+            font-family: 'bold';
+            color: #6d6d6d;
+        }
     }
 
     .tabela {
@@ -32,7 +48,7 @@
         width: 100%;
         max-width: 1024px;
         overflow-x: auto;
-        padding-top: 3em;
+        padding-top: 1.5em;
     }
 
     table {
@@ -45,6 +61,7 @@
         color: #fff;
         padding: 10px 15px;
         text-align: left;
+        text-transform: uppercase;
     }
     td {
         font-family: 'regular';

@@ -11,28 +11,15 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start;
-        text-align: start;
+        background-color: #F5F6FA;
         width: 100vw;
+        padding: 2em
     }
 
     .pagina-livros{
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 3em;
-
-        width: 100%;
-
-    }
-
-    .pagina-livros-titulo{
-        display: flex;
-        text-align: start;
-
-        
-        
-        width: 100%;
     }
 
     .linha{
@@ -41,9 +28,60 @@
         margin-right: .5em;
     }
 
-    .pagina-livros h1{
-        font-family: 'bold';
-        color: #303030;
+    .titulo{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        
+        margin-top: 4em;
+        width: 100%;
+
+        h2{
+            font-family: 'bold';
+            color: #6d6d6d;
+        }
+    }
+
+    .div-pesquisa{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #ebebeb;
+        padding: .5em;
+        margin-top: 3em;
+        border-radius: 5px;
+        width: 60em;
+    }
+
+    .divBusca{
+        border: solid 1px white;
+        border-radius: 5px;
+        width: 25em;
+        background-color: #ffffff;
+        border: none;
+
+        input{
+            padding: .5em;
+            width: 22em;
+            height: 2.3em;
+        }
+    }
+
+    textarea:focus, input:focus {
+        box-shadow: 0 0 0 0;
+        outline: 0;
+    }
+
+    .txtBusca{
+        float: left;
+        background-color: transparent;
+        padding-left: 5px;
+        font-style: italic;
+        font-size: 16px;
+        border: none;
+        height: 32px;
+        width: 210px;
     }
 
     .tabela {
@@ -52,7 +90,7 @@
         width: 100%;
         max-width: 1024px;
         overflow-x: auto;
-        padding-top: 3em;
+        padding-top: 1.5em;
     }
 
     table {
@@ -65,6 +103,7 @@
         color: #fff;
         padding: 10px 15px;
         text-align: left;
+        text-transform: uppercase;
     }
     td {
         font-family: 'regular';
@@ -106,23 +145,40 @@
         margin-top: 2em;
     }
 
-    button{
+    .div-botoes{
+        
+        button{
+            display: flex;
+            align-items: center;
+            font-family: 'bold';
+            color: #ffffff;
+            margin-right: 2em;
+            padding: 8px 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #2C248A;
+            opacity: 90%;
+        }
+    
+        img{
+            padding-right: 10px;
+            opacity: 60%;
+        }
+    }
+
+    .botao-consulta{
         display: flex;
         align-items: center;
         font-family: 'bold';
-        margin-right: 2em;
-        padding: 5px;
+        color: #ffffff;
+        padding: 8px 10px;
         border-radius: 5px;
-        background-color: #D9D9D9;
-        opacity: 80%;
+        border: none;
+        background-color: #2C248A;
+        opacity: 90%;
     }
     button:hover{
         cursor: pointer;
         opacity: 100%;
-    }
-
-    .div-botoes img{
-        opacity: 60%;
-        padding-right: 10px;
     }
 }

@@ -99,7 +99,7 @@ export default function NovoEmprestimo() {
                 <div>
                     <div className='titulo'>
                         <hr className='linha' />
-                        <h2>Novo Emprestimo</h2>
+                        <h2>Novo Empréstimo</h2>
                     </div>
                 <div className='fundo-novo-emprestimo'>
                     <div>
@@ -165,7 +165,9 @@ export default function NovoEmprestimo() {
                         <p className='col-dois'>Nome do Autor:</p>
                         <input className='inp-nome' type='text' placeholder='EXEMPLO' />
 
-                        <button className='botao-salvar'><img src='/assets/images/conferebr.png' />salvar</button>
+                        <div className='div-botao'>
+                            <button className='botao-salvar'><img src='/assets/images/conferebr.png' />salvar</button>
+                        </div>
 
                     </div>
 

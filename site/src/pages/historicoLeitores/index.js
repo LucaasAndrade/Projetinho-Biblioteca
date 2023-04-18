@@ -54,14 +54,12 @@ export default function HistoricoLeitores() {
                     <hr className='linha' />
                     <h2>Lista de Leitores</h2>
                 </div>
-
                 <div className='div-pesquisa'>
                     <div className='divBusca'>
                         <input type='text' className='txtBusca' placeholder='Buscar leitor'/>
                         <img src='/assets/images/lupa.png' className='btnBusca' alt='Buscar' />
                     </div>
                 </div>
-
                 <div className='tabela'>
                     <table>
                         <thead>
@@ -76,7 +74,6 @@ export default function HistoricoLeitores() {
                                 <th></th>
                             </tr>
                         </thead>
-
 
                         {/*  TESTE DO CSS
                             <tbody>  

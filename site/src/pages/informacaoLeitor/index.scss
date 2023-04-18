@@ -3,11 +3,11 @@
     margin: 0;
 }
 
-.cadastrar{
+.informacao-leitor{
     display: flex;
     flex-direction: row;
 
-    .info-cadastro{
+    .info-leitor{
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -32,7 +32,7 @@
         margin-right: .5em;
     }
 
-    .fundo-cadastro{
+    .fundo-leitor{
         display: flex;
         flex-direction: row;
         padding: 3em 4em;
@@ -45,7 +45,7 @@
         box-shadow: 0px 2px 15px -8px rgb(120, 120, 120);
     }
 
-    .info-cadastro p{
+    .info-leitor p{
         font-family: 'medio';
     }
 
@@ -122,46 +122,6 @@
         min-width: 36.2em;
         min-height: 6em;
         margin-top: .5em;
-    }
-
-    .div-botoes{
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 2em;
-    }
-
-    button{
-        display: flex;
-        align-items: center;
-        font-family: 'bold';
-        color: #ffffff;
-        margin-right: 2em;
-        padding: 8px 10px;
-        border-radius: 5px;
-        border: none;
-        background-color: #2C248A;
-        opacity: 90%;
-    }
-    button:hover{
-        cursor: pointer;
-        opacity: 100%;
-    }
-
-    .div-botoes img{
-        padding-right: 10px;
-        opacity: 60%;
-    }
-
-    .open-modal-button{
-        background-color: #ffffff;
-        border: 1px solid #000000;
-        color: #000000;
-        opacity: 80%;
-    }
-
-    .gerar-carteirinha:hover{
-        cursor: no-drop;
-        opacity: 80%;
     }
 
     textarea:focus, input:focus {
