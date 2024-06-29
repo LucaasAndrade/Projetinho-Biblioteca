@@ -30,7 +30,6 @@ CREATE TABLE tb_usuario(
     FOREIGN KEY (id_turma_curso) REFERENCES tb_turma_curso (id_turma_curso)
 );
 
-
 CREATE TABLE tb_genero(
 	id_genero					INT PRIMARY KEY AUTO_INCREMENT,
     nm_genero					VARCHAR(100)
@@ -51,20 +50,35 @@ CREATE TABLE tb_prateleira(
     nr_prateleira				INT
 );
 
+CREATE TABLE tb_nascionalidade(
+	id_nascionalidade	INT AUTO_INCREMENT NOT NULL,
+    nm_nascionalidade	VARCHAR(255),
+    PRIMARY KEY (id_nascionalidade)
+);
+
+CREATE TABLE tb_autor(
+	id_autor			INT AUTO_INCREMENT NOT NULL,
+    nm_autor			VARCHAR(255),
+    id_nascionalidade 	INT,
+    PRIMARY KEY (id_autor),
+    FOREIGN KEY (id_nascionalidade) REFERENCES tb_nascionalidade (id_nascionalidade)
+);
+
 CREATE TABLE tb_livro(
 	id_livro				INT PRIMARY KEY AUTO_INCREMENT,
     id_genero               INT,
     id_cor                  INT,
     id_situacao             INT,
     id_prateleira			INT,
+    id_autor				INT,
     nm_livro				VARCHAR(100),
-    nm_autor                VARCHAR(100),
     nm_publicadora          VARCHAR(100),
     ds_observacoes			VARCHAR(1000),
     ds_codigo_isbn			VARCHAR(10),
-    FOREIGN KEY (id_genero) REFERENCES tb_genero (id_genero),
-    FOREIGN KEY (id_cor) REFERENCES tb_cor (id_cor),
-    FOREIGN KEY (id_situacao) REFERENCES tb_situacao (id_situacao)
+    FOREIGN KEY (id_genero) 	REFERENCES tb_genero (id_genero),
+    FOREIGN KEY (id_cor) 		REFERENCES tb_cor (id_cor),
+    FOREIGN KEY (id_situacao) 	REFERENCES tb_situacao (id_situacao),
+    FOREIGN KEY (id_autor)		REFERENCES tb_autor (id_autor)
 );
 
 
@@ -80,6 +94,7 @@ CREATE TABLE tb_emprestimo(
     id_situacao_emprestimo	INT,
     dt_retirada				DATE,
     dt_entrega				DATE,
+	bl_ativo 				BOOLEAN,
     FOREIGN KEY (id_usuario) REFERENCES tb_usuario (id_usuario),
     FOREIGN KEY (id_livro) REFERENCES tb_livro (id_livro),
     FOREIGN KEY (id_situacao_emprestimo) REFERENCES tb_situacao_emprestimo (id_situacao_emprestimo)
