@@ -29,6 +29,7 @@ server.get('/livros/:pesquisa?/:codigo?/:id_livro?', async (req, resp) => {
     try {
         const {pesquisa, codigo, id_livro} = req.query
 
+        // SE NÃO PASSAR NENHUM PARÂMETRO DE BUSCA, CONSULTA TODOS REGISTROS.
         if (!pesquisa && !codigo && !id_livro) var resposta = await ConsultarTodosLivros();
 
         else var resposta = await ConsultarLivros(pesquisa, codigo, id_livro);

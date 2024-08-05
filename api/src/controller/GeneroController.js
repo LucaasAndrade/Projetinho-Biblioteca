@@ -10,6 +10,7 @@ server.get('/genero/:pesquisa?', async (req, resp) => {
     try {
         const { pesquisa } = req.params;
 
+        // BUSCA POR ID OU POR NOME, CASO NÃO SEJA PASSADO NENHUM PARÂMETRO, RETORNA TODOS REGISTROS;
         if (!pesquisa) var resposta = await ConsultarTodosGeneros();
         else var resposta = await ConsultarGeneros(pesquisa);
 

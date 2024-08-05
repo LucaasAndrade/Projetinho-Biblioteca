@@ -11,6 +11,7 @@ server.get('/leitor/:pesquisa?', async (req, resp) => {
         
         const { pesquisa } = req.query
         
+        // CASO NÃO SEJA PASSADO NENHUM PARÂMETRO, CONSULTA TODOS LEITORES.
         if (!pesquisa) var resposta = await ConsultarTodosLeitores();
         else var resposta = await ConsultarLeitores(pesquisa); 
 
