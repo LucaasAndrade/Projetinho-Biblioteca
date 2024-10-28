@@ -1,7 +1,7 @@
 import { con } from "./connection.js";
 
 
-export async function ConsultarTurmas(cursoId, anoTurma) {
+export async function ConsultarTurmas(cursoId) {
     const comando =
         `
     SELECT	id_turma_curso				id,
@@ -10,9 +10,9 @@ export async function ConsultarTurmas(cursoId, anoTurma) {
             nr_ano						ano
     FROM tb_turma_curso
     	INNER JOIN tb_curso	ON tb_turma_curso.id_curso	= 	tb_curso.id_curso
-    WHERE tb_turma_curso.id_curso = ? AND nr_ano = ?;
+    WHERE tb_turma_curso.id_curso = ?;
         `
-    const [linhas] = await con.query(comando, [cursoId, anoTurma]);
+    const [linhas] = await con.query(comando, [cursoId]);
     return linhas;
 }  
 

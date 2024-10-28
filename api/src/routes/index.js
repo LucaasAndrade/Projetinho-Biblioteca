@@ -8,7 +8,7 @@ import CursoController from '../controller/CursoController.js'
 import GeneroController from '../controller/GeneroController.js'
 import DataController from '../controller/DataController.js'
 import TurmaController from '../controller/TurmaController.js'
-import PrateleiraController from '../controller/TurmaController.js'
+import PrateleiraController from '../controller/PrateleiraController.js'
 import SituacaoController from '../controller/SituacaoController.js'
 import CorController from '../controller/CorController.js'
 

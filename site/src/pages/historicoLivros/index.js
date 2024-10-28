@@ -79,7 +79,7 @@ export default function HistoricoLivros(props) {
                     <td> {item.livro}</td>
                     <td> {item.autor}</td>
                     <td> {item.genero}</td>
-                    <td> {item.codigo} </td>
+                    <td> {item.isbn} </td>
                     <td>
                       <span>
                         <img

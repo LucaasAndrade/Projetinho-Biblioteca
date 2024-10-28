@@ -23,7 +23,7 @@ export async function CadastrarLivro(idGenero, idCor, idSituacao, idPrateleira, 
 
 
 export async function ConsultarTodosLivros() {
-    const r = await api.get('/adm/consulta/livros');
+    const r = await api.get('/livros')
     return r.data
 }
 
@@ -34,8 +34,8 @@ export async function DeletarLivro(idLivro) {
 }
 
 export async function BuscarLivroPorId(idLivro) {
-    const r = await api.get(`/adm/consulta/livro/${idLivro}`);
-    return r.data
+    const r = await api.get(`/livros/${idLivro}`);
+    return r.data[0];
 }
 
 export async function AlterarInformacoesDoLivro(idAutor, idGenero, nomeLivro, observacoes, idLivro) {

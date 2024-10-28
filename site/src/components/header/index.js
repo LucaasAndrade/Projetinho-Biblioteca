@@ -45,7 +45,7 @@ export default function ComponenteHeader() {
             </div>
                 <div className='opcao-dois' onClick={() => navigate('/')}>
                 <img src='/assets/images/sair.png' />
-                <p>Sair</p>
+                <p>Sair</p>1
             </div>
         </header>
     )
