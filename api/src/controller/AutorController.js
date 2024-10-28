@@ -8,7 +8,7 @@ const server = Router();
 
 // Cadastrar Autores
 
-server.post('/adm/cadastrar/autores', async (req, resp) => {
+server.post('/autores/cadastrar', async (req, resp) => {
     try {
         const { nome, nascionalidade } = req.body;
         if(!nome) throw new Error("Escreva o nome de um autor!")
@@ -28,7 +28,7 @@ server.post('/adm/cadastrar/autores', async (req, resp) => {
 // Consultar Autores de Livros
 
 // NAO COLOCAR /nome=exemplo; só usar a letra dps da barra
-server.get('/adm/consulta/autores/:nome?', async (req, resp) => {
+server.get('/autores/:nome?', async (req, resp) => {
     try {
         const { nome } = req.params
         const resposta = await ConsultarAutores(nome);

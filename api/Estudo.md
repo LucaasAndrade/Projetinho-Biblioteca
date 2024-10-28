@@ -1,5 +1,17 @@
 # ESTUDO DOS END-POINTS
 
+
+**EndPoint Autores** -> OK
+
+verbo       path
+
+GET /autores/:nome? ->
+
+
+POST /autores/cadastrar ->
+
+
+
 ***EndPoint Livro*** -> OK
 
 verbo           path               
