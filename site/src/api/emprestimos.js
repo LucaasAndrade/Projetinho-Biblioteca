@@ -8,13 +8,13 @@ const api = axios.create({
 });
 
 export async function EmprestimosAtivos() {
-    const r = await api.get('/adm/emprestimos/consultar/ativos');
+    const r = await api.get('/emprestimos');
     return r.data
 }
 
 
 export async function ConsultarTodosEmprestimos() {
-    const r = await api.get('/adm/emprestimos/consultar/todos');
+    const r = await api.get('/emprestimos');
     return r.data
 }
 

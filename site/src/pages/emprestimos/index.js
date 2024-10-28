@@ -6,10 +6,11 @@ import LoadingBar from 'react-top-loading-bar';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import {  ConsultarLeitorPorCodigo } from '../../api/leitor';
-import { ConsultarLivroPorCodigo } from '../../api/livro';
+import { BuscarLivroPorId } from '../../api/livro';
 import { BuscarData } from '../../api/data';
 import { CadastrarNovoEmprestimo } from '../../api/emprestimos';
 import { InverterDatas } from '../../assets/InverterData';
+import formatarCPF from '../../assets/FormatarCPF';
 
 export default function NovoEmprestimo() {
     const [idUsuario, setIdUsuario] = useState();
@@ -35,13 +36,13 @@ export default function NovoEmprestimo() {
         try {
             if(!codigoLeitor) throw new Error("Informe um Código de Identificação de Leitor!")
 
-            const r = await ConsultarLeitorPorCodigo(codigoLeitor);
+            const r = await ConsultarLeitorPorCodigo(formatarCPF(codigoLeitor));
 
-            setIdUsuario(r.id_usuario)
-            setNomeUsuario(r.nm_usuario);
-            setNomeCurso(r.nm_curso);
-            setNomeTurma(r.nm_turma);
-            setTelefone(r.nr_telefone);
+            setIdUsuario(r.id)
+            setNomeUsuario(r.leitor);
+            setNomeCurso(r.curso);
+            setNomeTurma(r.turma);
+            setTelefone(r.telefone);
         } catch (err) {
             window.alert(err.message)
         }
@@ -52,12 +53,12 @@ export default function NovoEmprestimo() {
         try {
             if (!codigoLivro) throw new Error("Não tem como consultar com o campo vazio!")
             
-            const r = await ConsultarLivroPorCodigo(codigoLivro);
+            const r = await BuscarLivroPorId(codigoLivro);
             
-            setIdLivro(r.id_livro);
-            setNomeAutor(r.nm_autor);
-            setNomeGenero(r.nm_genero);
-            setNomeLivro(r.nm_livro)
+            setIdLivro(r.id);
+            setNomeAutor(r.autor);
+            setNomeGenero(r.genero);
+            setNomeLivro(r.livro)
         } catch (err) {
             window.alert(err.message)
        }
@@ -161,9 +162,9 @@ export default function NovoEmprestimo() {
                         </div>
 
                         <p className='col-dois'>Nome do Livro:</p>
-                        <input className='inp-nome' type='text' placeholder='EXEMPLO' value={nomeLivro} disabled={true} />
+                        <input className='inp-nome' type='text' placeholder='Nome do Livro' value={nomeLivro} disabled={true} />
                         <p className='col-dois'>Nome do Autor:</p>
-                        <input className='inp-nome' type='text' placeholder='EXEMPLO' />
+                        <input className='inp-nome' type='text' placeholder='EXEMPLO' value={nomeAutor} disabled/>
 
                         <div className='div-botao'>
                             <button className='botao-salvar'><img src='/assets/images/conferebr.png' />salvar</button>

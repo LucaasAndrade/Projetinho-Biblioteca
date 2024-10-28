@@ -31,7 +31,7 @@ export default function AdicionarLivros() {
   const [nomeCor, setNomeCor] = useState();
   const [idCor, setIdCor] = useState();
 
-  const [idSituacao, setIdSituacao] = useState();
+  const [idSituacao, setIdSituacao] = useState(2);
 
   const { id } = useParams();
 
@@ -101,22 +101,20 @@ export default function AdicionarLivros() {
       return;
     } else {
       const r = await BuscarLivroPorId(id);
-    // console.log(r.id_situacao);
-    console.log(r);
-    
+      // console.log(r.id_situacao);
+      console.log(r);
+
       setGeneroId(r.id_genero);
       setNomeLivro(r.livro);
       setObservacoes(r.observacoes);
       setNomeAutor(r.autor);
       setCodigoISBN(r.isbn);
       setEditora(r.publicadora);
-      setNumeroPrateleira(r.numeroPrateleira)
+      setNumeroPrateleira(r.numeroPrateleira);
       setNomeGenero(r.genero);
       setIdCor(r.id_cor);
       setNomeCor(r.cor);
-      setIdSituacao(r.id_situacao)
-      console.log(idSituacao == 1);
-      
+      setIdSituacao((prev) => r.id_situacao);
     }
   }
 
@@ -196,22 +194,22 @@ export default function AdicionarLivros() {
                   <div>
                     <input
                       type="radio"
-                      value={idSituacao}
+                      value={2}
                       name="Situacao"
-                      onChange={(e) => setIdSituacao(e.target.value)}
-                      {...idSituacao == 2 ? "checked" : ""}
+                      onChange={() => setIdSituacao(2)}
+                      checked={idSituacao === 2}
                     />
-                    <p> Disponível </p>
+                    <p>Disponível</p>
                   </div>
                   <div>
                     <input
                       type="radio"
-                      value={idSituacao}
+                      value={1}
                       name="Situacao"
-                      onChange={(e) => setIdSituacao(e.target.value)}
-                      {...idSituacao == 1 ? "checked" : ""}
+                      onChange={() => setIdSituacao(1)}
+                      checked={idSituacao === 1}
                     />
-                    <p> Emprestado </p>
+                    <p>Emprestado</p>
                   </div>
                 </div>
               </div>

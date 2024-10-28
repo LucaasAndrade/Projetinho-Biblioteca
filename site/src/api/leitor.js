@@ -9,8 +9,8 @@ const api = axios.create({
 
 
 export async function ConsultarLeitores() {
-    const r = await api.get('/adm/consulta/leitores');
-    return r.data
+    const r = await api.get('/leitor');
+    return r.data[0];
 }
 
 
@@ -48,6 +48,6 @@ export async function AlterarInformacoesUsuario(idUsuario, nome, telefone, obser
 
 
 export async function ConsultarLeitorPorCodigo(codigo) {
-    const r = await api.get(`/adm/consulta/leitor/emprestimo/${codigo}`);
-    return r.data
+    const r = await api.get(`/leitor/${codigo}`);
+    return r.data[0]
 }

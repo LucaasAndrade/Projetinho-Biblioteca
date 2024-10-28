@@ -12,12 +12,30 @@ import LoadingBar from 'react-top-loading-bar';
 
 export default function HistoricoLeitores() {
     const [leitores, setLeitores] = useState([]);
+    const [ searchList, setSearchList ] = useState([]);
 
     const ref = useRef(null)
 
     async function ConsultarTodosLeitores() {
         const r = await ConsultarLeitores();
         setLeitores(r);
+        setSearchList(r);
+    }
+
+    const handleSearch = (e) => {
+        const value = e.target.value.toLowerCase();
+        
+        if(!value) {
+            setSearchList(leitores);
+            return
+        }
+
+        const newArr = new Array(leitores).filter(item => {
+            console.log(item);
+            return item.leitor.toLowerCase().includes(value)
+        });
+        setSearchList(newArr); 
+        console.log(newArr);
     }
 
     async function DeletarClick(itemId, nomeItem) {
@@ -56,7 +74,7 @@ export default function HistoricoLeitores() {
                 </div>
                 <div className='div-pesquisa'>
                     <div className='divBusca'>
-                        <input type='text' className='txtBusca' placeholder='Buscar leitor'/>
+                        <input onChange={handleSearch} type='text' className='txtBusca' placeholder='Buscar leitor'/>
                         <img src='/assets/images/lupa.png' className='btnBusca' alt='Buscar' />
                     </div>
                 </div>
@@ -105,13 +123,13 @@ export default function HistoricoLeitores() {
 
 
                         <tbody>
-                            {leitores.map(item =>
-                            <tr>
+                            {new Array(searchList)?.map((item, i) =>
+                            <tr key={i}>
                                 <td> {item.id}</td>
                                 <td> {item.leitor }</td>
                                 <td> {item.curso}</td>
                                 <td> {item.turma}</td>
-                                <td> {item.codigo} </td>
+                                <td> {item.cpf} </td>
                                     <td>
                                         <span>
                                             <img src='/assets/images/lista.png' />
@@ -128,7 +146,7 @@ export default function HistoricoLeitores() {
                                         </span>
                                     </td>
                             </tr>    
-                                )}    
+                                )}     
                         </tbody>
                     </table>
                         <div className='div-botoes'>

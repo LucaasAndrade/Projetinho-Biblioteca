@@ -49,6 +49,6 @@ export async function AlterarInformacoesDoLivro(idAutor, idGenero, nomeLivro, ob
 }
 
 export async function ConsultarLivroPorCodigo(codigo) {
-    const r = await api.get(`/adm/consulta/livro/emprestimo/${codigo}`);
+    const r = await api.get(`/livros/${codigo}`);
     return r.data
 }

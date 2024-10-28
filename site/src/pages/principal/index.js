@@ -7,13 +7,17 @@ import { useNavigate } from 'react-router-dom';
 import { EmprestimosAtivos } from '../../api/emprestimos';
 
 export default function Principal() {
-    const [VetorEmprestimosAtivos, setVetorEmprestimosAtivos] = useState();
+    const [emprestimos, setEmprestimos] = useState({total: 0, late: 0, today: 0});
     
     const navigate = useNavigate();
 
-    async function CarregarEmprestimos() {
-        const resp = await EmprestimosAtivos();
-        setVetorEmprestimosAtivos(resp.Emprestimos_Ativos);
+    const CarregarEmprestimos = async () => {
+        const response = await EmprestimosAtivos();
+
+        const recoveryBookToday = response.reduce((acc, val) => val.data_entrega == new Date().toISOString() ? acc + 1 : acc, 0);
+        const lateBooks = response.reduce((acc, val) => val.data_entrega < new Date().toISOString() ? acc + 1 : acc, 0);
+        
+        setEmprestimos({total: response.length, late: lateBooks, today: recoveryBookToday});
     }
     
     useEffect(() => {
@@ -33,14 +37,14 @@ export default function Principal() {
                     <div className='fundo-livros'>
                         <div className='fila-um'>
                             <div className='div-livro'>
-                                <p>Livros emprestados: <span>{VetorEmprestimosAtivos}</span></p>
+                                <p>Livros emprestados: <span>{ emprestimos.total ?? 0}</span></p>
                             </div>
                             <div className='div-livro'>
-                                <p>Livros para recolher hoje: <span>0</span></p>
+                                <p>Livros para recolher hoje: <span>{ emprestimos.today ?? 0}</span></p>
                             </div>
                         </div>
                             <div className='div-livro-dois'>
-                                <p>Livros atrasados: <span className='spn-atrasado'>0</span></p>
+                                <p>Livros atrasados: <span className='spn-atrasado'>{ emprestimos.late ?? 0}</span></p>
                             </div>
                     </div>
                 </div>
